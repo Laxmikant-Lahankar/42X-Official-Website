@@ -14,7 +14,7 @@ const COMPANIES = [
 export default function Hero() {
   return (
     <Customsection>
-      <main className="relative flex h-[32rem] w-full flex-col overflow-hidden md:h-[50rem]">
+      <main className="relative flex h-[32rem] w-full flex-col overflow-hidden md:h-[55rem]">
         <video
           autoPlay
           muted
@@ -24,12 +24,12 @@ export default function Hero() {
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover object-bottom"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/hero-video2.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-black/10" />
 
-        <section className="relative z-10 flex flex-1 items-center justify-center px-6 text-center mb-10">
+        <section className="relative z-10 flex flex-1 items-center justify-center px-6 text-center mb-15">
           <div className="max-w-4xl text-white">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#2E57DF]/20 text-xs sm:text-sm font-medium shadow-inner mb-8">
               <span className="relative flex h-2 w-2">

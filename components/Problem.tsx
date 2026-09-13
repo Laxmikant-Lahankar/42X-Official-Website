@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 import { Fragment, useRef } from "react";
 import { Customsection } from "@/app/CustomSection";
+import SectionHeader from "@/components/SectionHeader";
 
 const PARAGRAPHS = [
   "Millions of professionals want to advance their careers in SAP, Data Engineering, and Power Platform—but traditional education teaches theory, not the practical skills enterprises actually need.",
@@ -108,7 +109,7 @@ function RevealedParagraph({
   );
 }
 
-export default function TextScrollWordReveal() {
+export default function Problem() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -130,21 +131,17 @@ export default function TextScrollWordReveal() {
     <Customsection>
       <div ref={sectionRef} className="relative px-6 py-16 md:px-12 md:py-20">
         <div className="grid items-start gap-10 md:grid-cols-2 md:gap-16">
-          <div className="flex flex-col items-start gap-2">
-            <div className="inline-flex items-center gap-2 text-xs font-medium text-gray-400 shadow-inner backdrop-blur-md sm:text-sm mb-2">
-              <span className="relative flex h-1 w-1">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
-                <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-500" />
-              </span>
-              The problem
-            </div>
-            <h2 className="text-3xl font-light text-white md:text-4xl">
-              The enterprise skills gap <br />
-              is real.
-            </h2>
-          </div>
+          <SectionHeader
+            badge="The problem"
+            title={
+              <>
+                The enterprise skills gap <br />
+                is real.
+              </>
+            }
+          />
           <div
-            className="flex max-w-xl flex-col gap-6 text-lg font-light leading-[1.45] tracking-[-0.02em] text-white md:text-xl md:leading-[1.4]"
+            className="flex max-w-xl flex-col gap-6 text-lg font-light leading-[1.45] tracking-[-0.02em] text-white/90 md:text-xl md:leading-[1.4]"
             aria-label={PARAGRAPHS.join(" ")}
           >
             {PARAGRAPHS.map((paragraph, index) => (
