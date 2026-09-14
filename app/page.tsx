@@ -4,6 +4,9 @@ import LearningPath from "@/components/Path";
 import Problem from "@/components/Problem";
 import Perks from "@/components/Perks";
 import WhyUs from "@/components/WhyUs";
+import Community from "@/components/Community";
+import Faculty from "@/components/Faculty";
+import Faq from "@/components/Faq";
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
       <Courses />
       <LearningPath />
       <Perks />
+      <Community />
+      <Faculty />
+      <Faq />
     </div>
   );
 }

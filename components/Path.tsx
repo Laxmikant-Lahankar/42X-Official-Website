@@ -48,7 +48,7 @@ export default function LearningPath() {
               return (
                 <article
                   key={step.number}
-                  className="mb-4 flex flex-col overflow-hidden rounded-sm border border-white/5 bg-[#0D0D0D] ring-white/10 md:block"
+                  className="mb-4 flex flex-col overflow-hidden rounded-sm border border-white/5 bg-[#141414] ring-white/10 md:block"
                   style={{
                     position: isLastCard ? "relative" : "sticky",
                     top: isLastCard ? "auto" : "6rem",

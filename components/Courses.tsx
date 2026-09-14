@@ -57,7 +57,7 @@ export default function Courses() {
           {courses.map((course) => (
             <article
               key={course.slug}
-              className="flex h-full flex-col rounded-sm bg-white/5 p-4 ring-1 ring-white/10"
+              className="flex h-full flex-col rounded-sm bg-[#141414] p-4 ring-1 ring-white/10"
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-sm">
                 <Image

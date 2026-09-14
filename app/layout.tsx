@@ -3,6 +3,8 @@ import { Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import Navbar from "@/components/Navbar";
+import Finalcta from "@/components/Finalcta";
+import { Footer } from "@/components/Footer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -31,6 +33,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         <FloatingNavbar />
         {children}
+        <Finalcta />
+        <Footer />
       </body>
     </html>
   );
