@@ -54,16 +54,30 @@ export default function Hero() {
                 size="lg"
                 className="h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-white hover:bg-[#2E57DF]/90"
               >
-                Get started
+                SAP
                 <ArrowRight />
               </Button>
               <Button
+                size="lg"
+                className="h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-white hover:bg-[#2E57DF]/90"
+              >
+                Power Platform
+                <ArrowRight />
+              </Button>
+              <Button
+                size="lg"
+                className="h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-white hover:bg-[#2E57DF]/90"
+              >
+                Data Engineering
+                <ArrowRight />
+              </Button>
+              {/* <Button
                 variant="outline"
                 size="lg"
                 className="h-11 rounded-full border-[#2E57DF]/50 bg-white/10 backdrop-blur-md px-6 text-white hover:bg-white/10 hover:text-white"
               >
                 Learn More
-              </Button>
+              </Button> */}
             </div>
           </div>
         </section>
