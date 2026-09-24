@@ -18,6 +18,7 @@ const CARD_PADDING = 100;
 export interface CardItem {
   avatar: string;
   bio?: string;
+  courses?: string[];
   handle: string;
   href: string;
   id: string;
