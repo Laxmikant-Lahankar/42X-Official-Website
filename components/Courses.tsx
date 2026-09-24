@@ -44,7 +44,11 @@ const courses = [
   },
 ];
 
-export default function Courses() {
+export default function Courses({ course }: { course?: string } = {}) {
+  const filteredCourses = course
+    ? courses.filter((item) => item.slug === course)
+    : courses;
+
   return (
     <Customsection id="courses">
       <div className="px-6 py-16 md:px-12 md:py-20">
@@ -54,7 +58,7 @@ export default function Courses() {
         />
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {courses.map((course) => (
+          {filteredCourses.map((course) => (
             <article
               key={course.slug}
               className="flex h-full flex-col rounded-sm bg-[#141414] p-4 ring-1 ring-white/10"

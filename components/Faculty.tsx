@@ -14,10 +14,11 @@ const FACULTY: CardItem[] = [
     name: "Ananya Rao",
     role: "SAP Mentor",
     handle: "Currently at TCS",
-    bio: "Leads SAP S/4HANA work for enterprise clients. She teaches the modules, processes, and project habits teams actually hire for—not slide-deck theory.",
+    bio: "...",
     href: "https://www.linkedin.com",
     image: "/perks-1.png",
     avatar: "/perks-1.png",
+    courses: ["sap"],   // <-- ye naya
   },
   {
     id: "rahul-mehta",
@@ -28,6 +29,7 @@ const FACULTY: CardItem[] = [
     href: "https://www.linkedin.com",
     image: "/perks-2.png",
     avatar: "/perks-2.png",
+    courses:[ "power-bi", "power-platform"],   
   },
   {
     id: "priya-nair",
@@ -38,6 +40,7 @@ const FACULTY: CardItem[] = [
     href: "https://www.linkedin.com",
     image: "/perks-3.png",
     avatar: "/perks-3.png",
+    courses:["power-platform"],
   },
   {
     id: "james-okonkwo",
@@ -48,6 +51,7 @@ const FACULTY: CardItem[] = [
     href: "https://www.linkedin.com",
     image: "/perks-4.png",
     avatar: "/perks-4.png",
+    courses: ["sap", "power-bi"],
   },
   {
     id: "meera-shah",
@@ -58,6 +62,7 @@ const FACULTY: CardItem[] = [
     href: "https://www.linkedin.com",
     image: "/perks-5.png",
     avatar: "/perks-5.png",
+    courses: ["sap", "power-platform"],
   },
 ];
 
@@ -69,7 +74,11 @@ function LinkedInMark() {
   );
 }
 
-export default function Faculty() {
+export default function Faculty({ course }: { course?: string } = {}) {
+  const faculty = course
+    ? FACULTY.filter((member) => member.courses?.includes(course))
+    : FACULTY;
+
   return (
     <Customsection>
       <div className="px-6 py-16 md:px-12 md:py-20">
@@ -80,7 +89,7 @@ export default function Faculty() {
 
         <div className="mt-8">
           <ScrollableCardStack
-            items={FACULTY}
+            items={faculty}
             cardHeight={360}
             className="w-full max-w-none"
             cardClassName="w-full"

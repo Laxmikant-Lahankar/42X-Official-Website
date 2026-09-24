@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Customsection } from "@/app/CustomSection";
+import Link from "next/link";
 
 const COMPANIES = [
   "Google",
@@ -11,7 +12,13 @@ const COMPANIES = [
   "Capgemini",
 ];
 
-export default function Hero() {
+export default function Hero({
+  title = "Master SAP, Data Engineering & Power Platform",
+  activeCourse,
+}: {
+  title?: string;
+  activeCourse?: string;
+} = {}) {
   return (
     <Customsection>
       <main className="relative flex h-[32rem] w-full flex-col overflow-hidden md:h-[55rem]">
@@ -40,7 +47,7 @@ export default function Hero() {
             </div>
 
             <h1 className="text-5xl md:text-4xl lg:text-5xl">
-              Master SAP, Data Engineering & Power Platform
+              {title}
             </h1>
 
             <p className="mx-auto mt-6 max-w-xl text-sm text-white/50 md:text-md">
@@ -49,28 +56,36 @@ export default function Hero() {
               horizons.
             </p>
 
-            <div className="mt-8 flex justify-center gap-4">
-              <Button
-                size="lg"
-                className="h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-white hover:bg-[#2E57DF]/90"
-              >
-                SAP
-                <ArrowRight />
-              </Button>
-              <Button
-                size="lg"
-                className="h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-white hover:bg-[#2E57DF]/90"
-              >
-                Power Platform
-                <ArrowRight />
-              </Button>
-              <Button
-                size="lg"
-                className="h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-white hover:bg-[#2E57DF]/90"
-              >
-                Data Engineering
-                <ArrowRight />
-              </Button>
+          <div className="mt-8 flex justify-center gap-4">
+          { activeCourse !== "sap" && <Link
+              href="/sap"
+              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
+            >
+              SAP
+              <ArrowRight />
+            </Link>
+          }
+
+             
+           {activeCourse !== "data-engineering" && 
+            <Link
+              href="/data-engineering"
+              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
+            >
+              Data Engineering
+              <ArrowRight />
+            </Link>
+            }
+            {
+              activeCourse !== "power-platform" &&
+            <Link
+              href="/power-platform"
+              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
+            >
+              Power Platform
+              <ArrowRight />
+            </Link>
+            } 
               {/* <Button
                 variant="outline"
                 size="lg"
