@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowUpRight, ArrowUp, Send, Check, BriefcaseBusiness, Camera, Play, BadgeX, GitBranch } from "lucide-react";
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 export const Footer = () => {
   const [email, setEmail] = useState("");
@@ -57,7 +58,7 @@ export const Footer = () => {
       {/* Main Footer Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 relative z-10">
         {/* Top Grid: Brand & Newsletter + Navigation Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-neutral-900">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-neutral-900">
           {/* Left Column (Brand, Status & Newsletter) */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
@@ -209,7 +210,7 @@ export const Footer = () => {
               </ul>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Middle Metadata & Quick Bar */}
         <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-neutral-900 text-xs font-mono text-neutral-500">

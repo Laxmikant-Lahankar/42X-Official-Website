@@ -6,6 +6,7 @@ import { useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Customsection } from "@/app/CustomSection";
 import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const AUTOPLAY_MS = 5000;
 
@@ -82,8 +83,9 @@ export default function Perks() {
           className="max-w-md"
         />
 
+        <Reveal className="mt-12">
         <div
-          className="mt-12 grid items-stretch gap-4 lg:grid-cols-2 lg:gap-6"
+          className="grid items-stretch gap-4 lg:grid-cols-2 lg:gap-6"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -151,6 +153,7 @@ export default function Perks() {
             })}
           </div>
         </div>
+        </Reveal>
       </div>
     </Customsection>
   );

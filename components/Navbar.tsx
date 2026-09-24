@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <Customsection>
-      <header className="relative w-full">
+      <header className="animate-drop-down relative w-full">
         <div className="relative flex h-16 w-full items-center justify-between px-6">
           <Link
             href="/"

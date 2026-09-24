@@ -4,6 +4,7 @@ import { Customsection } from "@/app/CustomSection";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const IMAGES = {
   discord: "",
@@ -68,7 +69,8 @@ export default function Community() {
           title="Learn faster with people who refuse to stay average"
         />
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-[minmax(0,0.37fr)_minmax(0,0.63fr)]">
+        <Reveal className="mt-12">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,0.37fr)_minmax(0,0.63fr)]">
           <article className="relative isolate min-h-[32rem] overflow-hidden rounded-2xl ring-1 ring-white/10 lg:min-h-full">
             <CardMedia
               src={IMAGES.discord || undefined}
@@ -179,6 +181,7 @@ export default function Community() {
             </div>
           </div>
         </div>
+        </Reveal>
       </div>
     </Customsection>
   );

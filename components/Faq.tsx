@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Customsection } from "@/app/CustomSection";
 import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const FAQS = [
   {
@@ -61,9 +62,9 @@ export default function Faq() {
               const isOpen = openIndex === index;
 
               return (
+                <Reveal key={faq.question} delayMs={index * 70}>
                 <div
-                  key={faq.question}
-                  className="rounded-2xl bg-[#141414] ring-1 ring-white/8 p-5"
+                  className="rounded-2xl bg-[#141414] p-5 ring-1 ring-white/8"
                 >
                   <button
                     type="button"
@@ -96,6 +97,7 @@ export default function Faq() {
                     </div>
                   </div>
                 </div>
+                </Reveal>
               );
             })}
           </div>

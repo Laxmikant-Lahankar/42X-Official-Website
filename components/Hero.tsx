@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Customsection } from "@/app/CustomSection";
 import Link from "next/link";
+import Link from "next/link";
 
 const COMPANIES = [
   "Google",
@@ -38,54 +39,53 @@ export default function Hero({
 
         <section className="relative z-10 flex flex-1 items-center justify-center px-6 text-center mb-15">
           <div className="max-w-4xl text-white">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#2E57DF]/20 text-xs sm:text-sm font-medium shadow-inner mb-8">
+            <div className="animate-drop-down mb-8 inline-flex items-center gap-2 rounded-full border border-[#2E57DF]/20 bg-white/10 px-4 py-1.5 text-xs font-medium shadow-inner backdrop-blur-md sm:text-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
               </span>
               <span>Seats filling fast for first cohort</span>
             </div>
 
-            <h1 className="text-5xl md:text-4xl lg:text-5xl">
+            <h1 className="animate-fade-up text-5xl md:text-4xl lg:text-5xl">
               {title}
             </h1>
 
-            <p className="mx-auto mt-6 max-w-xl text-sm text-white/50 md:text-md">
+            <p className="animate-fade-up mx-auto mt-6 max-w-xl text-sm text-white/50 md:text-md [animation-delay:150ms] opacity-0">
               Professional training with dedicated mentorship. Real-world
               projects. Career acceleration into top enterprises and reach new
               horizons.
             </p>
 
-          <div className="mt-8 flex justify-center gap-4">
-          { activeCourse !== "sap" && <Link
-              href="/sap"
-              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
-            >
-              SAP
-              <ArrowRight />
-            </Link>
-          }
+            <div className="mt-8 flex justify-center gap-4">
+              {activeCourse !== "sap" && (
+                <Link
+                  href="/sap"
+                  className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
+                >
+                  SAP
+                  <ArrowRight />
+                </Link>
+              )}
 
-             
-           {activeCourse !== "data-engineering" && 
-            <Link
-              href="/data-engineering"
-              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
-            >
-              Data Engineering
-              <ArrowRight />
-            </Link>
-            }
-            {
-              activeCourse !=="power-platform" &&
-            <Link
-              href="/power-platform"
-              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
-            >
-              Power Platform
-              <ArrowRight />
-            </Link>
-            } 
+              {activeCourse !== "data-engineering" && (
+                <Link
+                  href="/data-engineering"
+                  className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
+                >
+                  Data Engineering
+                  <ArrowRight />
+                </Link>
+              )}
+              {activeCourse !== "power-platform" && (
+                <Link
+                  href="/power-platform"
+                  className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
+                >
+                  Power Platform
+                  <ArrowRight />
+                </Link>
+              )}
               {/* <Button
                 variant="outline"
                 size="lg"
@@ -97,7 +97,7 @@ export default function Hero({
           </div>
         </section>
 
-        <div className="relative z-20 bg-gradient-to-t from-black via-black/80 to-transparent pt-2 pb-8">
+        <div className="animate-fade-in-delayed relative z-20 bg-gradient-to-t from-black via-black/80 to-transparent pt-2 pb-8">
           <p className="mb-9 text-center text-xs font-medium uppercase tracking-[0.28em] text-white/70 sm:text-sm">
             Backed by Experts at
           </p>

@@ -89,6 +89,71 @@
   }
 }
 
+@keyframes drop-down {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fade-in-soft {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@layer utilities {
+  .animate-drop-down {
+    animation: drop-down 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delayed {
+    animation: fade-in-soft 0.4s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drop-down,
+  .animate-fade-up,
+  .animate-fade-in-delayed {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
 :root {
   --background: oklch(0% 0 0);
   --foreground: oklch(0.985 0 0);

@@ -7,6 +7,7 @@ import ScrollableCardStack, {
   type CardItem,
 } from "@/components/smoothui/scrollable-card-stack";
 import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const FACULTY: CardItem[] = [
   {
@@ -87,7 +88,7 @@ export default function Faculty({ course }: { course?: string } = {}) {
           title="The people who will actually teach you"
         />
 
-        <div className="mt-8">
+        <Reveal className="mt-8">
           <ScrollableCardStack
             items={faculty}
             cardHeight={360}
@@ -132,7 +133,7 @@ export default function Faculty({ course }: { course?: string } = {}) {
               </div>
             )}
           />
-        </div>
+        </Reveal>
       </div>
     </Customsection>
   );

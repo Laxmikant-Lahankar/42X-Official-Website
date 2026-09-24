@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Customsection } from "@/app/CustomSection";
 import SectionHeader from "@/components/SectionHeader";
 import { Button } from "./ui/button";
+import Reveal from "./Reveal";
 
 const cardData = [
   {
@@ -49,11 +50,11 @@ export default function WhyUs() {
         />
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {cardData.map((card) => (
-            <article
-              key={card.id}
-              className="group relative isolate aspect-[3/4] overflow-hidden rounded-sm ring-1 ring-white/10 transition-[transform,box-shadow,ring-color] duration-500 ease-out hover:-translate-y-1.5 hover:ring-white/25 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.8)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-            >
+          {cardData.map((card, index) => (
+            <Reveal key={card.id} delayMs={index * 90}>
+              <article
+                className="group relative isolate aspect-[3/4] overflow-hidden rounded-sm ring-1 ring-white/10 transition-[transform,box-shadow,ring-color] duration-500 ease-out hover:-translate-y-1.5 hover:ring-white/25 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.8)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              >
               <Image
                 src={card.image}
                 alt=""
@@ -74,18 +75,19 @@ export default function WhyUs() {
                   {card.description}
                 </p>
               </div>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <Reveal className="mt-10 flex justify-center">
           <Button
             size="sm"
             className="h-9 rounded-lg bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-4 text-white hover:bg-gradient-to-b hover:from-[#5B8CFF] hover:to-[#2E57DF]"
           >
             <Link href="/courses">Read More</Link>
           </Button>
-        </div>
+        </Reveal>
       </div>
     </Customsection>
   );
