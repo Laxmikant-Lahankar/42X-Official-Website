@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Customsection } from "@/app/CustomSection";
 import Link from "next/link";
-import Link from "next/link";
 
 const COMPANIES = [
   "Google",
@@ -47,17 +46,17 @@ export default function Hero({
               <span>Seats filling fast for first cohort</span>
             </div>
 
-            <h1 className="animate-fade-up text-5xl md:text-4xl lg:text-5xl">
+            <h1 className="animate-fade-up text-5xl opacity-0 md:text-4xl lg:text-5xl">
               {title}
             </h1>
 
-            <p className="animate-fade-up mx-auto mt-6 max-w-xl text-sm text-white/50 md:text-md [animation-delay:150ms] opacity-0">
+            <p className="animate-fade-up mx-auto mt-6 max-w-xl text-sm text-white/50 opacity-0 md:text-md [animation-delay:150ms]">
               Professional training with dedicated mentorship. Real-world
               projects. Career acceleration into top enterprises and reach new
               horizons.
             </p>
 
-            <div className="mt-8 flex justify-center gap-4">
+            <div className="animate-fade-up mt-8 flex justify-center gap-4 opacity-0 [animation-delay:280ms]">
               {activeCourse !== "sap" && (
                 <Link
                   href="/sap"
