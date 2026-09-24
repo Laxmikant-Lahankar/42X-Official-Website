@@ -40,7 +40,7 @@ const FACULTY: CardItem[] = [
     href: "https://www.linkedin.com",
     image: "/perks-3.png",
     avatar: "/perks-3.png",
-    courses:["power-platform"],
+    courses:["power-platform","data-engineering"],
   },
   {
     id: "james-okonkwo",
@@ -51,7 +51,7 @@ const FACULTY: CardItem[] = [
     href: "https://www.linkedin.com",
     image: "/perks-4.png",
     avatar: "/perks-4.png",
-    courses: ["sap", "power-bi"],
+    courses: ["sap", "power-platform"],
   },
   {
     id: "meera-shah",
@@ -62,7 +62,7 @@ const FACULTY: CardItem[] = [
     href: "https://www.linkedin.com",
     image: "/perks-5.png",
     avatar: "/perks-5.png",
-    courses: ["sap", "power-platform"],
+    courses: ["sap", "power-platform", "data-engineering"],
   },
 ];
 

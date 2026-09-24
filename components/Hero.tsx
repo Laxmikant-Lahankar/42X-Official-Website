@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Customsection } from "@/app/CustomSection";
 import Link from "next/link";
 
@@ -77,7 +77,7 @@ export default function Hero({
             </Link>
             }
             {
-              activeCourse !== "power-platform" &&
+              activeCourse !=="power-platform" &&
             <Link
               href="/power-platform"
               className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-center text-sm font-medium text-white hover:bg-[#2E57DF]/90"
