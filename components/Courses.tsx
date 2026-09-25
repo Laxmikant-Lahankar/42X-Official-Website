@@ -13,7 +13,7 @@ const courses = [
     badge: "SAP",
     description:
       "Learn the SAP skills enterprises actually hire for—real modules, live processes, and project work that goes beyond a certificate.",
-    image: "/card-1.jpg",
+    image: "/courses1.png",
     level: "Beginner to Intermediate",
     duration: "12 Weeks",
     lessons: "36 Lessons",
@@ -25,7 +25,7 @@ const courses = [
     badge: "Power BI",
     description:
       "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
-    image: "/card-2.jpg",
+    image: "/courses2.png",
     level: "Beginner",
     duration: "8 Weeks",
     lessons: "24 Lessons",
@@ -37,24 +37,24 @@ const courses = [
     badge: "Power Platform",
     description:
       "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",
-    image: "/card-3.jpg",
+    image: "/courses.3.png",
     level: "Beginner to Intermediate",
     duration: "10 Weeks",
     lessons: "30 Lessons",
     access: "Lifetime Access",
   },
-  {
-    slug: "data-engineering",
-    title: "Data Engineering for Enterprise Careers",
-    badge: "Data Engineering",
-    description:
-      "Learn the data engineering skills enterprises actually hire for—real systems, live processes, and project work that goes beyond a certificate.",
-    image: "/card-3.jpg",
-    level: "Beginner to Intermediate",
-    duration: "12 Weeks",
-    lessons: "36 Lessons",
-    access: "Lifetime Access",
-  },
+  // {
+  //   slug: "data-engineering",
+  //   title: "Data Engineering for Enterprise Careers",
+  //   badge: "Data Engineering",
+  //   description:
+  //     "Learn the data engineering skills enterprises actually hire for—real systems, live processes, and project work that goes beyond a certificate.",
+  //   image: "/courses-4.png",
+  //   level: "Beginner to Intermediate",
+  //   duration: "12 Weeks",
+  //   lessons: "36 Lessons",
+  //   access: "Lifetime Access",
+  // },
 ];
 
 export default function Courses({ course }: { course?: string } = {}) {
@@ -74,13 +74,13 @@ export default function Courses({ course }: { course?: string } = {}) {
           {filteredCourses.map((course, index) => (
             <Reveal key={course.slug} delayMs={index * 90} className="h-full">
               <article className="flex h-full flex-col rounded-sm bg-[#141414] p-4 ring-1 ring-white/10">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-sm">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-sm bg-black">
                   <Image
                     src={course.image}
                     alt=""
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
                   <span className="absolute top-3 left-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
                     {course.badge}

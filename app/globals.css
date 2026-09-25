@@ -128,17 +128,22 @@
 
 @layer utilities {
   .animate-drop-down {
-    animation: drop-down 0.5s ease-out forwards;
+    animation: drop-down 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
   }
 
   .animate-fade-up {
-    animation: fade-up 0.8s ease-out forwards;
+    animation: fade-up 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
   }
 
   .animate-fade-in-delayed {
-    animation: fade-in-soft 0.4s ease-out 0.2s forwards;
+    animation: fade-in-soft 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-hero-bg {
+    animation: fade-in-soft 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
   }
 }
@@ -146,7 +151,8 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-drop-down,
   .animate-fade-up,
-  .animate-fade-in-delayed {
+  .animate-fade-in-delayed,
+  .animate-hero-bg {
     animation: none;
     opacity: 1;
     filter: none;

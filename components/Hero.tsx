@@ -1,7 +1,10 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
 import { Customsection } from "@/app/CustomSection";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const COMPANIES = [
   "Google",
@@ -12,6 +15,8 @@ const COMPANIES = [
   "Capgemini",
 ];
 
+const VIDEO_REVEAL_MS = 1;
+
 export default function Hero({
   title = "Master SAP, Data Engineering & Power Platform",
   activeCourse,
@@ -19,24 +24,51 @@ export default function Hero({
   title?: string;
   activeCourse?: string;
 } = {}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const reveal = () => {
+      setShowVideo(true);
+      void video?.play().catch(() => undefined);
+    };
+
+    if (reduced) {
+      reveal();
+      return;
+    }
+
+    const id = window.setTimeout(reveal, VIDEO_REVEAL_MS);
+    return () => window.clearTimeout(id);
+  }, []);
+
   return (
     <Customsection>
-      <main className="relative flex h-[32rem] w-full flex-col overflow-hidden md:h-[55rem]">
+      <main className="relative flex h-[32rem] w-full flex-col overflow-hidden bg-black md:h-[55rem]">
         <video
-          autoPlay
+          ref={videoRef}
           muted
           loop
           playsInline
+          preload="auto"
           disablePictureInPicture
           aria-hidden
-          className="absolute inset-0 h-full w-full object-cover object-bottom"
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover object-bottom",
+            showVideo ? "animate-hero-bg" : "opacity-0",
+          )}
         >
           <source src="/hero-video2.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-black/10" />
 
-        <section className="relative z-10 flex flex-1 items-center justify-center px-6 text-center mb-15">
+        <section className="relative z-10 mb-15 flex flex-1 items-center justify-center px-6 text-center">
           <div className="max-w-4xl text-white">
             <div className="animate-drop-down mb-8 inline-flex items-center gap-2 rounded-full border border-[#2E57DF]/20 bg-white/10 px-4 py-1.5 text-xs font-medium shadow-inner backdrop-blur-md sm:text-sm">
               <span className="relative flex h-2 w-2">
@@ -50,13 +82,13 @@ export default function Hero({
               {title}
             </h1>
 
-            <p className="animate-fade-up mx-auto mt-6 max-w-xl text-sm text-white/50 opacity-0 md:text-md [animation-delay:150ms]">
+            <p className="animate-fade-up mx-auto mt-6 max-w-xl text-sm text-white/50 opacity-0 md:text-md [animation-delay:180ms]">
               Professional training with dedicated mentorship. Real-world
               projects. Career acceleration into top enterprises and reach new
               horizons.
             </p>
 
-            <div className="animate-fade-up mt-8 flex justify-center gap-4 opacity-0 [animation-delay:280ms]">
+            <div className="animate-fade-up mt-8 flex justify-center gap-4 opacity-0 [animation-delay:320ms]">
               {activeCourse !== "sap" && (
                 <Link
                   href="/sap"
@@ -85,13 +117,6 @@ export default function Hero({
                   <ArrowRight />
                 </Link>
               )}
-              {/* <Button
-                variant="outline"
-                size="lg"
-                className="h-11 rounded-full border-[#2E57DF]/50 bg-white/10 backdrop-blur-md px-6 text-white hover:bg-white/10 hover:text-white"
-              >
-                Learn More
-              </Button> */}
             </div>
           </div>
         </section>
