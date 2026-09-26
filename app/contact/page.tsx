@@ -22,6 +22,7 @@ function ContactContent() {
     course: "",
     experienceLevel: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Only allow numbers, +, and spaces
@@ -29,7 +30,7 @@ function ContactContent() {
     setFormData({ ...formData, phone: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Validate all fields are filled
@@ -51,9 +52,30 @@ function ContactContent() {
       return;
     }
 
-    // If validation passes, submit form
-    console.log("Form submitted:", formData);
-    // You can add your API call here
+    setSubmitting(true);
+    try {
+      const res = await fetch("/contact/api", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error("Submit failed");
+
+      alert("Thanks! We'll reach out soon.");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        course: "",
+        experienceLevel: "",
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -169,9 +191,10 @@ function ContactContent() {
 
           <Button
             type="submit"
+            disabled={submitting}
             className="mt-2 h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] text-white hover:from-[#6B98FF] hover:to-[#3A64E8]"
           >
-            Send Request
+            {submitting ? "Sending..." : "Send Request"}
           </Button>
         </form>
       </div>
