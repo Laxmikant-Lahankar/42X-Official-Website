@@ -96,6 +96,34 @@ export const Footer = () => {
                 technical leaders with world-class curriculum and mentorship.
               </p>
 
+              {/* Office Address */}
+              <div className="mt-6 text-sm text-neutral-400 leading-relaxed">
+                <p className="font-semibold text-white">42X Academy Pvt. Ltd.</p>
+                <p className="mt-1">
+                  Office No. 15, 2nd Floor, Bhosale Shinde Arcade,
+                  <br />
+                  Opp. Lenskart, Jangali Maharaj Road (J.M. Road),
+                  <br />
+                  Pune - 411004
+                </p>
+                <p className="mt-2">
+                  <a
+                    href="tel:+918484834242"
+                    className="hover:text-white transition-colors"
+                  >
+                    Phone: 8484-83-4242
+                  </a>
+                </p>
+                <p className="mt-1">
+                  <a
+                    href="mailto:contact@42xacademy.com"
+                    className="hover:text-white transition-colors"
+                  >
+                    Email: contact@42xacademy.com
+                  </a>
+                </p>
+              </div>
+
               {/* Newsletter / Terminal Dispatch */}
               <div className="mt-8">
                 <div className="text-xs font-mono tracking-wider uppercase text-neutral-400 mb-2.5">
@@ -225,7 +253,7 @@ export const Footer = () => {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
-              <span>India • Global</span>
+              <span>Global,India</span>
             </span>
 
             {/* Back to top button */}

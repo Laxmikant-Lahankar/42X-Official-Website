@@ -56,6 +56,15 @@ export default function Navbar() {
 
           <div className="relative z-10 flex items-center gap-2">
             <Link
+              href="/contact?intent=demo"
+              className={cn(
+                buttonVariants({ size: "sm", variant: "outline" }),
+                "hidden h-9 rounded-full border-white/20 bg-transparent px-4 text-white hover:bg-white/10 md:inline-flex",
+              )}
+            >
+              Book My Free Session
+            </Link>
+            <Link
               href="/contact"
               className={cn(
                 buttonVariants({ size: "sm" }),
@@ -77,7 +86,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {open ? (
+                {open ? (
           <div className="border-t border-white/10 bg-black/80 px-6 py-4 backdrop-blur-md md:hidden">
             <nav className="flex flex-col gap-3">
               {NAV_LINKS.filter((link) => link.href !== "/contact").map(
@@ -92,6 +101,16 @@ export default function Navbar() {
                   </Link>
                 ),
               )}
+              <Link
+                href="/contact?intent=demo"
+                className={cn(
+                  buttonVariants({ size: "sm", variant: "outline" }),
+                  "mt-2 h-9 rounded-full border-white/20 bg-transparent px-4 text-white",
+                )}
+                onClick={() => setOpen(false)}
+              >
+                Book My Free Session
+              </Link>
               <Link
                 href="/contact"
                 className={cn(
