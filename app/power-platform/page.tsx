@@ -12,7 +12,7 @@ import Faq from "@/components/Faq";
 function page() {
   return (
     <div>
-          <Hero title="Master Power Platform" activeCourse="power-platform" />
+          <Hero title="Master Power Platform" />
           <Problem />
           <WhyUs />
           <Courses course="power-platform" />

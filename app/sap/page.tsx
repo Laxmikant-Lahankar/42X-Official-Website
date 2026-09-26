@@ -1,25 +1,12 @@
-import Courses from "@/components/Courses";
-import Hero from "@/components/Hero";
-import LearningPath from "@/components/Path";
-import Problem from "@/components/Problem";
-import Perks from "@/components/Perks";
-import WhyUs from "@/components/WhyUs";
-import Community from "@/components/Community";
-import Faculty from "@/components/Faculty";
-import Faq from "@/components/Faq";
+import type { Metadata } from "next";
+import SapCourseDetails from "@/components/sap/SapCourseDetails";
+
+export const metadata: Metadata = {
+  title: "SAP Course Details — 42X Academy",
+  description:
+    "What the 42X Academy SAP course covers: MM, SD, EWM, ABAP, and BASIS, including modules, capstones, and the roles each track prepares you for.",
+};
 
 export default function SapPage() {
-  return (
-    <div>
-      <Hero title="Master SAP" activeCourse="sap" />
-      <Problem />
-      <WhyUs />
-      <Courses course="sap" />
-      <LearningPath />
-      <Perks />
-      <Community />
-      <Faculty course="sap" />
-      <Faq />
-    </div>
-  );
+  return <SapCourseDetails />;
 }

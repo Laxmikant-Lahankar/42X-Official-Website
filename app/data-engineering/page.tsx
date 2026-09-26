@@ -12,7 +12,7 @@ import Faq from "@/components/Faq";
 function page() {
   return (
     <div>
-      <Hero title="Master Data Engineering" activeCourse="data-engineering" />
+      <Hero title="Master Data Engineering" />
       <Problem />
       <WhyUs />
       <Courses course="data-engineering" />

@@ -37,8 +37,13 @@ export default function FloatingNavbar() {
       )}
       aria-hidden={!visible}
     >
-      <div className={cn("relative w-fit", visible && "pointer-events-auto")}>
-        <div className="flex h-11 items-center rounded-lg border border-white/12 bg-black/75 px-5 py-1 shadow-[0_8px_28px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+      <div
+        className={cn(
+          "relative w-full max-w-[1250px]",
+          visible && "pointer-events-auto",
+        )}
+      >
+        <div className="flex h-12 w-full items-center justify-between rounded-lg border border-white/12 bg-black/75 px-3 shadow-[0_8px_28px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:px-5">
           <Link
             href="/"
             aria-label="42X Academy home"
@@ -53,7 +58,7 @@ export default function FloatingNavbar() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-5 px-4 md:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-5 px-4 md:flex">
             {LINKS.map((link) => (
               <Link
                 key={link.href}
