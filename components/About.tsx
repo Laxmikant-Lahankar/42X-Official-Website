@@ -151,15 +151,15 @@ export default function About() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-white/10">
               <Image
                 src="/founder.png"
-                alt="Lakshmikant Lahankar, founder at 42X Academy"
+                alt="Dr. Shivani, founder at 42X Academy"
                 fill
                 sizes="(min-width: 768px) 40vw, 90vw"
                 className="object-cover"
               />
             </div>
-            <p className="mt-4 text-sm text-white">Lakshmikant Lahankar</p>
+            <p className="mt-4 text-sm text-white">Dr. Shivani</p>
             <p className="text-sm font-light text-white/45">
-              Functional Analyst (SAP EWM) at Atlas Copco Group
+              Founder &amp; Soft Skills Mentor
             </p>
           </Reveal>
         </div>
