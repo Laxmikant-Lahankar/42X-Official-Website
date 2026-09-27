@@ -149,7 +149,7 @@ function ContactContent() {
               name="course"
               value={formData.course}
               onValueChange={(value) =>
-                setFormData({ ...formData, course: value })
+                setFormData({ ...formData, course: value ?? "" })
               }
               required
             >
@@ -174,7 +174,7 @@ function ContactContent() {
               name="experienceLevel"
               value={formData.experienceLevel}
               onValueChange={(value) =>
-                setFormData({ ...formData, experienceLevel: value })
+                setFormData({ ...formData, experienceLevel: value ?? "" })
               }
               required
             >
