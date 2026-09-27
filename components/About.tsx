@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   Handshake,
   Layers,
+  MapPin,
   MessageCircle,
   Sparkles,
 } from "lucide-react";
@@ -54,10 +55,10 @@ const TEAM = [
     image: "/perks-1.png",
   },
   {
-    name: "Rahul Mehta",
-    role: "Power BI Mentor",
-    meta: "Currently at Microsoft",
-    image: "/perks-2.png",
+    name: "Prathmesh Pawar",
+    role: "Data Analystics Head Mentor",
+    meta: "A passionate Data Analyst",
+    image: "/prathmeshpawar.png",
   },
   {
     name: "Priya Nair",
@@ -157,9 +158,20 @@ export default function About() {
                 className="object-cover"
               />
             </div>
-            <p className="mt-4 text-sm text-white">Dr. Shivani</p>
-            <p className="text-sm font-light text-white/45">
+            <p className="mt-4 text-xl font-medium text-white">Dr. Shivani</p>
+            <p className="text-sm font-light text-white/50">
               Founder &amp; Soft Skills Mentor
+            </p>
+            <p className="mt-1 flex items-center gap-1.5 text-xs text-white/40">
+              <MapPin className="size-3.5" />
+              Based in Antwerp, Belgium
+            </p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed font-light text-white/60">
+              I&apos;ve rebuilt a career from the ground up in a new country — so I
+              know firsthand that technical skill alone doesn&apos;t get you hired.
+              At 42X, I make sure every mentor session builds the confidence and
+              communication to match the technical depth you&apos;re gaining, so you
+              walk into the room ready to own it.
             </p>
           </Reveal>
         </div>
