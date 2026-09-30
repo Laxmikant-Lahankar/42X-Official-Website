@@ -40,7 +40,7 @@ const FACULTY: FacultyMember[] = [
     courses: ["soft-skills"],
   },
   {
-    id: "prathemesh-pawar",
+    id: "prathamesh-pawar",
     name: "Prathemesh Pawar",
     role: "Data & BI Lead Coach",
     company: "Data & BI Lead Coach",
