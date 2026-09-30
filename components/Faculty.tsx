@@ -41,7 +41,7 @@ const FACULTY: FacultyMember[] = [
   },
   {
     id: "prathamesh-pawar",
-    name: "Prathemesh Pawar",
+    name: "Prathamesh Pawar",
     role: "Data & BI Lead Coach",
     company: "Data & BI Lead Coach",
     bio: "Brings deep, hands-on expertise in Power BI, SQL, Excel, and Python, earned by solving real analytics problems for global clients. He has built dashboards that drive decisions, designed data models that scale, and turned messy business data into insights leadership actually acts on.",
@@ -49,8 +49,8 @@ const FACULTY: FacultyMember[] = [
     courses: ["power-bi", "sql", "excel", "python"],
   },
   {
-    id: "murkute-dnyaneshwar",
-    name: "Murkute Dnyaneshwar",
+    id: "dnyaneshwar-murkute",
+    name: "Dnyaneshwar Murkute",
     role: "DevOps Engineer | Certified Professional",
     company: "Certified Professional",
     bio: "Certified DevOps Engineer with 5+ years of hands-on experience. Helps aspiring professionals build practical, industry-ready skills across Linux, Git, Docker, Kubernetes, Jenkins, CI/CD, AWS, infrastructure as code, and automation.",

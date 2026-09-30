@@ -4,21 +4,23 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
-import { SAP_INTEREST } from "@/lib/interest";
 
 const TRACKS = [
   {
     id: "sap",
+    hash: "sap",
     label: "SAP",
     detail: "Five tracks, from MM and SD through ABAP and BASIS.",
   },
   {
     id: "data-engineering",
+    hash: "data-engineering",
     label: "Data Engineering",
     detail: "Models, pipelines, and reports leadership can act on.",
   },
   {
     id: "power-platform",
+    hash: "power-platform",
     label: "Power Platform",
     detail: "Apps, flows, and the automations enterprise teams ship.",
   },
@@ -34,7 +36,6 @@ export function CohortPicker({
   src: string;
 }) {
   const router = useRouter();
-  const [step, setStep] = useState<"track" | "sap">("track");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -43,7 +44,6 @@ export function CohortPicker({
 
   useEffect(() => {
     if (!open) return;
-    setStep("track");
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (event: KeyboardEvent) => {
@@ -58,10 +58,10 @@ export function CohortPicker({
 
   if (!open || !mounted) return null;
 
-  const choose = (course: string) => {
-    const params = new URLSearchParams({ course, src });
+  const choose = (hash: string) => {
+    const params = new URLSearchParams({ src });
     onClose();
-    router.push(`/contact?${params.toString()}`);
+    router.push(`/courses?${params.toString()}#${hash}`);
   };
 
   return createPortal(
@@ -95,63 +95,27 @@ export function CohortPicker({
             id="cohort-picker-title"
             className="mt-2 text-3xl font-light text-white md:text-4xl"
           >
-            {step === "sap"
-              ? "Which SAP track?"
-              : "Which course are you interested in?"}
+            Which course are you interested in?
           </h2>
         </div>
 
-        {step === "track" ? (
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {TRACKS.map((track) => (
-              <button
-                key={track.id}
-                type="button"
-                onClick={() =>
-                  track.id === "sap" ? setStep("sap") : choose(track.id)
-                }
-                className="flex min-h-36 flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-6 text-center transition-colors hover:border-[#5B8CFF] hover:bg-[#5B8CFF]/10"
-              >
-                <span className="text-lg font-light text-white">
-                  {track.label}
-                </span>
-                <span className="mt-2 max-w-[16rem] text-sm leading-relaxed text-white/60">
-                  {track.detail}
-                </span>
-              </button>
-            ))}
-          </div>
-        ) : (
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-            {SAP_INTEREST.map((track, index) => (
-              <button
-                key={track.id}
-                type="button"
-                onClick={() => choose(track.id)}
-                className={`flex min-h-32 flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 text-center transition-colors hover:border-[#5B8CFF] hover:bg-[#5B8CFF]/10 lg:col-span-2 ${
-                  index === 3 ? "lg:col-start-2" : ""
-                }`}
-              >
-                <span className="text-lg font-light text-white">
-                  {track.label}
-                </span>
-                <span className="mt-2 text-sm leading-relaxed text-white/60">
-                  {track.detail}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-
-        {step === "sap" ? (
-          <button
-            type="button"
-            onClick={() => setStep("track")}
-            className="mx-auto mt-8 text-sm text-white/50 hover:text-white"
-          >
-            Back to courses
-          </button>
-        ) : null}
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {TRACKS.map((track) => (
+            <button
+              key={track.id}
+              type="button"
+              onClick={() => choose(track.hash)}
+              className="flex min-h-36 flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-6 text-center hover:border-white/25 hover:bg-white/[0.06]"
+            >
+              <span className="text-lg font-light text-white">
+                {track.label}
+              </span>
+              <span className="mt-2 max-w-[16rem] text-sm leading-relaxed text-white/60">
+                {track.detail}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>,
     document.body,

@@ -5,11 +5,17 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Customsection } from "@/app/CustomSection";
 import { cn } from "@/lib/utils";
-import { PROFESSIONAL_SKILLS, SAP_TRACKS, SCHEDULE, type SapTrack } from "./tracks";
+import {
+  PROFESSIONAL_SKILLS,
+  SAP_TRACKS,
+  SCHEDULE,
+  type SapTrack,
+} from "./tracks";
 
 export default function SapCourseDetails() {
   const [activeId, setActiveId] = useState(SAP_TRACKS[0].id);
-  const track = SAP_TRACKS.find((item) => item.id === activeId) ?? SAP_TRACKS[0];
+  const track =
+    SAP_TRACKS.find((item) => item.id === activeId) ?? SAP_TRACKS[0];
   const listRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -103,7 +109,7 @@ function TrackDetail({ track }: { track: SapTrack }) {
   return (
     <div className="mt-10">
       <p className="text-sm text-[#8EB4FF]">{track.focus}</p>
-      <h2 className="mt-2 text-3xl font-light text-white md:text-4xl">
+      <h2 className="mt-2 text-3xl font-light text-white md:text-4xl bg-green">
         {track.code}
         <span className="text-white/40"> — {track.name}</span>
       </h2>

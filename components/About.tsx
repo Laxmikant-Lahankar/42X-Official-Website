@@ -9,7 +9,6 @@ import {
 import { Customsection } from "@/app/CustomSection";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
-import DelayedBackground from "@/components/DelayedBackground";
 
 const MOMENTS = [
   { src: "/courses1.png", label: "SAP systems" },
@@ -167,11 +166,11 @@ export default function About() {
               Based in Antwerp, Belgium
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed font-light text-white/60">
-              I&apos;ve rebuilt a career from the ground up in a new country — so I
-              know firsthand that technical skill alone doesn&apos;t get you hired.
-              At 42X, I make sure every mentor session builds the confidence and
-              communication to match the technical depth you&apos;re gaining, so you
-              walk into the room ready to own it.
+              I&apos;ve rebuilt a career from the ground up in a new country —
+              so I know firsthand that technical skill alone doesn&apos;t get
+              you hired. At 42X, I make sure every mentor session builds the
+              confidence and communication to match the technical depth
+              you&apos;re gaining, so you walk into the room ready to own it.
             </p>
           </Reveal>
         </div>
@@ -201,15 +200,13 @@ export default function About() {
       <Customsection>
         <div className="px-6 py-16 md:px-12 md:py-20">
           <Reveal className="relative isolate min-h-[22rem] overflow-hidden rounded-2xl bg-black ring-1 ring-white/10 md:min-h-[28rem]">
-            <DelayedBackground delayMs={1}>
-              <Image
-                src="/about-banner.png"
-                alt=""
-                fill
-                sizes="(min-width: 1250px) 1250px, 100vw"
-                className="object-cover"
-              />
-            </DelayedBackground>
+            <Image
+              src="/about-banner.png"
+              alt=""
+              fill
+              sizes="(min-width: 1250px) 1250px, 100vw"
+              className="object-cover"
+            />
             <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-black/45 to-black/15" />
             <div className="relative z-10 flex h-full min-h-[22rem] flex-col justify-end p-8 md:min-h-[28rem] md:p-12">
               <Badge>Why we started</Badge>

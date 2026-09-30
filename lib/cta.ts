@@ -9,7 +9,12 @@ export const HERO_COHORT_BADGE = "Founding Cohort '26 · Limited seats";
 
 export const FAQ_FOLLOWUP = "Still unsure?";
 
-export const COURSE_SLUGS = ["sap", "power-bi", "power-platform"] as const;
+export const COURSE_SLUGS = [
+  "sap",
+  "data-engineering",
+  "power-bi",
+  "power-platform",
+] as const;
 
 export type CourseSlug = (typeof COURSE_SLUGS)[number];
 
@@ -44,7 +49,7 @@ export const CTAS = {
   courseCard: {
     id: "course_card",
     label: "See What You'll Build",
-    href: "/courses/[slug]",
+    href: "/courses",
   },
   whatsapp: {
     id: "whatsapp",
@@ -69,16 +74,17 @@ export function ctaWithLabel(cta: Cta, label: string): Cta {
   return { ...cta, label };
 }
 
-const COURSE_PAGES: Record<CourseSlug, string> = {
-  sap: "/sap",
-  "power-bi": "/data-engineering",
-  "power-platform": "/power-platform",
+const COURSE_PAGES: Record<string, string> = {
+  sap: "/courses#sap",
+  "data-engineering": "/courses#data-engineering",
+  "power-bi": "/courses#data-engineering",
+  "power-platform": "/courses#power-platform",
 };
 
 export function courseCardCta(slug: CourseSlug): Cta {
   return {
     ...CTAS.courseCard,
-    href: COURSE_PAGES[slug],
+    href: COURSE_PAGES[slug] || "/courses",
   };
 }
 
