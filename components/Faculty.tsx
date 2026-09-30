@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Customsection } from "@/app/CustomSection";
+import { CTAButton } from "@/components/CTAButton";
+import { CTA_COPY, CTAS, ctaWithLabel } from "@/lib/cta";
 import SectionHeader from "./SectionHeader";
 import { CoverflowCarousel, type CoverflowSlide } from "./Coverflowcarousel";
 
@@ -12,66 +13,49 @@ type FacultyMember = {
   role: string;
   company: string;
   bio: string;
-  href: string;
+  /** TODO: add this mentor's real LinkedIn profile URL. */
+  linkedin?: string;
   image: string;
   courses: string[];
 };
 
+const COURSE_LABELS: Record<string, string> = {
+  "power-bi": "Power BI",
+  sql: "SQL",
+  excel: "Excel",
+  python: "Python",
+  "soft-skills": "Soft Skills",
+  devops: "DevOps",
+  "data-engineering": "Data Engineering",
+};
+
 const FACULTY: FacultyMember[] = [
   {
-    id: "ananya-rao",
-    name: "Ananya Rao",
-    role: "SAP Mentor",
-    company: "Currently at TCS",
-    bio: "Specializes in SAP implementation and data architecture. Brings real-world enterprise experience to every session. Students leave able to navigate complex SAP systems and design scalable solutions.",
-    href: "https://www.linkedin.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&q=70",
-    courses: ["sap"],
+    id: "dr-shivani",
+    name: "Dr. Shivani",
+    role: "Founder & Soft Skills Mentor",
+    company: "Based in Antwerp, Belgium",
+    bio: "Rebuilt a career from the ground up in a new country, so she knows technical skill alone doesn't get you hired. At 42X she makes sure every mentor session builds the confidence and communication to match the technical depth you're gaining, so you walk into the room ready to own it.",
+    image: "/founder.png",
+    courses: ["soft-skills"],
   },
   {
-    id: "rahul-mehta",
-    name: "Rahul Mehta",
-    role: "Power BI Mentor",
-    company: "Currently at Microsoft",
-    bio: "Builds executive dashboards and data models used in live businesses. Students leave able to ship reports leadership will actually open. Focuses on storytelling through data.",
-    href: "https://www.linkedin.com",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=70",
-    courses: ["power-bi", "power-platform"],
+    id: "prathemesh-pawar",
+    name: "Prathemesh Pawar",
+    role: "Data & BI Lead Coach",
+    company: "Data & BI Lead Coach",
+    bio: "Brings deep, hands-on expertise in Power BI, SQL, Excel, and Python, earned by solving real analytics problems for global clients. He has built dashboards that drive decisions, designed data models that scale, and turned messy business data into insights leadership actually acts on.",
+    image: "/prathemesh-pawar.jpg",
+    courses: ["power-bi", "sql", "excel", "python"],
   },
   {
-    id: "priya-nair",
-    name: "Priya Nair",
-    role: "Power Platform Mentor",
-    company: "Currently at Accenture",
-    bio: "Designs apps and automations the way consulting teams deliver them. Weekly reviews go deep on architecture, not just whether it runs. Emphasizes best practices and scalable design patterns.",
-    href: "https://www.linkedin.com",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&q=70",
-    courses: ["power-platform", "data-engineering"],
-  },
-  {
-    id: "james-okonkwo",
-    name: "James Okonkwo",
-    role: "Career Coach",
-    company: "Previously at SAP",
-    bio: "Runs interview prep and resume reviews with hiring-manager context. He helps you talk about projects the way enterprise recruiters listen. Track record of students landing roles at top companies.",
-    href: "https://www.linkedin.com",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=70",
-    courses: ["sap", "power-platform"],
-  },
-  {
-    id: "meera-shah",
-    name: "Meera Shah",
-    role: "Data Mentor",
-    company: "Currently at Infosys",
-    bio: "Covers the data layer behind SAP and Power BI work. Clear lessons, real systems, and a standard of craft that shows up in your portfolio. Expert in data modeling and optimization.",
-    href: "https://www.linkedin.com",
-    image:
-      "https://images.unsplash.com/photo-1519669335166-3da0e1db7841?w=400&h=400&fit=crop&q=70",
-    courses: ["sap", "power-platform", "data-engineering"],
+    id: "murkute-dnyaneshwar",
+    name: "Murkute Dnyaneshwar",
+    role: "DevOps Engineer | Certified Professional",
+    company: "Certified Professional",
+    bio: "Certified DevOps Engineer with 5+ years of hands-on experience. Helps aspiring professionals build practical, industry-ready skills across Linux, Git, Docker, Kubernetes, Jenkins, CI/CD, AWS, infrastructure as code, and automation.",
+    image: "/murkute-dnyaneshwar.jpg",
+    courses: ["devops"],
   },
 ];
 
@@ -89,6 +73,8 @@ export default function Faculty({ course }: { course?: string } = {}) {
   const filteredFaculty = course
     ? FACULTY.filter((member) => member.courses.includes(course))
     : FACULTY;
+
+  if (filteredFaculty.length === 0) return null;
 
   // Transform faculty data into carousel slides
   const slides: CoverflowSlide[] = filteredFaculty.map((member) => ({
@@ -163,30 +149,34 @@ export default function Faculty({ course }: { course?: string } = {}) {
                         key={course}
                         className="text-xs text-white/80 px-3 py-1 border border-white/20 rounded-full"
                       >
-                        {course
-                          .split("-")
-                          .map(
-                            (word) =>
-                              word.charAt(0).toUpperCase() + word.slice(1),
-                          )
-                          .join(" ")}
+                        {COURSE_LABELS[course] ??
+                          course
+                            .split("-")
+                            .map(
+                              (word) =>
+                                word.charAt(0).toUpperCase() + word.slice(1),
+                            )
+                            .join(" ")}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* LinkedIn */}
-                <div className="pt-2">
-                  <Link
-                    href={activeFaculty.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-xs text-white/60 transition-colors hover:text-white"
-                  >
-                    <LinkedInMark />
-                    LinkedIn
-                  </Link>
-                </div>
+                {/* TODO: LinkedIn icon renders once activeFaculty.linkedin is a real profile URL. */}
+                {activeFaculty.linkedin ? (
+                  <div className="pt-2">
+                    <a
+                      href={activeFaculty.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${activeFaculty.name} on LinkedIn`}
+                      className="inline-flex min-h-11 items-center gap-2 text-xs text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8FB0FF]"
+                    >
+                      <LinkedInMark />
+                      <span className="sr-only">LinkedIn</span>
+                    </a>
+                  </div>
+                ) : null}
               </div>
             </div>
           )}
@@ -207,6 +197,15 @@ export default function Faculty({ course }: { course?: string } = {}) {
                 }`}
               />
             ))}
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <CTAButton
+              cta={ctaWithLabel(CTAS.secondary, CTA_COPY.faculty)}
+              src="faculty"
+              variant="ghost"
+              size="md"
+            />
           </div>
         </div>
       </div>

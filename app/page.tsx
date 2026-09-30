@@ -19,6 +19,11 @@ export default function Home() {
       <Perks />
       <Community />
       <Faculty />
+      {/* TODO: Founding member offer section does not exist yet.
+          When it is added, place it here (after faculty, before FAQ).
+          Its only filled control should be PRIMARY:
+          CTAButton cta={CTAS.primary} src="founding-offer" variant="primary" size="md"
+          Do not invent seat counts, prices, or bonuses. */}
       <Faq />
     </div>
   );

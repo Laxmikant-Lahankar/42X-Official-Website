@@ -154,7 +154,7 @@ function TrackDetail({ track }: { track: SapTrack }) {
       </div>
 
       <Link
-        href="/contact"
+        href={`/contact?course=sap-${track.id}`}
         className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-sm font-medium text-white hover:from-[#6B98FF] hover:to-[#3A64E8]"
       >
         Ask about {track.code}

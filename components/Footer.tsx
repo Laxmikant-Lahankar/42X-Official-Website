@@ -1,11 +1,23 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, ArrowUp, Send, Check, BriefcaseBusiness, Camera, Play, BadgeX, GitBranch } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowUp,
+  Send,
+  Check,
+  BriefcaseBusiness,
+  Camera,
+  Play,
+  BadgeX,
+  GitBranch,
+} from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Reveal from "./Reveal";
 
 export const Footer = () => {
+  const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -29,15 +41,24 @@ export const Footer = () => {
     { name: "Courses", href: "#" },
     { name: "Curriculum", href: "#" },
     { name: "FAQ", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const socialLinks = [
-    { name: "LinkedIn", href: "#", handle: "42xacademy", icon: BriefcaseBusiness },
-    { name: "Instagram", href: "#", handle: "@42x.academy", icon: Camera },
-    { name: "YouTube", href: "#", handle: "@42xacademy", icon: Play },
-    { name: "Twitter / X", href: "#", handle: "@42x_hq", icon: BadgeX },
-    { name: "GitHub", href: "#", handle: "42x-academy", icon: GitBranch },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/company/42x-academy/posts/",
+      external: true,
+      icon: BriefcaseBusiness,
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/42xacademy",
+      external: true,
+      icon: Camera,
+    },
+    { name: "YouTube", href: pathname, external: false, icon: Play },
+    { name: "Twitter / X", href: pathname, external: false, icon: BadgeX },
   ];
 
   const legalLinks = [
@@ -98,7 +119,9 @@ export const Footer = () => {
 
               {/* Office Address */}
               <div className="mt-6 text-sm text-neutral-400 leading-relaxed">
-                <p className="font-semibold text-white">42X Academy Pvt. Ltd.</p>
+                <p className="font-semibold text-white">
+                  42X Academy Pvt. Ltd.
+                </p>
                 <p className="mt-1">
                   Office No. 15, 2nd Floor, Bhosale Shinde Arcade,
                   <br />
@@ -204,6 +227,9 @@ export const Footer = () => {
                     <li key={item.name}>
                       <a
                         href={item.href}
+                        {...(item.external
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
                         className="group inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors duration-150"
                       >
                         <Icon className="size-3.5 shrink-0 text-neutral-500 group-hover:text-white transition-colors" />

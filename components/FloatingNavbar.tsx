@@ -5,11 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/components/Navbar";
+import { CTAButton } from "@/components/CTAButton";
+import { CTAS } from "@/lib/cta";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "./ui/button";
-import { ArrowRight } from "lucide-react";
 
-const LINKS = NAV_LINKS.filter((link) => link.href !== "/contact");
+const LINKS = NAV_LINKS;
 
 export default function FloatingNavbar() {
   const [visible, setVisible] = useState(false);
@@ -43,7 +43,7 @@ export default function FloatingNavbar() {
           visible && "pointer-events-auto",
         )}
       >
-        <div className="flex h-12 w-full items-center justify-between rounded-lg border border-white/12 bg-black/75 px-3 shadow-[0_8px_28px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:px-5">
+        <div className="flex h-12 w-full items-center justify-between gap-2 rounded-lg border border-white/12 bg-black/75 px-3 shadow-[0_8px_28px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:px-5">
           <Link
             href="/"
             aria-label="42X Academy home"
@@ -70,19 +70,17 @@ export default function FloatingNavbar() {
             ))}
           </nav>
 
-          <Link
-            href="/contact"
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "hidden h-8 rounded-md bg-white px-3 text-[13px] text-black hover:bg-white/90 md:inline-flex",
-            )}
-          >
-            Contact
-          </Link>
+          <CTAButton
+            cta={CTAS.contact}
+            src="header"
+            variant="primary"
+            size="sm"
+            className="hidden h-8 px-3 md:inline-flex"
+          />
 
           <button
             type="button"
-            className="inline-flex size-8 items-center justify-center rounded-md text-white md:hidden"
+            className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-white md:hidden"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((value) => !value)}
@@ -104,17 +102,14 @@ export default function FloatingNavbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "mt-2 h-10 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-4 text-white hover:from-[#6B98FF] hover:to-[#3A64E8]",
-                )}
+              <CTAButton
+                cta={CTAS.contact}
+                src="header-menu"
+                variant="primary"
+                size="sm"
+                className="mt-2 w-full"
                 onClick={() => setOpen(false)}
-              >
-                Get started
-                <ArrowRight />
-              </Link>
+              />
             </nav>
           </div>
         ) : null}

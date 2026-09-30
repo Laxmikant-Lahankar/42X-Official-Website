@@ -15,7 +15,7 @@ function page() {
       <Hero title="Master Data Engineering" />
       <Problem />
       <WhyUs />
-      <Courses course="data-engineering" />
+      <Courses course="power-bi" />
       <LearningPath />
       <Perks />
       <Community />

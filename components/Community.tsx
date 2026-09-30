@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Customsection } from "@/app/CustomSection";
-import { Button } from "@/components/ui/button";
+import { CTAButton } from "@/components/CTAButton";
+import { CTA_COPY, CTAS, ctaWithLabel } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 import SectionHeader from "./SectionHeader";
 import Reveal from "./Reveal";
@@ -139,13 +139,13 @@ export default function Community() {
                   <h3 className="self-start text-lg font-light tracking-tight text-white">
                     Where growth becomes visible
                   </h3>
-                  <Button
-                    nativeButton={false}
-                    render={<Link href="/contact" />}
-                    className="mt-auto h-9 rounded-full bg-white px-5 text-sm font-normal text-black hover:bg-white/90"
-                  >
-                    Enroll Now
-                  </Button>
+                  <CTAButton
+                    cta={CTAS.community}
+                    src="community"
+                    variant="primary"
+                    size="md"
+                    className="mt-auto w-full whitespace-normal text-center"
+                  />
                 </div>
               </article>
 
@@ -180,6 +180,13 @@ export default function Community() {
               </article>
             </div>
           </div>
+        </div>
+        <div className="mt-6 flex justify-center">
+          <CTAButton
+            cta={ctaWithLabel(CTAS.community, CTA_COPY.communityLive)}
+            src="community-live"
+            variant="link"
+          />
         </div>
         </Reveal>
       </div>

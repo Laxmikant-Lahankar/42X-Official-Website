@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { CTAButton } from "@/components/CTAButton";
+import { CTAS } from "@/lib/cta";
 import { Customsection } from "@/app/CustomSection";
 
 export const NAV_LINKS = [
@@ -13,7 +13,6 @@ export const NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/#courses", label: "Courses" },
   { href: "/#faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -35,44 +34,31 @@ export default function Navbar() {
               priority
               className="h-8 w-auto"
             />
-            <span className="text-base font-semibold tracking-wide text-lg">
+            <span className="hidden text-base font-semibold tracking-wide text-lg sm:inline">
               Academy
             </span>
           </Link>
 
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
-            {NAV_LINKS.filter((link) => link.href !== "/contact").map(
-              (link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-white/85 transition-colors hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ),
-            )}
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-white/85 transition-colors hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="relative z-10 flex items-center gap-2">
-            <Link
-              href="/contact?intent=demo"
-              className={cn(
-                buttonVariants({ size: "sm", variant: "outline" }),
-                "hidden h-9 rounded-full border-white/20 bg-transparent px-4 text-white hover:bg-white/10 md:inline-flex",
-              )}
-            >
-              Book My Free Session
-            </Link>
-            <Link
-              href="/contact"
-              className={cn(
-                buttonVariants({ size: "sm" }),
-                "hidden h-9 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-4 text-white hover:from-[#6B98FF] hover:to-[#3A64E8] md:inline-flex",
-              )}
-            >
-              Contact
-            </Link>
+            <CTAButton
+              cta={CTAS.contact}
+              src="header"
+              variant="primary"
+              size="sm"
+              className="hidden md:inline-flex"
+            />
 
             <button
               type="button"
@@ -89,38 +75,24 @@ export default function Navbar() {
                 {open ? (
           <div className="border-t border-white/10 bg-black/80 px-6 py-4 backdrop-blur-md md:hidden">
             <nav className="flex flex-col gap-3">
-              {NAV_LINKS.filter((link) => link.href !== "/contact").map(
-                (link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="py-1 text-sm text-white/85"
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ),
-              )}
-              <Link
-                href="/contact?intent=demo"
-                className={cn(
-                  buttonVariants({ size: "sm", variant: "outline" }),
-                  "mt-2 h-9 rounded-full border-white/20 bg-transparent px-4 text-white",
-                )}
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="py-1 text-sm text-white/85"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <CTAButton
+                cta={CTAS.contact}
+                src="header-menu"
+                variant="primary"
+                size="sm"
+                className="mt-2 w-full"
                 onClick={() => setOpen(false)}
-              >
-                Book My Free Session
-              </Link>
-              <Link
-                href="/contact"
-                className={cn(
-                  buttonVariants({ size: "sm" }),
-                  "mt-2 h-9 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-4 text-white",
-                )}
-                onClick={() => setOpen(false)}
-              >
-                Contact
-              </Link>
+              />
             </nav>
           </div>
         ) : null}

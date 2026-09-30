@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ConfidentialClientApplication } from "@azure/msal-node";
 
-const ALLOWED_COURSES = ["sap", "power-platform", "data-engineering"];
+const ALLOWED_COURSES = [
+  "sap",
+  "sap-mm",
+  "sap-sd",
+  "sap-ewm",
+  "sap-abap",
+  "sap-basis",
+  "power-platform",
+  "data-engineering",
+];
 const ALLOWED_LEVELS = ["beginner", "intermediate", "advanced"];
 
 // Lazily constructed on first request, not at module load — building it eagerly

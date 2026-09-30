@@ -49,22 +49,22 @@ const PLUS = [
 
 const TEAM = [
   {
-    name: "Ananya Rao",
-    role: "SAP Mentor",
-    meta: "Currently at TCS",
-    image: "/perks-1.png",
+    name: "Dr. Shivani",
+    role: "Founder & Soft Skills Mentor",
+    meta: "Based in Antwerp, Belgium",
+    image: "/founder.png",
   },
   {
-    name: "Prathmesh Pawar",
-    role: "Data Analystics Head Mentor",
-    meta: "A passionate Data Analyst",
-    image: "/prathmeshpawar.png",
+    name: "Prathemesh Pawar",
+    role: "Data & BI Lead Coach",
+    meta: "Power BI, SQL, Excel, Python",
+    image: "/prathemesh-pawar.jpg",
   },
   {
-    name: "Priya Nair",
-    role: "Power Platform Mentor",
-    meta: "Currently at Accenture",
-    image: "/perks-3.png",
+    name: "Murkute Dnyaneshwar",
+    role: "DevOps Engineer | Certified Professional",
+    meta: "5+ years in DevOps",
+    image: "/murkute-dnyaneshwar.jpg",
   },
 ];
 

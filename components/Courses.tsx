@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { BookOpen, Calendar, Infinity, Signal } from "lucide-react";
 import { Customsection } from "@/app/CustomSection";
-import { Button } from "@/components/ui/button";
+import { CTAButton } from "@/components/CTAButton";
+import { courseCardCta, CTAS, isCourseSlug } from "@/lib/cta";
 import SectionHeader from "./SectionHeader";
 import Reveal from "./Reveal";
 
@@ -13,7 +13,7 @@ const courses = [
     badge: "SAP",
     description:
       "Learn the SAP skills enterprises actually hire for—real modules, live processes, and project work that goes beyond a certificate.",
-    image: "/courses1.png",
+    image: "/sap-course.png",
     level: "Beginner to Intermediate",
     duration: "12 Weeks",
     lessons: "36 Lessons",
@@ -25,7 +25,7 @@ const courses = [
     badge: "Power BI",
     description:
       "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
-    image: "/courses2.png",
+    image: "/power-bi-course.png",
     level: "Beginner",
     duration: "8 Weeks",
     lessons: "24 Lessons",
@@ -113,14 +113,15 @@ export default function Courses({ course }: { course?: string } = {}) {
                   </li>
                 </ul>
 
-                <Button
-                  nativeButton={false}
-                  render={<Link href="/contact" />}
-                  variant="outline"
-                  className="mt-6 h-10 w-full rounded-full border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white"
-                >
-                  Check Details
-                </Button>
+                {isCourseSlug(course.slug) ? (
+                  <CTAButton
+                    cta={courseCardCta(course.slug)}
+                    src="courses"
+                    variant="secondary"
+                    size="md"
+                    className="mt-6 w-full"
+                  />
+                ) : null}
               </article>
             </Reveal>
           ))}
@@ -139,6 +140,10 @@ export default function Courses({ course }: { course?: string } = {}) {
               </p>
             </article>
           </Reveal>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <CTAButton cta={CTAS.quiz} src="courses" variant="link" />
         </div>
       </div>
     </Customsection>

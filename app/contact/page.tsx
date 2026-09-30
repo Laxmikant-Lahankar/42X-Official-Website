@@ -1,7 +1,8 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { INTEREST_OPTIONS, isInterestId } from "@/lib/interest";
 import { Customsection } from "@/app/CustomSection";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,13 +16,19 @@ import {
 function ContactContent() {
   const searchParams = useSearchParams();
   const isDemo = searchParams.get("intent") === "demo";
+  const presetCourse = searchParams.get("course") ?? "";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    course: "",
+    course: isInterestId(presetCourse) ? presetCourse : "",
     experienceLevel: "",
   });
+
+  useEffect(() => {
+    if (!isInterestId(presetCourse)) return;
+    setFormData((current) => ({ ...current, course: presetCourse }));
+  }, [presetCourse]);
   const [submitting, setSubmitting] = useState(false);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,6 +154,9 @@ function ContactContent() {
             </label>
             <Select
               name="course"
+              items={Object.fromEntries(
+                INTEREST_OPTIONS.map((option) => [option.id, option.label]),
+              )}
               value={formData.course}
               onValueChange={(value) =>
                 setFormData({ ...formData, course: value ?? "" })
@@ -157,11 +167,11 @@ function ContactContent() {
                 <SelectValue placeholder="Select a course" />
               </SelectTrigger>
               <SelectContent className="border-white/15 bg-[#0B0F1A] text-white">
-                <SelectItem value="sap">SAP</SelectItem>
-                <SelectItem value="power-platform">Power Platform</SelectItem>
-                <SelectItem value="data-engineering">
-                  Data Engineering
-                </SelectItem>
+                {INTEREST_OPTIONS.map((option) => (
+                  <SelectItem key={option.id} value={option.id}>
+                    {option.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>

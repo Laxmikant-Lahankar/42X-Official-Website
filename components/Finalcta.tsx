@@ -1,11 +1,10 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CTAButton } from "@/components/CTAButton";
+import { CTAS } from "@/lib/cta";
 import Reveal from "./Reveal";
 
 export default function Finalcta() {
   return (
-    <div className="mt-16 flex w-full items-center justify-center">
+    <div id="final-cta" className="mt-16 flex w-full items-center justify-center">
       <div
         className="flex h-[500px] w-full max-w-[1250px] items-center justify-center rounded-sm border border-white/10 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/final.jpg')" }}
@@ -29,15 +28,22 @@ export default function Finalcta() {
             Power Platform roles—not another certificate on the shelf.
           </p>
 
-          <Button
-            nativeButton={false}
-            render={<Link href="/contact" />}
-            size="lg"
-            className="mt-8 h-11 rounded-full bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] px-6 text-white hover:from-[#6B98FF] hover:to-[#3A64E8]"
-          >
-            Get started
-            <ArrowRight />
-          </Button>
+          <div className="mt-8 flex flex-col items-center gap-2">
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <CTAButton
+                cta={CTAS.primary}
+                src="final"
+                variant="primary"
+                size="md"
+              />
+              <CTAButton
+                cta={CTAS.secondary}
+                src="final"
+                variant="secondary"
+                size="md"
+              />
+            </div>
+          </div>
           </Reveal>
         </div>
       </div>
