@@ -16,7 +16,7 @@ const DATA_PARTS = [
   {
     id: "data-engineering",
     title: "Power BI",
-    image: "/power-bi-course.png",
+    image: "/power_bi.png",
     meta: "Beginner · 8 weeks · 24 lessons",
     detail:
       "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
@@ -27,7 +27,7 @@ const PLATFORM_PARTS = [
   {
     id: "power-platform",
     title: "Power Platform",
-    image: "/courses.3.png",
+    image: "/power-platform2.png",
     meta: "Beginner to Intermediate · 10 weeks · 30 lessons",
     detail:
       "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",

@@ -25,7 +25,7 @@ const courses = [
     badge: "Power BI",
     description:
       "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
-    image: "/power-bi-course.png",
+    image: "/power_bi.png",
     level: "Beginner",
     duration: "8 Weeks",
     lessons: "24 Lessons",
@@ -37,7 +37,7 @@ const courses = [
     badge: "Power Platform",
     description:
       "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",
-    image: "/courses.3.png",
+    image: "/power-platform2.png",
     level: "Beginner to Intermediate",
     duration: "10 Weeks",
     lessons: "30 Lessons",
