@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Customsection } from "@/app/CustomSection";
 import { SAP_TRACKS } from "@/components/sap/tracks";
+// import { COURSES, getCourse } from "@/data/courses";
 
 export const metadata: Metadata = {
   title: "Courses — 42X Academy",
@@ -60,7 +61,7 @@ export default function CoursesPage() {
         {SAP_TRACKS.map((track) => (
           <PartCard
             key={track.id}
-            href={`/contact?course=sap-${track.id}`}
+            href={`/courses/sap-${track.id}`}
             image="/sap-course.png"
             title={track.code}
             meta={`${track.duration} · ${track.name}`}
@@ -78,7 +79,7 @@ export default function CoursesPage() {
         {DATA_PARTS.map((part) => (
           <PartCard
             key={part.id}
-            href={`/contact?course=${part.id}`}
+            href={`/courses/${part.id}`}
             image={part.image}
             title={part.title}
             meta={part.meta}
@@ -96,7 +97,7 @@ export default function CoursesPage() {
         {PLATFORM_PARTS.map((part) => (
           <PartCard
             key={part.id}
-            href={`/contact?course=${part.id}`}
+            href={`/courses/${part.id}`}
             image={part.image}
             title={part.title}
             meta={part.meta}

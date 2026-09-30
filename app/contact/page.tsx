@@ -32,7 +32,7 @@ function ContactContent() {
   const [submitting, setSubmitting] = useState(false);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Only allow numbers, +, and spaces
+  
     const value = e.target.value.replace(/[^0-9+\s]/g, "");
     setFormData({ ...formData, phone: value });
   };
@@ -40,7 +40,7 @@ function ContactContent() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate all fields are filled
+
     if (
       !formData.name.trim() ||
       !formData.email.trim() ||
@@ -52,7 +52,7 @@ function ContactContent() {
       return;
     }
 
-    // Validate phone length
+
     const phoneDigits = formData.phone.replace(/[^0-9]/g, "");
     if (phoneDigits.length < 7) {
       alert("Please enter a valid phone number");
