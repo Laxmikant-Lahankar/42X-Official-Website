@@ -37,7 +37,7 @@ const courses = [
     badge: "Power Platform",
     description:
       "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",
-    image: "/power-platform2.png",
+    image: "/power_platform.png",
     level: "Beginner to Intermediate",
     duration: "10 Weeks",
     lessons: "30 Lessons",

@@ -27,7 +27,7 @@ const PLATFORM_PARTS = [
   {
     id: "power-platform",
     title: "Power Platform",
-    image: "/power-platform2.png",
+    image: "/power_platform.png",
     meta: "Beginner to Intermediate · 10 weeks · 30 lessons",
     detail:
       "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",
