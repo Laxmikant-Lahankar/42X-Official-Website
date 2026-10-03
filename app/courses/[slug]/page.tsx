@@ -75,7 +75,8 @@ export default async function CourseDetailPage({ params }: Props) {
         <div className="space-y-16 px-6 py-16 md:px-12 md:py-20">
           <Highlights items={course.highlights} />
 
-          <Syllabus modules={course.modules} />
+          <Syllabus modules={course.modules} courseSlug={course.slug} courseTitle={course.title} />
+
 
           <div>
             <h2 className="text-3xl font-light text-white md:text-4xl">
