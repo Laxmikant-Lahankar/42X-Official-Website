@@ -24,6 +24,12 @@ const TRACKS = [
     label: "Power Platform",
     detail: "Apps, flows, and the automations enterprise teams ship.",
   },
+  {
+    id: "devops",
+    hash: "devops",
+    label: "DevOps with AI",
+    detail: "Linux, Cloud Computing, CI/CD, Kubernetes and AI tools.",
+  },
 ] as const;
 
 export function CohortPicker({

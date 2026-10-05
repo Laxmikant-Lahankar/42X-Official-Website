@@ -48,7 +48,7 @@ export default function Faq() {
           <div className="lg:sticky lg:top-24 lg:self-start">
             <SectionHeader
               className="max-w-md"
-              badge="Faq"
+              badge="FAQ"
               title={
                 <>
                   From Learning Goals

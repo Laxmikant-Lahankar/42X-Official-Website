@@ -14,6 +14,7 @@ export const COURSE_SLUGS = [
   "data-engineering",
   "power-bi",
   "power-platform",
+  "devops",
 ] as const;
 
 export type CourseSlug = (typeof COURSE_SLUGS)[number];
@@ -79,6 +80,7 @@ const COURSE_PAGES: Record<string, string> = {
   "data-engineering": "/courses#data-engineering",
   "power-bi": "/courses#data-engineering",
   "power-platform": "/courses#power-platform",
+  devops: "/courses#devops",
 };
 
 export function courseCardCta(slug: CourseSlug): Cta {

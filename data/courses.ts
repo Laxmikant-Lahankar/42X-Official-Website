@@ -7,7 +7,7 @@
 // for those modules). They follow the standard SAP curriculum and must be confirmed
 // by the academy/trainer before publishing.
 
-export type CourseCategory = "sap" | "data-engineering" | "power-platform";
+export type CourseCategory = "sap" | "data-engineering" | "power-platform" | "devops";
 
 export interface CourseModule {
   title: string;
@@ -722,8 +722,121 @@ export const COURSES: CourseContent[] = [
       "Combines SQL/Python foundations with Spark, one cloud platform, orchestration and transformation tooling. Azure is the primary cloud; AWS Glue and GCP BigQuery are introduced as alternatives.",
   },
   {
+    slug: "devops",
+    category: "devops",
+    title: "DevOps with AI",
+    subtitle: "3-Month Course | 2 Hours per Day | Monday to Friday",
+    duration: "~12 weeks",
+    structure: "Fundamentals → Linux/Bash → AWS/CI/CD → Docker/K8s → Terraform/Ansible → Monitoring",
+    audience: "Learners seeking to become DevOps Engineers or Cloud Engineers through real-world projects and AI tools.",
+    highlights: [
+      "Linux, Bash Scripting, and Git/GitHub fundamentals",
+      "AWS cloud computing and CI/CD with Jenkins",
+      "Containerization with Docker and Orchestration with Kubernetes",
+      "Infrastructure as Code with Terraform and Ansible",
+      "Monitoring with Prometheus and Grafana",
+      "Using AI tools for generating, debugging, and explaining code in every module"
+    ],
+    modules: [
+      m("DevOps Fundamentals + AI for DevOps", "1 week", [
+        "DevOps lifecycle",
+        "Waterfall vs Agile, Agile and Scrum basics",
+        "Monitoring concepts",
+        "Prompting for DevOps, verifying AI output"
+      ]),
+      m("Linux", "1.5 weeks", [
+        "Installation, commands, users and groups, permissions",
+        "Processes, packages, systemctl, disk partitioning",
+        "SSH, networking commands, cron and at jobs, logs and log rotation",
+        "Troubleshooting with AI, website deployment project on Ubuntu"
+      ]),
+      m("Bash Scripting", "0.5 weeks", [
+        "Variables, conditions, loops, functions, arrays",
+        "Case statements, file handling",
+        "AI script generation and debugging, automation scripts"
+      ]),
+      m("Git & GitHub", "0.5 weeks", [
+        "Core commands, branching, merge, rebase, stash",
+        "Tags, conflicts, pull requests",
+        "GitHub Actions basics, AI for commit messages and workflows"
+      ]),
+      m("AWS", "1.5 weeks", [
+        "IAM, EC2, S3, VPC (subnets, route tables, IGW, NAT)",
+        "Security groups, NACL, ALB, Auto Scaling",
+        "CloudWatch, CloudTrail, RDS, Route 53, AWS CLI",
+        "Security best practices"
+      ]),
+      m("Jenkins & CI/CD", "1 week", [
+        "Installation, freestyle and pipeline jobs, Jenkinsfile",
+        "Git/Maven/Docker integration, triggers, plugins",
+        "Backup, security, end-to-end pipeline",
+        "AI for Jenkinsfiles and build logs"
+      ]),
+      m("Docker", "1 week", [
+        "Images and containers, Dockerfile, volumes",
+        "Networking, Compose, multi-stage builds",
+        "Docker Hub, security basics, best practices",
+        "AI for Dockerfiles"
+      ]),
+      m("Kubernetes", "2 weeks", [
+        "Architecture, Minikube, kubectl, Pods, Deployments",
+        "Services, ConfigMaps, Secrets, PV/PVC, Ingress",
+        "Rolling updates and rollbacks, StatefulSets, DaemonSets",
+        "Helm, RBAC, troubleshooting with AI"
+      ]),
+      m("Terraform", "1 week", [
+        "Installation, providers, variables, outputs",
+        "State and remote backend",
+        "Modules, workspaces",
+        "EC2, VPC and S3 builds"
+      ]),
+      m("Ansible", "0.5 weeks", [
+        "Inventory, ad-hoc commands, playbooks, variables",
+        "Handlers, roles, Galaxy",
+        "Server configuration, multi-server automation"
+      ]),
+      m("Monitoring", "1 week", [
+        "Prometheus, Node Exporter, Alertmanager",
+        "Grafana dashboards, basic alerts",
+        "AI for PromQL"
+      ]),
+      m("Real-Time Projects", "Ongoing", [
+        "Website deployment on Ubuntu",
+        "CI/CD pipeline using Jenkins, Git and Docker",
+        "Dockerized application deployed on Kubernetes",
+        "AWS infrastructure built with Terraform and configured with Ansible"
+      ])
+    ],
+    skills: [
+      "Linux Administration",
+      "Bash Scripting",
+      "Git & GitHub",
+      "AWS Cloud",
+      "Jenkins CI/CD",
+      "Docker & Kubernetes",
+      "Terraform & Ansible",
+      "Monitoring (Prometheus/Grafana)"
+    ],
+    capstone: "Four hands-on projects including website deployment, CI/CD pipelines, Kubernetes orchestration, and AWS infrastructure as code.",
+    outcomes: [
+      "Deploy and manage Linux servers",
+      "Automate tasks with Bash and Ansible",
+      "Build CI/CD pipelines with Jenkins",
+      "Containerize and orchestrate apps with Docker and Kubernetes",
+      "Provision cloud infrastructure with Terraform and AWS",
+      "Monitor systems using Prometheus and Grafana",
+      "Utilize AI tools to accelerate workflows"
+    ],
+    roles: [
+      "DevOps Engineer",
+      "Cloud Engineer",
+      "Site Reliability Engineer (SRE)"
+    ],
+    differentiator: "Integrates AI tooling (generate, debug, explain) into every step of the DevOps lifecycle with 4 real-world projects and daily hands-on practice."
+  },
+  {
     // No content for this course in the PDF yet: everything below is placeholder text.
-    slug: "power-platform",
+    slug: "power-platform-placeholder",
     category: "power-platform",
     title: "Power Platform",
     subtitle: "Placeholder subtitle",
@@ -766,5 +879,68 @@ export const PROFESSIONAL_SKILLS: { area: string; practice: string }[] = [
     area: "Meeting facilitation",
     practice:
       "Meeting agendas, stand-ups, sprint reviews, retrospectives, discussion control, minutes and action items.",
+  },
+];
+
+export const COURSE_TRACKS = [
+  {
+    slug: "sap",
+    title: "SAP for Enterprise Careers",
+    badge: "SAP",
+    description:
+      "Learn the SAP skills enterprises actually hire for—real modules, live processes, and project work that goes beyond a certificate.",
+    image: "/sap-course.png",
+    level: "Beginner to Intermediate",
+    duration: "12 Weeks",
+    lessons: "36 Lessons",
+    access: "Lifetime Access",
+  },
+  {
+    slug: "power-bi",
+    title: "Power BI for Data Professionals",
+    badge: "Power BI",
+    description:
+      "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
+    image: "/power_bi.png",
+    level: "Beginner",
+    duration: "8 Weeks",
+    lessons: "24 Lessons",
+    access: "Lifetime Access",
+  },
+  {
+    slug: "power-platform",
+    title: "Power Platform Mastery",
+    badge: "Power Platform",
+    description:
+      "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",
+    image: "/power_platform.png",
+    level: "Beginner to Intermediate",
+    duration: "10 Weeks",
+    lessons: "30 Lessons",
+    access: "Lifetime Access",
+  },
+  // {
+  //   slug: "data-engineering",
+  //   title: "Data Engineering for Enterprise Careers",
+  //   badge: "Data Engineering",
+  //   description:
+  //     "Learn the data engineering skills enterprises actually hire for—real systems, live processes, and project work that goes beyond a certificate.",
+  //   image: "/courses-4.png",
+  //   level: "Beginner to Intermediate",
+  //   duration: "12 Weeks",
+  //   lessons: "36 Lessons",
+  //   access: "Lifetime Access",
+  // },
+  {
+    slug: "devops",
+    title: "DevOps with AI",
+    badge: "DevOps",
+    description:
+      "Gain practical knowledge of Linux, Cloud Computing, CI/CD, Infrastructure as Code, and Kubernetes through real-world projects, using AI tools in every module.",
+    image: "/dev_ops.png",
+    level: "Beginner to Intermediate",
+    duration: "12 Weeks",
+    lessons: "60 Lessons",
+    access: "Lifetime Access",
   },
 ];

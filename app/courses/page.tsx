@@ -12,27 +12,25 @@ export const metadata: Metadata = {
     "SAP, Data Engineering, and Power Platform at 42X Academy, including the SAP tracks for MM, SD, EWM, ABAP, and BASIS.",
 };
 
-const DATA_PARTS = [
-  {
-    id: "data-engineering",
-    title: "Power BI",
-    image: "/power_bi.png",
-    meta: "Beginner · 8 weeks · 24 lessons",
-    detail:
-      "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
-  },
-];
+import { COURSE_TRACKS } from "@/data/courses";
 
-const PLATFORM_PARTS = [
-  {
-    id: "power-platform",
-    title: "Power Platform",
-    image: "/power_platform.png",
-    meta: "Beginner to Intermediate · 10 weeks · 30 lessons",
-    detail:
-      "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",
-  },
-];
+function getTrackParts(slug: string, idOverride?: string) {
+  const track = COURSE_TRACKS.find((t) => t.slug === slug);
+  if (!track) return [];
+  return [
+    {
+      id: idOverride || track.slug,
+      title: track.title,
+      image: track.image,
+      meta: `${track.level} · ${track.duration.toLowerCase()} · ${track.lessons.toLowerCase()}`,
+      detail: track.description,
+    },
+  ];
+}
+
+const DATA_PARTS = getTrackParts("power-bi", "data-engineering");
+const PLATFORM_PARTS = getTrackParts("power-platform");
+const DEVOPS_PARTS = getTrackParts("devops");
 
 export default function CoursesPage() {
   return (
@@ -95,6 +93,24 @@ export default function CoursesPage() {
         intro="Apps and automations, built the way enterprise teams ship them."
       >
         {PLATFORM_PARTS.map((part) => (
+          <PartCard
+            key={part.id}
+            href={`/courses/${part.id}`}
+            image={part.image}
+            title={part.title}
+            meta={part.meta}
+            detail={part.detail}
+          />
+        ))}
+      </TrackSection>
+
+      <TrackSection
+        id="devops"
+        badge="DevOps"
+        title="DevOps with AI"
+        intro="Linux, Cloud Computing, CI/CD, Infrastructure as Code, and Kubernetes through real-world projects."
+      >
+        {DEVOPS_PARTS.map((part) => (
           <PartCard
             key={part.id}
             href={`/courses/${part.id}`}

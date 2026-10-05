@@ -6,61 +6,12 @@ import { courseCardCta, CTAS, isCourseSlug } from "@/lib/cta";
 import SectionHeader from "./SectionHeader";
 import Reveal from "./Reveal";
 
-const courses = [
-  {
-    slug: "sap",
-    title: "SAP for Enterprise Careers",
-    badge: "SAP",
-    description:
-      "Learn the SAP skills enterprises actually hire for—real modules, live processes, and project work that goes beyond a certificate.",
-    image: "/sap-course.png",
-    level: "Beginner to Intermediate",
-    duration: "12 Weeks",
-    lessons: "36 Lessons",
-    access: "Lifetime Access",
-  },
-  {
-    slug: "power-bi",
-    title: "Power BI for Data Professionals",
-    badge: "Power BI",
-    description:
-      "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
-    image: "/power_bi.png",
-    level: "Beginner",
-    duration: "8 Weeks",
-    lessons: "24 Lessons",
-    access: "Lifetime Access",
-  },
-  {
-    slug: "power-platform",
-    title: "Power Platform Mastery",
-    badge: "Power Platform",
-    description:
-      "Create apps, automate workflows, and ship solutions on Microsoft Power Platform the way enterprise teams work.",
-    image: "/power_platform.png",
-    level: "Beginner to Intermediate",
-    duration: "10 Weeks",
-    lessons: "30 Lessons",
-    access: "Lifetime Access",
-  },
-  // {
-  //   slug: "data-engineering",
-  //   title: "Data Engineering for Enterprise Careers",
-  //   badge: "Data Engineering",
-  //   description:
-  //     "Learn the data engineering skills enterprises actually hire for—real systems, live processes, and project work that goes beyond a certificate.",
-  //   image: "/courses-4.png",
-  //   level: "Beginner to Intermediate",
-  //   duration: "12 Weeks",
-  //   lessons: "36 Lessons",
-  //   access: "Lifetime Access",
-  // },
-];
+import { COURSE_TRACKS } from "@/data/courses";
 
 export default function Courses({ course }: { course?: string } = {}) {
   const filteredCourses = course
-    ? courses.filter((item) => item.slug === course)
-    : courses;
+    ? COURSE_TRACKS.filter((item) => item.slug === course)
+    : COURSE_TRACKS;
 
   return (
     <Customsection id="courses">

@@ -9,7 +9,7 @@ import { CTAButton } from "@/components/CTAButton";
 import { CTAS } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 
-const LINKS = NAV_LINKS;
+
 
 export default function FloatingNavbar() {
   const [visible, setVisible] = useState(false);
@@ -59,7 +59,7 @@ export default function FloatingNavbar() {
           </Link>
 
           <nav className="hidden flex-1 items-center justify-center gap-5 px-4 md:flex">
-            {LINKS.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -92,7 +92,7 @@ export default function FloatingNavbar() {
         {open ? (
           <div className="mt-2 rounded-lg border border-white/12 bg-black/90 p-3 shadow-[0_8px_28px_rgba(0,0,0,0.5)] backdrop-blur-xl md:hidden">
             <nav className="flex flex-col gap-1">
-              {LINKS.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

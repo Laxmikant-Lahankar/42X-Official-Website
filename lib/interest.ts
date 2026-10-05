@@ -38,6 +38,7 @@ export const INTEREST_OPTIONS: InterestOption[] = [
   ...SAP_INTEREST,
   { id: "data-engineering", label: "Data Engineering" },
   { id: "power-platform", label: "Power Platform" },
+  { id: "devops", label: "DevOps with AI" },
 ];
 
 export function isInterestId(value: string): boolean {

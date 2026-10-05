@@ -19,7 +19,7 @@ const COMPANIES = [
 const VIDEO_REVEAL_MS = 1;
 
 export default function Hero({
-  title = "Master SAP, Data Engineering & Power Platform",
+  title = "Master In-Demand Skills. Unlock Your Potential.",
 }: {
   title?: string;
 } = {}) {
@@ -71,7 +71,7 @@ export default function Hero({
 
           <div className="absolute inset-0 bg-black/10" />
 
-          <section className="relative z-10 mb-6 flex flex-1 items-center justify-center px-4 py-10 text-center sm:mb-12 sm:px-6 md:mb-15 md:py-0">
+          <section className="relative z-10 mb-6 flex flex-1 items-center justify-center px-4 py-10 text-center sm:mb-12 sm:px-6 md:mb-32 md:py-0">
             <div className="w-full max-w-4xl text-white">
               <div className="animate-drop-down mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2E57DF]/20 bg-white/10 px-3 py-1.5 text-[11px] font-medium shadow-inner backdrop-blur-md sm:mb-8 sm:px-4 sm:text-sm">
                 <span className="relative flex h-2 w-2 shrink-0">
@@ -87,9 +87,7 @@ export default function Hero({
               </h1>
 
               <p className="animate-fade-up mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/50 opacity-0 sm:mt-6 md:text-base [animation-delay:180ms]">
-                Professional training with dedicated mentorship. Real-world
-                projects. Career acceleration into top enterprises and reach new
-                horizons.
+               Gain practical expertise through industry-focused courses, dedicated mentorship, and real-world projects that help you build a stronger career.
               </p>
 
               <div className="animate-fade-up mt-5 flex flex-col items-center gap-2 opacity-0 sm:mt-6 [animation-delay:320ms]">
