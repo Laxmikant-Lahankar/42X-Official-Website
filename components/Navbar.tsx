@@ -11,7 +11,7 @@ import { Customsection } from "@/app/CustomSection";
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/#courses", label: "Courses" },
+  { href: "/courses", label: "Courses" },
   { href: "/#faq", label: "FAQ" },
 ];
 
