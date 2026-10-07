@@ -71,24 +71,6 @@ export default function StickyCtas() {
         </svg>
       </a>
 
-      <div
-        className={cn(
-          "fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-black/90 px-4 pt-3 backdrop-blur-md transition-transform duration-300 md:hidden",
-          showBar
-            ? "translate-y-0"
-            : "pointer-events-none translate-y-full",
-        )}
-        style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
-        aria-hidden={!showBar}
-      >
-        <CTAButton
-          cta={CTAS.primary}
-          src="mobile-bar"
-          variant="primary"
-          size="sm"
-          className="w-full"
-        />
-      </div>
     </>
   );
 }

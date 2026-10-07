@@ -71,7 +71,9 @@ export default function Hero({
 
           <div className="absolute inset-0 bg-black/10" />
 
-          <section className="relative z-10 mb-6 flex flex-1 items-center justify-center px-4 py-10 text-center sm:mb-12 sm:px-6 md:mb-32 md:py-0">
+          {/* Text area: spans only the black part (hero top -> earth horizon).
+              Change bottom-[42%] to move the text up (bigger) or down (smaller). */}
+          <section className="absolute inset-x-0 top-0 bottom-[42%] z-10 flex items-center justify-center px-4 text-center sm:px-6">
             <div className="w-full max-w-4xl text-white">
               <div className="animate-drop-down mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2E57DF]/20 bg-white/10 px-3 py-1.5 text-[11px] font-medium shadow-inner backdrop-blur-md sm:mb-8 sm:px-4 sm:text-sm">
                 <span className="relative flex h-2 w-2 shrink-0">
@@ -87,7 +89,9 @@ export default function Hero({
               </h1>
 
               <p className="animate-fade-up mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/50 opacity-0 sm:mt-6 md:text-base [animation-delay:180ms]">
-               Gain practical expertise through industry-focused courses, dedicated mentorship, and real-world projects that help you build a stronger career.
+                Gain practical expertise through industry-focused courses,
+                dedicated mentorship, and real-world projects that help you
+                build a stronger career.
               </p>
 
               <div className="animate-fade-up mt-5 flex flex-col items-center gap-2 opacity-0 sm:mt-6 [animation-delay:320ms]">
@@ -115,7 +119,8 @@ export default function Hero({
             </div>
           </section>
 
-          <div className="animate-fade-in-delayed relative z-20 bg-gradient-to-t from-black via-black/80 to-transparent pt-2 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:pb-8">
+          {/* Marquee: pinned to the bottom, overlaying the earth */}
+          <div className="animate-fade-in-delayed absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black via-black/80 to-transparent pt-2 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:pb-8">
             <p className="mb-4 text-center text-[10px] font-medium uppercase tracking-[0.18em] text-white/70 sm:mb-9 sm:text-sm sm:tracking-[0.28em]">
               Backed by Experts at
             </p>
