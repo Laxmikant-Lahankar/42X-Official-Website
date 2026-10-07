@@ -62,7 +62,7 @@ export default function WhyUs() {
                     className="size-4 shrink-0 text-[#5B8CFF] sm:size-[18px]"
                     strokeWidth={2.25}
                   />
-                  <span className="text-center text-sm leading-snug text-white sm:text-base">
+                  <span className="text-center text-xs leading-snug text-white sm:text-base">
                     <span className="sr-only">42X Academy: </span>
                     {row.us}
                   </span>
@@ -73,7 +73,7 @@ export default function WhyUs() {
                     className="size-4 shrink-0 text-[#F07167] sm:size-[18px]"
                     strokeWidth={2.25}
                   />
-                  <span className="text-center text-sm leading-snug text-white/50 sm:text-base">
+                  <span className="text-center text-xs leading-snug text-white/50 sm:text-base">
                     <span className="sr-only">Other courses: </span>
                     {row.them}
                   </span>
