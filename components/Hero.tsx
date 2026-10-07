@@ -49,9 +49,11 @@ export default function Hero({
   return (
     <>
       <Customsection>
+        {/* Fixed height on mobile (h-[40rem]) removes the extra black space.
+            Raise it (e.g. h-[42rem]) if it feels cramped, lower it to tighten. */}
         <main
           id="hero"
-          className="relative flex min-h-[calc(100svh-4rem)] w-full flex-col overflow-hidden bg-black md:h-[55rem] md:min-h-[55rem]"
+          className="relative flex h-[40rem] w-full flex-col overflow-hidden bg-black md:h-[55rem]"
         >
           <video
             ref={videoRef}
