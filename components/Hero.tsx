@@ -11,7 +11,7 @@ const COMPANIES = [
   "Google",
   "Microsoft",
   "IBM",
-  "Delloite",
+  "Deloitte",
   "Infosys",
   "Capgemini",
 ];

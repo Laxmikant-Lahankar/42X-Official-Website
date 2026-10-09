@@ -38,9 +38,8 @@ export const Footer = () => {
   const navLinks = [
     { name: "Home", href: "#" },
     { name: "About", href: "/about" },
-    { name: "Courses", href: "#" },
-    { name: "Curriculum", href: "#" },
-    { name: "FAQ", href: "#" },
+    { name: "Courses", href: "/courses" },
+    { name: "FAQ", href: "/#faq" },
     { name: "Contact", href: "/contact" },
   ];
 

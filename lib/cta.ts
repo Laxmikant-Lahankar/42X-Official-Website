@@ -59,8 +59,13 @@ export const CTAS = {
   },
   quiz: {
     id: "quiz",
-    label: "Not sure which track? Take the 2-min quiz →",
-    href: "/contact?intent=quiz",
+    label: "Not sure which track? Talk to expert",
+    href: "/contact",
+  },
+    faq: {
+    id: "quiz",
+    label: "If you have any other query, talk to an expert",
+    href: "/contact",
   },
 } as const satisfies Record<string, Cta>;
 

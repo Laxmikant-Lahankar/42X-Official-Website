@@ -102,6 +102,9 @@ export default function Faq() {
             })}
           </div>
         </div>
+                <div className="mt-18 flex justify-center">
+          <CTAButton cta={CTAS.faq} src="courses" variant="link" />
+        </div>
       </div>
     </Customsection>
   );

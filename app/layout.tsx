@@ -5,6 +5,7 @@ import FloatingNavbar from "@/components/FloatingNavbar";
 import Navbar from "@/components/Navbar";
 import Finalcta from "@/components/Finalcta";
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -25,6 +26,11 @@ export const metadata: Metadata = {
   description:
     "Professional training in SAP, Data Engineering, and Power Platform with 1-on-1 mentorship, real enterprise projects, and career acceleration.",
   metadataBase: new URL("https://42xacademy.com"),
+  icons: {
+    icon: "/logo2.png",
+    shortcut: "/logo2.png",
+    apple: "/logo2.png",
+  },
   openGraph: {
     title: "42X Academy",
     description:
@@ -38,7 +44,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "42X Academy",
-    description: "Professional training in SAP, Data Engineering, and Power Platform.",
+    description:
+      "Professional training in SAP, Data Engineering, and Power Platform.",
     images: ["/logo2.png"],
   },
 };
@@ -56,6 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Finalcta />
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
