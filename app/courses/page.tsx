@@ -22,7 +22,7 @@ function getTrackParts(slug: string, idOverride?: string) {
       id: idOverride || track.slug,
       title: track.title,
       image: track.image,
-      meta: `${track.level} · ${track.duration.toLowerCase()} · ${track.lessons.toLowerCase()}`,
+      meta: `${track.level}  · ${track.lessons.toLowerCase()}`,
       detail: track.description,
     },
   ];
@@ -62,7 +62,7 @@ export default function CoursesPage() {
             href={`/courses/sap-${track.id}`}
             image="/sap-course.png"
             title={track.code}
-            meta={`${track.duration} · ${track.name}`}
+            meta={ track.name}
             detail={track.structure}
           />
         ))}
