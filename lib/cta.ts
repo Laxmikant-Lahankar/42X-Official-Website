@@ -5,7 +5,7 @@ export const DISCORD_INVITE_URL = "https://discord.gg/REPLACE_ME";
 export const CALENDAR_EMBED_URL = "";
 
 // TODO: add the real founding-cohort seat count. Do not invent a number.
-export const HERO_COHORT_BADGE = "Founding Cohort '26 · Limited seats";
+export const HERO_COHORT_BADGE = "New Batches Starting Soon";
 
 export const FAQ_FOLLOWUP = "Still unsure?";
 
@@ -29,8 +29,8 @@ export type Cta = {
 export const CTAS = {
   primary: {
     id: "primary",
-    label: "Join the cohort",
-    href: "/apply",
+    label: "Explore Courses",
+    href: "/apply",   // neeche dekho
   },
   secondary: {
     id: "secondary",
