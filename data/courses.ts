@@ -901,7 +901,7 @@ export const COURSE_TRACKS = [
     badge: "Power BI",
     description:
       "Build dashboards and data models used in the enterprise. Turn raw data into reports leadership can act on.",
-    image: "/power_bi.png",
+    image: "/power_bi1.png",
     level: "Beginner",
     duration: "8 Weeks",
     lessons: "24 Lessons",
@@ -937,7 +937,7 @@ export const COURSE_TRACKS = [
     badge: "DevOps",
     description:
       "Gain practical knowledge of Linux, Cloud Computing, CI/CD, Infrastructure as Code, and Kubernetes through real-world projects, using AI tools in every module.",
-    image: "/dev_ops.png",
+    image: "/dev_ops2.png",
     level: "Beginner to Intermediate",
     duration: "12 Weeks",
     lessons: "60 Lessons",
