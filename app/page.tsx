@@ -12,13 +12,12 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Problem />
-      <WhyUs />
+      {/* <Problem /> */}
       <Courses />
-      <LearningPath />
+      <WhyUs />
       <Perks />
-      <Community />
       <Faculty />
+      <LearningPath />
       {/* TODO: Founding member offer section does not exist yet.
           When it is added, place it here (after faculty, before FAQ).
           Its only filled control should be PRIMARY:

@@ -31,7 +31,7 @@ const ROWS = [
 export default function WhyUs() {
   return (
     <Customsection>
-      <div className="px-6 py-16 md:px-12 md:py-20">
+      <div className="px-10 py-15">
         <SectionHeader
           badge="Why choose us"
           title={"Here's how we close that gap."}

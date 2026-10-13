@@ -31,7 +31,7 @@ const STEPS = [
 export default function LearningPath() {
   return (
     <Customsection>
-      <div className="px-6 py-16 md:px-12 md:py-20">
+      <div className="px-10 py-15">
         <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,25rem)_minmax(0,1fr)] lg:gap-10">
           <div className="lg:sticky lg:top-24 lg:self-start ">
             <SectionHeader

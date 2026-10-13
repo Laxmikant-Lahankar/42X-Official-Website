@@ -7,16 +7,14 @@ import StickyCtas from "@/components/StickyCtas";
 import { CTAS, HERO_COHORT_BADGE } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 
-
 const COMPANIES = [
-  { name: "Google", logo: "/logos/google.svg" },
-  { name: "Microsoft", logo: "/logos/microsoft.svg" },
-  { name: "IBM", logo: "/logos/ibm.svg" },
+  { name: "Google", logo: "/logos/google.png" },
+  { name: "Microsoft", logo: "/logos/microsoft.png" },
+  { name: "IBM", logo: "/logos/ibm.png" },
   { name: "Deloitte", logo: "/logos/deloitte.png" },
-  { name: "Infosys", logo: "/logos/infosys.svg", className: "scale-[1.8]" },
+  { name: "Infosys", logo: "/logos/infosys.png" },
   { name: "Capgemini", logo: "/logos/capgemini.png" },
 ];
-
 
 const LOGO_SET = [...COMPANIES, ...COMPANIES, ...COMPANIES, ...COMPANIES];
 
@@ -178,16 +176,16 @@ export default function Hero({
                         key={`${group}-${company.name}-${index}`}
                         className="flex shrink-0 items-center px-2 sm:px-3"
                       >
-                        <div className="flex h-10 w-28 items-center justify-center rounded-xl bg-white/95 px-3 sm:h-12 sm:w-36">
+                        <div className="flex h-10 w-28 items-center justify-center px-3 sm:h-12 sm:w-36">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={company.logo}
-                              alt={group === 0 ? company.name : ""}
-                              className={cn(
-                                "h-5 w-auto max-w-full object-contain sm:h-7",
-                                company.className,
-                              )}
-                            />
+                          <img
+                            src={company.logo}
+                            alt={group === 0 ? company.name : ""}
+                            className={cn(
+                              "h-5 w-auto max-w-full object-contain sm:h-7",
+                              company.logo,
+                            )}
+                          />
                         </div>
                       </div>
                     ))}

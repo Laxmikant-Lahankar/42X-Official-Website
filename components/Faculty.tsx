@@ -94,7 +94,7 @@ export default function Faculty({ course }: { course?: string } = {}) {
 
   return (
     <Customsection>
-      <div className="px-6 py-16 md:px-12 md:py-20">
+      <div className="px-10 py-15">
         <SectionHeader
           badge="Faculty"
           title="The people who will actually teach you"

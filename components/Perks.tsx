@@ -59,7 +59,7 @@ const PERKS: {
 export default function Perks() {
   return (
     <Customsection>
-      <div className="px-6 py-16 md:px-12 md:py-20">
+      <div className="px-10 py-15">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeader
             badge="Perks"

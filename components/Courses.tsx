@@ -15,7 +15,7 @@ export default function Courses({ course }: { course?: string } = {}) {
 
   return (
     <Customsection id="courses">
-      <div className="px-6 py-16 md:px-12 md:py-20">
+      <div className="px-10 py-15">
         <SectionHeader
           badge="Our courses"
           title="Explore Courses Designed for Delivering Real World Results"
