@@ -7,7 +7,11 @@
 // for those modules). They follow the standard SAP curriculum and must be confirmed
 // by the academy/trainer before publishing.
 
-export type CourseCategory = "sap" | "data-engineering" | "power-platform" | "devops";
+export type CourseCategory =
+  | "sap"
+  | "data-engineering"
+  | "power-platform"
+  | "devops";
 
 export interface CourseModule {
   title: string;
@@ -32,116 +36,123 @@ export interface CourseContent {
   differentiator: string;
 }
 
-const m = (title: string, duration: string, topics: string[]): CourseModule => ({
+const m = (
+  title: string,
+  duration: string,
+  topics: string[],
+): CourseModule => ({
   title,
   duration,
   topics,
 });
 
 export const COURSES: CourseContent[] = [
-// temp
-{
-  slug: "power-platform",
-  category: "power-platform",
-  title: "Power Platform",
-  subtitle: "Low-code business apps, automation and dashboards: Power Apps, Power Automate, Dataverse, Power BI and Copilot Studio.",
-  duration: "~12 weeks",
-  structure: "Fundamentals → Apps → Automation → Data & BI → Governance/ALM → Capstone",
-  audience:
-    "Learners targeting low-code developer, Power Platform consultant and business-automation pathways, including those preparing for PL-900.",
-  highlights: [
-    "Build canvas and model-driven apps with Power Apps",
-    "Automate business processes with cloud flows and desktop flows (RPA)",
-    "Design data models and security in Dataverse",
-    "Build dashboards with Power BI",
-    "Create chatbots with Copilot Studio and portals with Power Pages",
-    "Solutions, environments and governance basics",
-  ],
-  modules: [
-    m("Power Platform Fundamentals", "1 week", [
-      "Platform overview and components",
-      "Environments and licensing basics",
-      "Microsoft 365 and Dynamics 365 integration",
-    ]),
-    m("Dataverse & Data Modeling", "1.5 weeks", [
-      "Tables, columns and relationships",
-      "Choice columns and calculated columns",
-      "Business rules",
-      "Security roles and access",
-    ]),
-    m("Power Apps: Canvas Apps", "2 weeks", [
-      "Screens, controls and galleries",
-      "Power Fx formulas",
-      "Connectors and data sources",
-      "Forms, validation and UX",
-    ]),
-    m("Power Apps: Model-Driven Apps", "1 week", [
-      "Forms, views and dashboards",
-      "Site map and app design",
-      "Business process flows",
-    ]),
-    m("Power Automate: Cloud Flows", "2 weeks", [
-      "Triggers and actions",
-      "Conditions, loops and expressions",
-      "Approvals",
-      "Error handling and run history",
-    ]),
-    m("Power Automate: Desktop Flows (RPA)", "1 week", [
-      "Desktop flow basics",
-      "UI automation",
-      "Attended vs unattended overview",
-    ]),
-    m("Power BI for Platform Users", "1.5 weeks", [
-      "Data modeling",
-      "DAX measures",
-      "Report and dashboard building",
-      "Embedding in Power Apps",
-    ]),
-    m("Copilot Studio & Power Pages", "1 week", [
-      "Building a chatbot with topics",
-      "Connecting bots to flows",
-      "Power Pages site basics",
-    ]),
-    m("Solutions, ALM & Governance", "1 week", [
-      "Solutions and environments",
-      "Managed vs unmanaged solutions",
-      "Data loss prevention (DLP) policies",
-      "Deployment basics",
-    ]),
-  ],
-  skills: [
-    "Power Apps (canvas and model-driven)",
-    "Power Fx",
-    "Power Automate cloud and desktop flows",
-    "Dataverse modeling and security",
-    "Power BI",
-    "Copilot Studio basics",
-    "Solution management",
-  ],
-  capstone:
-    "Build a business solution end to end: a Dataverse-backed app, an approval automation and a Power BI dashboard, delivered through Jira sprints with a stakeholder demo and documentation.",
-  outcomes: [
-    "Build and explain canvas and model-driven apps",
-    "Automate processes with cloud and desktop flows",
-    "Model data and apply security in Dataverse",
-    "Publish dashboards with Power BI",
-    "Package and move solutions across environments",
-    "Present a working solution to stakeholders",
-  ],
-  roles: [
-    "Power Platform Developer",
-    "Power Apps / Power Automate Developer",
-    "Low-code Consultant",
-    "Business Process Automation roles",
-  ],
-  differentiator:
-    "Covers the full platform in one path (apps, automation, data, BI and bots) with a solution-based capstone rather than isolated tool demos.",
-},
+  // temp
+  {
+    slug: "power-platform",
+    category: "power-platform",
+    title: "Power Platform",
+    subtitle:
+      "Low-code business apps, automation and dashboards: Power Apps, Power Automate, Dataverse, Power BI and Copilot Studio.",
+    duration: "~12 weeks",
+    structure:
+      "Fundamentals → Apps → Automation → Data & BI → Governance/ALM → Capstone",
+    audience:
+      "Learners targeting low-code developer, Power Platform consultant and business-automation pathways, including those preparing for PL-900.",
+    highlights: [
+      "Build canvas and model-driven apps with Power Apps",
+      "Automate business processes with cloud flows and desktop flows (RPA)",
+      "Design data models and security in Dataverse",
+      "Build dashboards with Power BI",
+      "Create chatbots with Copilot Studio and portals with Power Pages",
+      "Solutions, environments and governance basics",
+    ],
+    modules: [
+      m("Power Platform Fundamentals", "1 week", [
+        "Platform overview and components",
+        "Environments and licensing basics",
+        "Microsoft 365 and Dynamics 365 integration",
+      ]),
+      m("Dataverse & Data Modeling", "1.5 weeks", [
+        "Tables, columns and relationships",
+        "Choice columns and calculated columns",
+        "Business rules",
+        "Security roles and access",
+      ]),
+      m("Power Apps: Canvas Apps", "2 weeks", [
+        "Screens, controls and galleries",
+        "Power Fx formulas",
+        "Connectors and data sources",
+        "Forms, validation and UX",
+      ]),
+      m("Power Apps: Model-Driven Apps", "1 week", [
+        "Forms, views and dashboards",
+        "Site map and app design",
+        "Business process flows",
+      ]),
+      m("Power Automate: Cloud Flows", "2 weeks", [
+        "Triggers and actions",
+        "Conditions, loops and expressions",
+        "Approvals",
+        "Error handling and run history",
+      ]),
+      m("Power Automate: Desktop Flows (RPA)", "1 week", [
+        "Desktop flow basics",
+        "UI automation",
+        "Attended vs unattended overview",
+      ]),
+      m("Power BI for Platform Users", "1.5 weeks", [
+        "Data modeling",
+        "DAX measures",
+        "Report and dashboard building",
+        "Embedding in Power Apps",
+      ]),
+      m("Copilot Studio & Power Pages", "1 week", [
+        "Building a chatbot with topics",
+        "Connecting bots to flows",
+        "Power Pages site basics",
+      ]),
+      m("Solutions, ALM & Governance", "1 week", [
+        "Solutions and environments",
+        "Managed vs unmanaged solutions",
+        "Data loss prevention (DLP) policies",
+        "Deployment basics",
+      ]),
+    ],
+    skills: [
+      "Power Apps (canvas and model-driven)",
+      "Power Fx",
+      "Power Automate cloud and desktop flows",
+      "Dataverse modeling and security",
+      "Power BI",
+      "Copilot Studio basics",
+      "Solution management",
+    ],
+    capstone:
+      "Build a business solution end to end: a Dataverse-backed app, an approval automation and a Power BI dashboard, delivered through Jira sprints with a stakeholder demo and documentation.",
+    outcomes: [
+      "Build and explain canvas and model-driven apps",
+      "Automate processes with cloud and desktop flows",
+      "Model data and apply security in Dataverse",
+      "Publish dashboards with Power BI",
+      "Package and move solutions across environments",
+      "Present a working solution to stakeholders",
+    ],
+    roles: [
+      "Power Platform Developer",
+      "Power Apps / Power Automate Developer",
+      "Low-code Consultant",
+      "Business Process Automation roles",
+    ],
+    differentiator:
+      "Covers the full platform in one path (apps, automation, data, BI and bots) with a solution-based capstone rather than isolated tool demos.",
+  },
   {
     slug: "sap-mm",
     category: "sap",
     title: "SAP MM",
-    subtitle: "Materials Management: a Procure-to-Pay (P2P) focused functional SAP program.",
+    subtitle:
+      "Materials Management: a Procure-to-Pay (P2P) focused functional SAP program.",
     duration: "~15 weeks",
     structure: "Functional + embedded ABAP/BASIS awareness + capstone",
     audience:
@@ -255,7 +266,8 @@ export const COURSES: CourseContent[] = [
     slug: "sap-sd",
     category: "sap",
     title: "SAP SD",
-    subtitle: "Sales & Distribution: an Order-to-Cash (O2C) focused functional SAP program.",
+    subtitle:
+      "Sales & Distribution: an Order-to-Cash (O2C) focused functional SAP program.",
     duration: "~13 weeks",
     structure: "Functional + embedded ABAP/BASIS awareness + capstone",
     audience:
@@ -307,7 +319,12 @@ export const COURSES: CourseContent[] = [
         "Picking and packing",
         "Post goods issue",
       ]),
-      m("Billing", "1 week", ["Invoices", "Memos", "Cash sales", "Cancellations"]),
+      m("Billing", "1 week", [
+        "Invoices",
+        "Memos",
+        "Cash sales",
+        "Cancellations",
+      ]),
       m("Returns & Complaints", "0.5 week", [
         // added
         "Returns order",
@@ -370,7 +387,8 @@ export const COURSES: CourseContent[] = [
       "Extended Warehouse Management: a modern warehouse-management program with Basic + Advanced coverage.",
     duration: "~14 weeks",
     structure: "Basic + Advanced + embedded debugging + capstone",
-    audience: "Learners interested in SAP warehouse operations and EWM consulting.",
+    audience:
+      "Learners interested in SAP warehouse operations and EWM consulting.",
     highlights: [
       "EWM architecture and deployment",
       "Warehouse structures and master data",
@@ -391,7 +409,11 @@ export const COURSES: CourseContent[] = [
         "Activity areas and work centers",
         "Product master and packaging specifications",
       ]),
-      m("ERP–EWM Integration", "1 week", ["CIF", "Delivery integration", "IDocs"]),
+      m("ERP–EWM Integration", "1 week", [
+        "CIF",
+        "Delivery integration",
+        "IDocs",
+      ]),
       m("Inbound Processing", "1.5 weeks", ["GR", "Putaway", "HU management"]),
       m("Outbound Processing", "1.5 weeks", [
         "Picking",
@@ -413,7 +435,12 @@ export const COURSES: CourseContent[] = [
         "Counting and difference posting",
         "Replenishment strategies",
       ]),
-      m("Advanced", "1.5 weeks", ["Yard", "Slotting", "Cross-docking", "Kitting"]),
+      m("Advanced", "1.5 weeks", [
+        "Yard",
+        "Slotting",
+        "Cross-docking",
+        "Kitting",
+      ]),
       m("Advanced QM & PP-EWM Integration", "1 week", [
         // added
         "Quality inspection in EWM",
@@ -462,7 +489,8 @@ export const COURSES: CourseContent[] = [
     slug: "sap-abap",
     category: "sap",
     title: "SAP ABAP",
-    subtitle: "Technical / Developer track: a deep technical SAP development program.",
+    subtitle:
+      "Technical / Developer track: a deep technical SAP development program.",
     duration: "~13.5 weeks",
     structure: "Technical / Developer + capstone",
     audience: "Learners pursuing an SAP technical developer pathway.",
@@ -479,7 +507,10 @@ export const COURSES: CourseContent[] = [
         "Internal tables",
         "Data Dictionary",
       ]),
-      m("Reports Programming", "1.5 weeks", ["Classical/interactive reports", "ALV"]),
+      m("Reports Programming", "1.5 weeks", [
+        "Classical/interactive reports",
+        "ALV",
+      ]),
       m("Dialog Programming", "1.5 weeks", [
         "Module pool",
         "Screen painter",
@@ -532,7 +563,11 @@ export const COURSES: CourseContent[] = [
       "Debug performance issues",
       "Present a development solution",
     ],
-    roles: ["SAP ABAP Developer", "SAP Technical Consultant", "SAP Development roles"],
+    roles: [
+      "SAP ABAP Developer",
+      "SAP Technical Consultant",
+      "SAP Development roles",
+    ],
     differentiator:
       "A dedicated technical path going deeper than embedded debugging modules in functional SAP courses.",
   },
@@ -577,8 +612,15 @@ export const COURSES: CourseContent[] = [
         "Transport troubleshooting",
       ]),
       m("Background Jobs & Monitoring", "1 week", ["SM36", "SM37"]),
-      m("Database Administration", "1.5 weeks", ["HANA", "Backup/recovery basics"]),
-      m("Performance Monitoring & Tuning", "1.5 weeks", ["CCMS", "ST22", "SM21"]),
+      m("Database Administration", "1.5 weeks", [
+        "HANA",
+        "Backup/recovery basics",
+      ]),
+      m("Performance Monitoring & Tuning", "1.5 weeks", [
+        "CCMS",
+        "ST22",
+        "SM21",
+      ]),
       m("Patches, Kernel Upgrades & Support Packages", "1 week", [
         // added
         "Support packages",
@@ -615,13 +657,15 @@ export const COURSES: CourseContent[] = [
       "SAP Technical Administrator",
       "SAP System Operations roles",
     ],
-    differentiator: "Focuses on practical administration, monitoring and troubleshooting.",
+    differentiator:
+      "Focuses on practical administration, monitoring and troubleshooting.",
   },
   {
     slug: "data-engineering",
     category: "data-engineering",
-    title: "Full Stack Data Engineering",
-    subtitle: "An industry-aligned journey from foundations to production-style pipelines.",
+    title: "Data Engineering",
+    subtitle:
+      "An industry-aligned journey from foundations to production-style pipelines.",
     duration: "~19 weeks",
     structure: "Python/SQL → Spark → Cloud → Orchestration → Capstone",
     audience:
@@ -727,85 +771,87 @@ export const COURSES: CourseContent[] = [
     title: "DevOps with AI",
     subtitle: "3-Month Course | 2 Hours per Day | Monday to Friday",
     duration: "~12 weeks",
-    structure: "Fundamentals → Linux/Bash → AWS/CI/CD → Docker/K8s → Terraform/Ansible → Monitoring",
-    audience: "Learners seeking to become DevOps Engineers or Cloud Engineers through real-world projects and AI tools.",
+    structure:
+      "Fundamentals → Linux/Bash → AWS/CI/CD → Docker/K8s → Terraform/Ansible → Monitoring",
+    audience:
+      "Learners seeking to become DevOps Engineers or Cloud Engineers through real-world projects and AI tools.",
     highlights: [
       "Linux, Bash Scripting, and Git/GitHub fundamentals",
       "AWS cloud computing and CI/CD with Jenkins",
       "Containerization with Docker and Orchestration with Kubernetes",
       "Infrastructure as Code with Terraform and Ansible",
       "Monitoring with Prometheus and Grafana",
-      "Using AI tools for generating, debugging, and explaining code in every module"
+      "Using AI tools for generating, debugging, and explaining code in every module",
     ],
     modules: [
       m("DevOps Fundamentals + AI for DevOps", "1 week", [
         "DevOps lifecycle",
         "Waterfall vs Agile, Agile and Scrum basics",
         "Monitoring concepts",
-        "Prompting for DevOps, verifying AI output"
+        "Prompting for DevOps, verifying AI output",
       ]),
       m("Linux", "1.5 weeks", [
         "Installation, commands, users and groups, permissions",
         "Processes, packages, systemctl, disk partitioning",
         "SSH, networking commands, cron and at jobs, logs and log rotation",
-        "Troubleshooting with AI, website deployment project on Ubuntu"
+        "Troubleshooting with AI, website deployment project on Ubuntu",
       ]),
       m("Bash Scripting", "0.5 weeks", [
         "Variables, conditions, loops, functions, arrays",
         "Case statements, file handling",
-        "AI script generation and debugging, automation scripts"
+        "AI script generation and debugging, automation scripts",
       ]),
       m("Git & GitHub", "0.5 weeks", [
         "Core commands, branching, merge, rebase, stash",
         "Tags, conflicts, pull requests",
-        "GitHub Actions basics, AI for commit messages and workflows"
+        "GitHub Actions basics, AI for commit messages and workflows",
       ]),
       m("AWS", "1.5 weeks", [
         "IAM, EC2, S3, VPC (subnets, route tables, IGW, NAT)",
         "Security groups, NACL, ALB, Auto Scaling",
         "CloudWatch, CloudTrail, RDS, Route 53, AWS CLI",
-        "Security best practices"
+        "Security best practices",
       ]),
       m("Jenkins & CI/CD", "1 week", [
         "Installation, freestyle and pipeline jobs, Jenkinsfile",
         "Git/Maven/Docker integration, triggers, plugins",
         "Backup, security, end-to-end pipeline",
-        "AI for Jenkinsfiles and build logs"
+        "AI for Jenkinsfiles and build logs",
       ]),
       m("Docker", "1 week", [
         "Images and containers, Dockerfile, volumes",
         "Networking, Compose, multi-stage builds",
         "Docker Hub, security basics, best practices",
-        "AI for Dockerfiles"
+        "AI for Dockerfiles",
       ]),
       m("Kubernetes", "2 weeks", [
         "Architecture, Minikube, kubectl, Pods, Deployments",
         "Services, ConfigMaps, Secrets, PV/PVC, Ingress",
         "Rolling updates and rollbacks, StatefulSets, DaemonSets",
-        "Helm, RBAC, troubleshooting with AI"
+        "Helm, RBAC, troubleshooting with AI",
       ]),
       m("Terraform", "1 week", [
         "Installation, providers, variables, outputs",
         "State and remote backend",
         "Modules, workspaces",
-        "EC2, VPC and S3 builds"
+        "EC2, VPC and S3 builds",
       ]),
       m("Ansible", "0.5 weeks", [
         "Inventory, ad-hoc commands, playbooks, variables",
         "Handlers, roles, Galaxy",
-        "Server configuration, multi-server automation"
+        "Server configuration, multi-server automation",
       ]),
       m("Monitoring", "1 week", [
         "Prometheus, Node Exporter, Alertmanager",
         "Grafana dashboards, basic alerts",
-        "AI for PromQL"
+        "AI for PromQL",
       ]),
       m("Real-Time Projects", "Ongoing", [
         "Website deployment on Ubuntu",
         "CI/CD pipeline using Jenkins, Git and Docker",
         "Dockerized application deployed on Kubernetes",
-        "AWS infrastructure built with Terraform and configured with Ansible"
-      ])
+        "AWS infrastructure built with Terraform and configured with Ansible",
+      ]),
     ],
     skills: [
       "Linux Administration",
@@ -815,9 +861,10 @@ export const COURSES: CourseContent[] = [
       "Jenkins CI/CD",
       "Docker & Kubernetes",
       "Terraform & Ansible",
-      "Monitoring (Prometheus/Grafana)"
+      "Monitoring (Prometheus/Grafana)",
     ],
-    capstone: "Four hands-on projects including website deployment, CI/CD pipelines, Kubernetes orchestration, and AWS infrastructure as code.",
+    capstone:
+      "Four hands-on projects including website deployment, CI/CD pipelines, Kubernetes orchestration, and AWS infrastructure as code.",
     outcomes: [
       "Deploy and manage Linux servers",
       "Automate tasks with Bash and Ansible",
@@ -825,14 +872,15 @@ export const COURSES: CourseContent[] = [
       "Containerize and orchestrate apps with Docker and Kubernetes",
       "Provision cloud infrastructure with Terraform and AWS",
       "Monitor systems using Prometheus and Grafana",
-      "Utilize AI tools to accelerate workflows"
+      "Utilize AI tools to accelerate workflows",
     ],
     roles: [
       "DevOps Engineer",
       "Cloud Engineer",
-      "Site Reliability Engineer (SRE)"
+      "Site Reliability Engineer (SRE)",
     ],
-    differentiator: "Integrates AI tooling (generate, debug, explain) into every step of the DevOps lifecycle with 4 real-world projects and daily hands-on practice."
+    differentiator:
+      "Integrates AI tooling (generate, debug, explain) into every step of the DevOps lifecycle with 4 real-world projects and daily hands-on practice.",
   },
   {
     // No content for this course in the PDF yet: everything below is placeholder text.
@@ -843,13 +891,27 @@ export const COURSES: CourseContent[] = [
     duration: "Placeholder duration",
     structure: "Placeholder structure",
     audience: "Placeholder: who this course is for.",
-    highlights: Array.from({ length: 6 }, (_, i) => `Placeholder highlight ${i + 1}`),
-    modules: Array.from({ length: 5 }, (_, i) =>
-      m(`Placeholder module ${i + 1}`, "1 week", ["Placeholder topic one", "Placeholder topic two"]),
+    highlights: Array.from(
+      { length: 6 },
+      (_, i) => `Placeholder highlight ${i + 1}`,
     ),
-    skills: ["Placeholder skill one", "Placeholder skill two", "Placeholder skill three"],
+    modules: Array.from({ length: 5 }, (_, i) =>
+      m(`Placeholder module ${i + 1}`, "1 week", [
+        "Placeholder topic one",
+        "Placeholder topic two",
+      ]),
+    ),
+    skills: [
+      "Placeholder skill one",
+      "Placeholder skill two",
+      "Placeholder skill three",
+    ],
     capstone: "Placeholder capstone description.",
-    outcomes: ["Placeholder outcome one", "Placeholder outcome two", "Placeholder outcome three"],
+    outcomes: [
+      "Placeholder outcome one",
+      "Placeholder outcome two",
+      "Placeholder outcome three",
+    ],
     roles: ["Placeholder role one", "Placeholder role two"],
     differentiator: "Placeholder differentiator.",
   },
