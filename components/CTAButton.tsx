@@ -14,10 +14,12 @@ const base =
 const variants = {
   primary:
     "border border-transparent bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] text-white shadow-[0_8px_24px_rgba(46,87,223,0.35)] hover:from-[#6B98FF] hover:to-[#3A64E8]",
+  // Blue -> violet -> magenta, left to right (same as the "Read more about the course" button)
+  gradient:
+    "border border-transparent bg-[linear-gradient(90deg,#3f9bff_0%,#6b5cff_50%,#d643f5_100%)] text-white shadow-[0_8px_24px_rgba(107,92,255,0.30)] hover:brightness-110",
   secondary:
     "border border-white/25 bg-transparent text-white hover:border-white/40 hover:bg-white/10",
-  ghost:
-    "border border-white/15 bg-white/5 text-white hover:bg-white/10",
+  ghost: "border border-white/15 bg-white/5 text-white hover:bg-white/10",
   link: "h-auto rounded-md border-transparent bg-transparent px-1 text-[13px] font-normal text-white/55 underline-offset-4 hover:text-white hover:underline",
 } as const;
 

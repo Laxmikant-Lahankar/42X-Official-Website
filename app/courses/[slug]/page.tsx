@@ -9,14 +9,23 @@ import { CTAButton } from "@/components/CTAButton";
 import { CTAS } from "@/lib/cta";
 
 // Theme tokens only (styling) — no logic/content changes
-const HEADING = "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
-// Same background as the courses listing page, so every section matches
+const HEADING =
+  "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
+
+// Muted neutral text tokens (replace the blue-tinted greys)
+const TEXT = "text-white/70";
+const MUTED = "text-white/45";
+
+// One faint, cool glow at the top only. No purple, no corner blurs,
+// so the page stays close to the site's near-black background.
 const SECTION_BG = {
   backgroundImage:
-    "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(0,180,255,.10), transparent 75%), radial-gradient(ellipse 45% 50% at 100% 100%, rgba(123,61,255,.12), transparent 75%)",
+    "radial-gradient(ellipse 50% 30% at 50% 0%, rgba(0,180,255,.04), transparent 80%)",
 };
+
+// Neutral dark card with a hairline border, matching the listing page cards
 const CARD =
-  "rounded-2xl border border-[#263A5D] bg-gradient-to-br from-[#101B32]/95 to-[#070D1B]";
+  "rounded-2xl border border-white/10 bg-gradient-to-br from-[#141414] to-[#0a0a0a]";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -46,7 +55,7 @@ export default async function CourseDetailPage({ params }: Props) {
         <div className="px-6 py-16 md:px-12 md:py-20" style={SECTION_BG}>
           <Link
             href={`/courses#${course.category}`}
-            className="text-xs font-medium text-[#94A3B8] hover:text-white sm:text-sm"
+            className={`text-xs font-medium ${MUTED} hover:text-white sm:text-sm`}
           >
             ← Back to courses
           </Link>
@@ -55,14 +64,16 @@ export default async function CourseDetailPage({ params }: Props) {
           >
             {course.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#C4D1E7] md:text-base">
+          <p
+            className={`mt-4 max-w-2xl text-sm leading-relaxed ${TEXT} md:text-base`}
+          >
             {course.subtitle}
           </p>
-          <p className="mt-6 text-sm text-[#94A3B8]">
+          <p className={`mt-6 text-sm ${MUTED}`}>
             {course.duration} · {course.structure}
           </p>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#C4D1E7]">
-            <span className="text-[#94A3B8]">Who it&apos;s for: </span>
+          <p className={`mt-2 max-w-2xl text-sm leading-relaxed ${TEXT}`}>
+            <span className={MUTED}>Who it&apos;s for: </span>
             {course.audience}
           </p>
 
@@ -74,13 +85,12 @@ export default async function CourseDetailPage({ params }: Props) {
               label: "Enquire about this course",
             }}
             src="course-detail"
-            variant="primary"
+            variant="gradient"
             size="sm"
             className="mt-8"
           />
         </div>
       </Customsection>
-
 
       <Customsection>
         <div
@@ -89,8 +99,11 @@ export default async function CourseDetailPage({ params }: Props) {
         >
           <Highlights items={course.highlights} />
 
-          <Syllabus modules={course.modules} courseSlug={course.slug} courseTitle={course.title} />
-
+          <Syllabus
+            modules={course.modules}
+            courseSlug={course.slug}
+            courseTitle={course.title}
+          />
 
           <div>
             <h2
@@ -102,11 +115,11 @@ export default async function CourseDetailPage({ params }: Props) {
               <Card title="Practical skills and learning outcomes">
                 <div className="grid gap-8 md:grid-cols-2">
                   <div>
-                    <p className="text-sm text-[#94A3B8]">Practical skills</p>
+                    <p className={`text-sm ${MUTED}`}>Practical skills</p>
                     <BulletList items={course.skills} />
                   </div>
                   <div>
-                    <p className="text-sm text-[#94A3B8]">Learning outcomes</p>
+                    <p className={`text-sm ${MUTED}`}>Learning outcomes</p>
                     <BulletList items={course.outcomes} />
                   </div>
                 </div>
@@ -114,7 +127,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <Card title="Capstone project">
-                  <p className="text-sm leading-relaxed text-[#C4D1E7]">
+                  <p className={`text-sm leading-relaxed ${TEXT}`}>
                     {course.capstone}
                   </p>
                 </Card>
@@ -124,16 +137,16 @@ export default async function CourseDetailPage({ params }: Props) {
                     {course.roles.map((r) => (
                       <li
                         key={r}
-                        className="rounded-lg border border-[#00B4FF]/60 bg-[#00B4FF]/10 px-3 py-1 text-[13px] text-[#00B4FF]"
+                        className="rounded-lg border border-white/15 bg-white/[0.04] px-3 py-1 text-[13px] text-white/75"
                       >
                         {r}
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-5 text-sm text-[#94A3B8]">
+                  <p className={`mt-5 text-sm ${MUTED}`}>
                     What sets this course apart
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#C4D1E7]">
+                  <p className={`mt-2 text-sm leading-relaxed ${TEXT}`}>
                     {course.differentiator}
                   </p>
                 </Card>
@@ -180,9 +193,9 @@ function Highlights({ items }: { items: string[] }) {
         {items.map((h, i) => (
           <li
             key={h}
-            className={`flex items-start gap-4 ${CARD} p-5 transition duration-200 hover:border-[#00B4FF]/70 hover:shadow-[0_0_32px_-12px_rgba(0,180,255,.65)] ${spans[i]}`}
+            className={`flex items-start gap-4 ${CARD} p-5 transition duration-200 hover:-translate-y-1 hover:border-white/25 hover:shadow-lg hover:shadow-black/40 ${spans[i]}`}
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#00B4FF]/60 bg-[#00B4FF]/10 text-[#00B4FF]">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/[0.05] text-[#00B4FF]/80">
               <svg
                 width="16"
                 height="16"
@@ -197,7 +210,7 @@ function Highlights({ items }: { items: string[] }) {
                 <path d="m5 12.5 4.5 4.5L19 7.5" />
               </svg>
             </span>
-            <span className="pt-1 text-[15px] leading-relaxed text-[#C4D1E7]">
+            <span className={`pt-1 text-[15px] leading-relaxed ${TEXT}`}>
               {h}
             </span>
           </li>
@@ -210,7 +223,9 @@ function Highlights({ items }: { items: string[] }) {
 function Card({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className={`${CARD} p-6 md:p-8`}>
-      <h3 className={`${HEADING} mb-4 text-lg font-bold text-white`}>{title}</h3>
+      <h3 className={`${HEADING} mb-4 text-lg font-bold text-white`}>
+        {title}
+      </h3>
       {children}
     </section>
   );
@@ -218,7 +233,9 @@ function Card({ title, children }: { title: string; children: ReactNode }) {
 
 function BulletList({ items }: { items: string[] }) {
   return (
-    <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-[#C4D1E7] marker:text-[#00B4FF]">
+    <ul
+      className={`mt-3 list-disc space-y-1 pl-5 text-sm leading-6 ${TEXT} marker:text-white/35`}
+    >
       {items.map((t) => (
         <li key={t}>{t}</li>
       ))}
