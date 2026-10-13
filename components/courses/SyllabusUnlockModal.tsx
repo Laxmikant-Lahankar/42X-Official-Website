@@ -9,6 +9,10 @@ interface Props {
   onClose: () => void;
 }
 
+// Theme tokens only (styling) — no logic/content changes
+const HEADING = "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
+const CTA_GRADIENT = "bg-gradient-to-r from-[#008DFF] via-[#6650FF] to-[#D92FE5]";
+
 export function SyllabusUnlockModal({
   courseSlug,
   courseTitle,
@@ -98,7 +102,7 @@ export function SyllabusUnlockModal({
   };
 
   const inputClass =
-    "h-11 w-full rounded-sm border border-white/15 bg-white/[0.04] px-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-white/40";
+    "h-11 w-full rounded-xl border border-[#263A5D] bg-[#101B32]/80 px-3 text-sm text-white outline-none transition-colors placeholder:text-[#94A3B8] focus:border-[#00B4FF]";
 
   const levelOptions = [
     { value: "beginner", label: "Beginner" },
@@ -110,7 +114,7 @@ export function SyllabusUnlockModal({
     <div
       ref={overlayRef}
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backgroundColor: "rgba(0,0,0,0.75)", backdropFilter: "blur(6px)" }}
+      style={{ backgroundColor: "rgba(2,6,23,0.8)", backdropFilter: "blur(6px)" }}
       onClick={(e) => {
         if (e.target === overlayRef.current) onClose();
       }}
@@ -119,14 +123,18 @@ export function SyllabusUnlockModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="syllabus-modal-title"
-        className="relative w-full max-w-md rounded-sm bg-[#111111] ring-1 ring-white/10 animate-fade-up"
-        style={{ animationDuration: "0.4s" }}
+        className="relative w-full max-w-md rounded-3xl border border-[#243657] bg-[#070D1B] shadow-[0_40px_120px_rgba(0,0,0,.7)] animate-fade-up"
+        style={{
+          animationDuration: "0.4s",
+          backgroundImage:
+            "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(0,180,255,.10), transparent 75%), radial-gradient(ellipse 45% 40% at 100% 100%, rgba(123,61,255,.12), transparent 75%)",
+        }}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-sm text-white/40 transition-colors hover:bg-white/[0.06] hover:text-white/70"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/[.03] text-white/70 transition-colors hover:border-[#00B4FF]/70 hover:text-white"
         >
           <svg
             width="16"
@@ -144,7 +152,7 @@ export function SyllabusUnlockModal({
         </button>
 
         <div className="px-8 pb-8 pt-7">
-          <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-sm bg-white/[0.06] ring-1 ring-white/10">
+          <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-lg border border-[#00B4FF]/60 bg-[#00B4FF]/10">
             <svg
               width="18"
               height="18"
@@ -154,7 +162,7 @@ export function SyllabusUnlockModal({
               strokeWidth="1.8"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-white/60"
+              className="text-[#00B4FF]"
               aria-hidden="true"
             >
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -164,19 +172,19 @@ export function SyllabusUnlockModal({
 
           <h2
             id="syllabus-modal-title"
-            className="text-xl font-light text-white"
+            className={`${HEADING} text-xl font-bold text-white`}
           >
             Unlock the full syllabus
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-white/50">
+          <p className="mt-2 text-sm leading-relaxed text-[#C4D1E7]">
             Get access to the complete{" "}
-            <span className="text-white/70">{courseTitle}</span> curriculum.
+            <span className="text-white">{courseTitle}</span> curriculum.
             We&apos;ll also send you course details and cohort updates.
           </p>
 
           <form className="mt-6 flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50">
+              <label className="text-xs text-[#94A3B8]">
                 Name <span className="text-red-400">*</span>
               </label>
               <input
@@ -194,7 +202,7 @@ export function SyllabusUnlockModal({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50">
+              <label className="text-xs text-[#94A3B8]">
                 Email <span className="text-red-400">*</span>
               </label>
               <input
@@ -211,7 +219,7 @@ export function SyllabusUnlockModal({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50">
+              <label className="text-xs text-[#94A3B8]">
                 WhatsApp / Phone <span className="text-red-400">*</span>
               </label>
               <input
@@ -226,7 +234,7 @@ export function SyllabusUnlockModal({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50">
+              <label className="text-xs text-[#94A3B8]">
                 Experience level <span className="text-red-400">*</span>
               </label>
               <div className="flex gap-2">
@@ -241,10 +249,10 @@ export function SyllabusUnlockModal({
                       }))
                     }
                     className={[
-                      "flex-1 rounded-sm py-2.5 text-xs transition-colors ring-1",
+                      "flex-1 rounded-xl border py-2.5 text-xs transition-colors",
                       formData.experienceLevel === opt.value
-                        ? "bg-white/10 ring-white/30 text-white"
-                        : "bg-white/[0.03] ring-white/10 text-white/50 hover:bg-white/[0.06] hover:text-white/70",
+                        ? "border-[#00B4FF]/70 bg-[#00B4FF]/10 text-white"
+                        : "border-[#263A5D] bg-[#101B32]/80 text-[#C4D1E7] hover:border-[#00B4FF]/50 hover:text-white",
                     ].join(" ")}
                   >
                     {opt.label}
@@ -260,7 +268,7 @@ export function SyllabusUnlockModal({
             <button
               type="submit"
               disabled={submitting}
-              className="mt-1 h-11 w-full rounded-sm bg-white text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:opacity-50"
+              className={`${HEADING} mt-1 h-11 w-full rounded-xl ${CTA_GRADIENT} text-sm font-semibold text-white shadow-[0_8px_28px_-10px_rgba(0,180,255,.8)] transition hover:brightness-110 disabled:opacity-50`}
             >
               {submitting ? "Submitting\u2026" : "Unlock full syllabus \u2192"}
             </button>

@@ -7,14 +7,18 @@ import StickyCtas from "@/components/StickyCtas";
 import { CTAS, HERO_COHORT_BADGE } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 
+
 const COMPANIES = [
-  "Google",
-  "Microsoft",
-  "IBM",
-  "Deloitte",
-  "Infosys",
-  "Capgemini",
+  { name: "Google", logo: "/logos/google.svg" },
+  { name: "Microsoft", logo: "/logos/microsoft.svg" },
+  { name: "IBM", logo: "/logos/ibm.svg" },
+  { name: "Deloitte", logo: "/logos/deloitte.png" },
+  { name: "Infosys", logo: "/logos/infosys.svg", className: "scale-[1.8]" },
+  { name: "Capgemini", logo: "/logos/capgemini.png" },
 ];
+
+
+const LOGO_SET = [...COMPANIES, ...COMPANIES, ...COMPANIES, ...COMPANIES];
 
 const VIDEO_REVEAL_MS = 1;
 
@@ -25,6 +29,8 @@ export default function Hero({
 } = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showVideo, setShowVideo] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -44,6 +50,35 @@ export default function Hero({
 
     const id = window.setTimeout(reveal, VIDEO_REVEAL_MS);
     return () => window.clearTimeout(id);
+  }, []);
+
+  // JS-driven marquee: no CSS keyframes needed. Moves the track left by
+  // SPEED px/sec and wraps by exactly one group width, so it never jumps.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const SPEED = 60; // px per second. Raise = faster, lower = slower.
+    let x = 0;
+    let last = performance.now();
+    let raf = 0;
+
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.1);
+      last = now;
+      const groupWidth =
+        (track.firstElementChild as HTMLElement | null)?.offsetWidth ?? 0;
+      if (groupWidth > 0 && !pausedRef.current) {
+        x -= SPEED * dt;
+        if (x <= -groupWidth) x += groupWidth;
+        track.style.transform = `translate3d(${x}px, 0, 0)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
@@ -126,19 +161,37 @@ export default function Hero({
             <p className="mb-4 text-center text-[10px] font-medium uppercase tracking-[0.18em] text-white/70 sm:mb-9 sm:text-sm sm:tracking-[0.28em]">
               Backed by Experts at
             </p>
-            <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-              <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
-                {[...COMPANIES, ...COMPANIES].map((company, index) => (
-                  <span
-                    key={`${company}-${index}`}
-                    className="flex items-center px-5 text-base font-medium tracking-wide text-white/80 sm:px-8 sm:text-xl"
+            <div
+              className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+              onMouseEnter={() => (pausedRef.current = true)}
+              onMouseLeave={() => (pausedRef.current = false)}
+            >
+              <div ref={trackRef} className="flex w-max will-change-transform">
+                {[0, 1].map((group) => (
+                  <div
+                    key={group}
+                    className="flex shrink-0 items-center"
+                    aria-hidden={group === 1}
                   >
-                    {company}
-                    <span
-                      aria-hidden
-                      className="ml-5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30 sm:ml-8"
-                    />
-                  </span>
+                    {LOGO_SET.map((company, index) => (
+                      <div
+                        key={`${group}-${company.name}-${index}`}
+                        className="flex shrink-0 items-center px-2 sm:px-3"
+                      >
+                        <div className="flex h-10 w-28 items-center justify-center rounded-xl bg-white/95 px-3 sm:h-12 sm:w-36">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={company.logo}
+                              alt={group === 0 ? company.name : ""}
+                              className={cn(
+                                "h-5 w-auto max-w-full object-contain sm:h-7",
+                                company.className,
+                              )}
+                            />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 ))}
               </div>
             </div>

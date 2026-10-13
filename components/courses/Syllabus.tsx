@@ -6,6 +6,17 @@ import { SyllabusUnlockModal } from "./SyllabusUnlockModal";
 
 const PREVIEW_COUNT = 2;
 
+// Theme tokens only (styling) — no logic/content changes
+const HEADING = "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
+const CTA_GRADIENT = "bg-gradient-to-r from-[#008DFF] via-[#6650FF] to-[#D92FE5]";
+// Same background as the courses listing page, so every section matches
+const SECTION_BG = {
+  backgroundImage:
+    "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(0,180,255,.10), transparent 75%), radial-gradient(ellipse 45% 50% at 100% 100%, rgba(123,61,255,.12), transparent 75%)",
+};
+const CARD =
+  "rounded-2xl border bg-gradient-to-br from-[#101B32]/95 to-[#070D1B] transition duration-200";
+
 function storageKey(slug: string) {
   return `syllabus-unlocked:${slug}`;
 }
@@ -60,7 +71,7 @@ export function Syllabus({
     setOpen(new Set(modules.flatMap((m, i) => (m.topics.length ? [i] : []))));
 
   const buttonClass =
-    "inline-flex h-10 items-center justify-center rounded-full bg-white/[0.04] px-4 text-[13px] text-white/75 backdrop-blur-sm hover:bg-white/[0.08]";
+    "inline-flex h-10 items-center justify-center rounded-xl border border-[#263A5D] bg-[#101B32]/80 px-4 text-[13px] text-[#C4D1E7] transition hover:border-[#00B4FF]/70 hover:text-white";
 
   const visibleModules = unlocked ? modules : modules.slice(0, PREVIEW_COUNT);
   const lockedCount = modules.length - PREVIEW_COUNT;
@@ -71,13 +82,21 @@ export function Syllabus({
 
     const head = (
       <>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-white/[0.06] text-sm font-medium text-white">
+        <span
+          className={`${HEADING} flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${
+            isOpen
+              ? "bg-gradient-to-r from-[#00B4FF] via-[#7B3DFF] to-[#E34BEF] text-white"
+              : "border border-[#00B4FF]/60 bg-[#00B4FF]/10 text-[#00B4FF]"
+          }`}
+        >
           {i + 1}
         </span>
-        <span className="flex-1 text-base font-light text-white md:text-lg">
+        <span
+          className={`${HEADING} flex-1 text-base font-bold text-white md:text-lg`}
+        >
           {m.title}
         </span>
-        <span className="shrink-0 text-xs text-white/45 md:text-sm">
+        <span className="shrink-0 text-xs text-[#C8B8FF] md:text-sm">
           {m.duration}
         </span>
         {expandable ? (
@@ -91,7 +110,7 @@ export function Syllabus({
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"
-            className={`shrink-0 text-white/50 transition-transform motion-reduce:transition-none ${
+            className={`shrink-0 text-[#00B4FF] transition-transform motion-reduce:transition-none ${
               isOpen ? "rotate-180" : ""
             }`}
           >
@@ -104,7 +123,13 @@ export function Syllabus({
     );
 
     return (
-      <article className="rounded-sm bg-[#141414] ring-1 ring-white/10">
+      <article
+        className={`${CARD} ${
+          isOpen
+            ? "border-[#00B4FF]/70 shadow-[0_0_32px_-12px_rgba(0,180,255,.65)]"
+            : "border-[#263A5D]"
+        }`}
+      >
         {expandable ? (
           <button
             type="button"
@@ -121,7 +146,7 @@ export function Syllabus({
         {expandable && isOpen && (
           <ul
             id={`module-${i}`}
-            className="list-disc space-y-0.5 pb-6 pl-16 pr-5 text-sm leading-6 text-white/60"
+            className="list-disc space-y-0.5 pb-6 pl-16 pr-5 text-sm leading-6 text-[#C4D1E7] marker:text-[#00B4FF]"
           >
             {m.topics.map((t) => (
               <li key={t}>{t}</li>
@@ -136,7 +161,9 @@ export function Syllabus({
     <>
       <div>
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h2 className="text-3xl font-light text-white md:text-4xl">
+          <h2
+            className={`${HEADING} text-3xl font-bold tracking-tight text-white md:text-4xl`}
+          >
             Detailed syllabus
           </h2>
           {unlocked && (
@@ -175,8 +202,11 @@ export function Syllabus({
             />
 
             {/* Lock CTA */}
-            <div className="mt-4 flex flex-col items-center gap-4 rounded-sm bg-[#141414] px-6 py-8 ring-1 ring-white/10 text-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-white/[0.06] ring-1 ring-white/10">
+            <div
+              className="mt-4 flex flex-col items-center gap-4 rounded-2xl border border-[#263A5D] bg-[#070D1B] px-6 py-8 text-center"
+              style={SECTION_BG}
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#00B4FF]/60 bg-[#00B4FF]/10">
                 <svg
                   width="18"
                   height="18"
@@ -186,7 +216,7 @@ export function Syllabus({
                   strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-white/50"
+                  className="text-[#00B4FF]"
                   aria-hidden="true"
                 >
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -194,17 +224,17 @@ export function Syllabus({
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-light text-white">
+                <p className={`${HEADING} text-sm font-semibold text-white`}>
                   {lockedCount} more module{lockedCount !== 1 ? "s" : ""} in this curriculum
                 </p>
-                <p className="mt-1 text-xs text-white/45">
+                <p className="mt-1 text-xs text-[#94A3B8]">
                   Leave your details to unlock the full syllabus.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setShowModal(true)}
-                className="inline-flex h-10 items-center justify-center rounded-sm bg-white px-6 text-sm font-medium text-black transition-opacity hover:opacity-90"
+                className={`${HEADING} inline-flex h-10 items-center justify-center rounded-xl ${CTA_GRADIENT} px-6 text-sm font-semibold text-white shadow-[0_8px_28px_-10px_rgba(0,180,255,.8)] transition hover:brightness-110`}
               >
                 Unlock full syllabus →
               </button>
