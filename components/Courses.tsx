@@ -235,12 +235,7 @@ export default function Courses({ course }: { course?: string } = {}) {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <CTAButton
-            cta={CTAS.quiz}
-            src="courses"
-            variant="gradient"
-            size="md"
-          />
+          <CTAButton cta={CTAS.quiz} src="courses" variant="link" size="md" />
         </div>
       </div>
     </Customsection>

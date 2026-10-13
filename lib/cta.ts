@@ -30,12 +30,12 @@ export const CTAS = {
   primary: {
     id: "primary",
     label: "Explore Courses",
-    href: "/apply",   // neeche dekho
+    href: "/apply", // neeche dekho
   },
   secondary: {
     id: "secondary",
     label: "Talk to an Expert",
-    href: "/book",
+    href: "/contact",
   },
   contact: {
     id: "contact",
@@ -62,7 +62,7 @@ export const CTAS = {
     label: "Not sure which track? Talk to expert",
     href: "/contact",
   },
-    faq: {
+  faq: {
     id: "quiz",
     label: "If you have any other query, talk to an expert",
     href: "/contact",
