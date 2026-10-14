@@ -9,6 +9,8 @@ interface Props {
   onClose: () => void;
 }
 
+
+
 // Theme tokens only (styling) — no logic/content changes
 const HEADING = "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
 const CTA_GRADIENT = "bg-gradient-to-r from-[#008DFF] via-[#6650FF] to-[#D92FE5]";
@@ -52,54 +54,71 @@ export function SyllabusUnlockModal({
     };
   }, []);
 
+const triggerDownload = () => {
+  const fileName = courseSlug.replace(/-/g, "_"); // sap-mm -> sap_mm
+  const a = document.createElement("a");
+  a.href = `/syllabus/${fileName}.pdf`;
+  a.download = `${fileName}_syllabus.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+};
+
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9+\s]/g, "");
     setFormData((prev) => ({ ...prev, phone: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError("");
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setError("");
 
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.phone.trim() ||
-      !formData.experienceLevel
-    ) {
-      setError("Please fill in all fields.");
-      return;
-    }
+  if (
+    !formData.name.trim() ||
+    !formData.email.trim() ||
+    !formData.phone.trim() ||
+    !formData.experienceLevel
+  ) {
+    setError("Please fill in all fields.");
+    return;
+  }
 
-    const phoneDigits = formData.phone.replace(/[^0-9]/g, "");
-    if (phoneDigits.length < 7) {
-      setError("Please enter a valid phone number.");
-      return;
-    }
+  const phoneDigits = formData.phone.replace(/[^0-9]/g, "");
+  if (phoneDigits.length < 7) {
+    setError("Please enter a valid phone number.");
+    return;
+  }
 
-    setSubmitting(true);
-    try {
-      const res = await fetch("/contact/api", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          course: courseSlug,
-          experienceLevel: formData.experienceLevel,
-        }),
-      });
+  setSubmitting(true);
+  try {
+    const res = await fetch("/contact/api", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        course: courseSlug,
+        experienceLevel: formData.experienceLevel,
+      }),
+    });
 
-      if (!res.ok) throw new Error("Submit failed");
+    if (!res.ok) throw new Error("Submit failed");
 
+    triggerDownload();
+    onUnlocked();
+  } catch {
+    if (process.env.NODE_ENV === "development") {
+      // local testing only: API fail ho to bhi download + unlock chalao
+      triggerDownload();
       onUnlocked();
-    } catch {
+    } else {
       setError("Something went wrong. Please try again.");
-    } finally {
-      setSubmitting(false);
     }
-  };
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   const inputClass =
     "h-11 w-full rounded-xl border border-[#263A5D] bg-[#101B32]/80 px-3 text-sm text-white outline-none transition-colors placeholder:text-[#94A3B8] focus:border-[#00B4FF]";
