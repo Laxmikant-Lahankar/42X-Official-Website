@@ -73,7 +73,7 @@ export default function FloatingNavbar() {
           <CTAButton
             cta={CTAS.contact}
             src="header"
-            variant="primary"
+            variant="gradient"
             size="sm"
             className="hidden h-8 px-3 md:inline-flex"
           />

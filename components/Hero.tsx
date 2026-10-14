@@ -132,9 +132,9 @@ export default function Hero({
               <div className="animate-fade-up mt-5 flex flex-col items-center gap-2 opacity-0 sm:mt-6 [animation-delay:320ms]">
                 <div className="flex flex-wrap items-center justify-center gap-2">
                   <CTAButton
-                    cta={CTAS.primary}
+                    cta={CTAS.explore}
                     src="hero"
-                    variant="primary"
+                    variant="gradient"
                     size="lg"
                   />
                   <CTAButton

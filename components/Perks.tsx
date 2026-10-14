@@ -66,13 +66,6 @@ export default function Perks() {
             title="The Perks of Learning with Us"
             className="max-w-xl"
           />
-          <CTAButton
-            cta={CTAS.primary}
-            src="perks"
-            variant="primary"
-            size="sm"
-            className="shrink-0"
-          />
         </div>
 
         <div className="mt-10 grid grid-cols-1 md:mt-14 md:grid-cols-2">

@@ -33,7 +33,7 @@ export default function Finalcta() {
               <CTAButton
                 cta={CTAS.primary}
                 src="final"
-                variant="primary"
+                variant="gradient"
                 size="md"
               />
               <CTAButton

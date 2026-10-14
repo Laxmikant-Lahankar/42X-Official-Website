@@ -32,6 +32,11 @@ export const CTAS = {
     label: "Explore Courses",
     href: "/apply", // neeche dekho
   },
+  explore: {
+    id: "explore",
+    label: "Explore Courses",
+    href: "#courses",
+  },
   secondary: {
     id: "secondary",
     label: "Talk to an Expert",

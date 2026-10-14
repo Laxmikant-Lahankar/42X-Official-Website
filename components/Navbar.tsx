@@ -55,7 +55,7 @@ export default function Navbar() {
             <CTAButton
               cta={CTAS.contact}
               src="header"
-              variant="primary"
+              variant="gradient"
               size="sm"
               className="hidden md:inline-flex"
             />
@@ -88,7 +88,7 @@ export default function Navbar() {
               <CTAButton
                 cta={CTAS.contact}
                 src="header-menu"
-                variant="primary"
+                variant="gradient"
                 size="sm"
                 className="mt-2 w-full"
                 onClick={() => setOpen(false)}

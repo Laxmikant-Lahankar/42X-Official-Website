@@ -44,12 +44,13 @@ export function CTAButton({
   size?: keyof typeof sizes;
   showMicrocopy?: boolean;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement>) => void;
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const href = ctaHref(cta, src);
   const external = isExternalHref(cta.href);
   const opensPicker = cta.id === "primary";
+  const isHash = cta.href.startsWith("#");
   const showArrow = variant === "link" && !cta.label.includes("→");
   const classes = cn(
     base,
@@ -58,10 +59,30 @@ export function CTAButton({
     className,
   );
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     trackEvent("cta_click", { cta: cta.id, src });
-    onClick?.();
-    if (opensPicker) setPickerOpen(true);
+    onClick?.(e);
+    if (e.defaultPrevented) return;
+
+    if (opensPicker) {
+      setPickerOpen(true);
+      return;
+    }
+
+    if (isHash) {
+      const targetId = cta.href.slice(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        e.preventDefault();
+        const prefersReducedMotion =
+          typeof window !== "undefined" &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        element.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+        window.history.pushState(null, "", cta.href);
+      }
+    }
   };
 
   const content = (
@@ -75,6 +96,10 @@ export function CTAButton({
     <button type="button" className={classes} onClick={handleClick}>
       {content}
     </button>
+  ) : isHash ? (
+    <a href={cta.href} className={classes} onClick={handleClick}>
+      {content}
+    </a>
   ) : external ? (
     <a
       href={href}
