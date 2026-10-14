@@ -26,9 +26,16 @@ const CARD =
 const GLOW =
   "pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-[radial-gradient(ellipse_75%_100%_at_50%_100%,rgba(70,120,230,0.13),transparent_70%)]";
 
+// SAP flagship: same dark card, but a clearer blue border, outer glow and a
+// violet wash in the top corner so it reads as the main course
+const SAP_CARD =
+  "group relative overflow-hidden rounded-2xl border border-[#5b8cff]/40 bg-gradient-to-br from-[#14161f] to-[#0f0f12] shadow-[0_0_48px_-14px_rgba(91,140,255,0.45)] transition duration-200 hover:-translate-y-1 hover:border-[#5b8cff]/60 hover:shadow-[0_0_56px_-12px_rgba(91,140,255,0.55)]";
+const SAP_GLOW =
+  "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_0%_0%,rgba(102,80,255,0.14),transparent_70%),radial-gradient(ellipse_75%_100%_at_50%_100%,rgba(70,120,230,0.24),transparent_70%)]";
+
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <li className="rounded-lg border border-[#4a6fb5]/25 bg-black/40 px-3 py-1 text-xs font-semibold tracking-wide text-white/80">
+    <li className="rounded-lg border border-[#5b8cff]/40 bg-[#5b8cff]/10 px-3 py-1 text-xs font-semibold tracking-wide text-white">
       {children}
     </li>
   );
@@ -69,11 +76,18 @@ export default function Courses({ course }: { course?: string } = {}) {
           {/* Flagship card (wide, image left / copy right) */}
           {flagship ? (
             <Reveal delayMs={0} className="h-full">
-              <article className={`${CARD} h-full`}>
-                <span aria-hidden="true" className={GLOW} />
+              <article className={`${isSap ? SAP_CARD : CARD} h-full`}>
+                <span
+                  aria-hidden="true"
+                  className={isSap ? SAP_GLOW : GLOW}
+                />
 
                 <div className="relative grid h-full grid-cols-1 gap-6 p-4 lg:grid-cols-[1.1fr_1fr]">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-black lg:aspect-auto lg:min-h-[22rem]">
+                  <div
+                    className={`relative aspect-[16/10] overflow-hidden rounded-xl bg-black lg:aspect-auto lg:min-h-[22rem] ${
+                      isSap ? "ring-1 ring-[#5b8cff]/30" : ""
+                    }`}
+                  >
                     <Image
                       src={flagship.image}
                       alt={flagship.title}
@@ -88,17 +102,25 @@ export default function Courses({ course }: { course?: string } = {}) {
 
                   <div className="flex flex-col justify-center lg:py-4 lg:pr-4">
                     {isSap ? (
-                      <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-[#7c6ce0]/30 bg-[#7c6ce0]/10 px-3 py-1 text-xs font-medium text-[#b9b0f2]">
+                      <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-[#8b7cf0]/50 bg-[#7c6ce0]/20 px-3 py-1 text-xs font-semibold text-[#d9d3ff] shadow-[0_0_20px_-6px_rgba(124,108,224,0.7)]">
                         <Sparkles className="size-3.5" />
                         Flagship Programme
                       </span>
                     ) : null}
 
-                    <h3 className="mt-3 text-2xl leading-snug text-white">
+                    <h3
+                      className={`mt-3 leading-snug font-semibold text-white ${
+                        isSap ? "text-3xl" : "text-2xl"
+                      }`}
+                    >
                       {flagship.title}
                     </h3>
 
-                    <p className="mt-3 text-sm leading-relaxed text-white/60">
+                    <p
+                      className={`mt-3 text-sm leading-relaxed ${
+                        isSap ? "text-white/70" : "text-white/60"
+                      }`}
+                    >
                       {flagship.description}
                     </p>
 

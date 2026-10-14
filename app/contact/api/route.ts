@@ -10,6 +10,7 @@ const ALLOWED_COURSES = [
   "sap-basis",
   "power-platform",
   "data-engineering",
+  "devops",
 ];
 const ALLOWED_LEVELS = ["beginner", "intermediate", "advanced"];
 

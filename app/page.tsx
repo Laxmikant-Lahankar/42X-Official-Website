@@ -7,10 +7,12 @@ import WhyUs from "@/components/WhyUs";
 import Community from "@/components/Community";
 import Faculty from "@/components/Faculty";
 import Faq from "@/components/Faq";
+import ScrollContactModal from "@/components/ScrollContactModal";
 
 export default function Home() {
   return (
     <div>
+      <ScrollContactModal />
       <Hero />
       {/* <Problem /> */}
       <Courses />
