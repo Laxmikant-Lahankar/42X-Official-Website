@@ -103,7 +103,8 @@ export default function CoursesPage() {
               <PartCard
                 key={track.id}
                 href={`/courses/sap-${track.id}`}
-                image="/sap-course.png"
+                // image="/sap-course.png"
+                image={`/sap_${track.id}.png`}
                 title={track.code}
                 meta={track.name}
                 detail={track.structure}
@@ -262,7 +263,7 @@ function PartCard({
       <span aria-hidden="true" className={GLOW} />
 
       {/* Same frame on every card */}
-      <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-xl bg-black ring-1 ring-white/10">
+     <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-xl bg-black ring-1 ring-white/10">
         {/* Dimmed, blurred copy fills the empty space, so no black bars */}
         <Image
           src={image}
