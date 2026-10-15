@@ -26,17 +26,21 @@ const CARD =
 const GLOW =
   "pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-[radial-gradient(ellipse_75%_100%_at_50%_100%,rgba(70,120,230,0.13),transparent_70%)]";
 
-// SAP flagship: same dark card, but a clearer blue border, outer glow and a
-// violet wash in the top corner so it reads as the main course
+// SAP flagship: brighter border, strong outer glow, violet + cyan washes
 const SAP_CARD =
-  "group relative overflow-hidden rounded-2xl border border-[#5b8cff]/40 bg-gradient-to-br from-[#14161f] to-[#0f0f12] shadow-[0_0_48px_-14px_rgba(91,140,255,0.45)] transition duration-200 hover:-translate-y-1 hover:border-[#5b8cff]/60 hover:shadow-[0_0_56px_-12px_rgba(91,140,255,0.55)]";
+  "group relative overflow-hidden rounded-2xl border border-[#5b8cff]/50 bg-gradient-to-br from-[#171a2b] via-[#0f1018] to-[#0b0b10] shadow-[0_0_70px_-12px_rgba(91,140,255,0.55)] transition duration-300 hover:-translate-y-1.5 hover:border-[#7aa2ff]/80 hover:shadow-[0_0_90px_-10px_rgba(124,108,224,0.65)]";
 const SAP_GLOW =
-  "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_0%_0%,rgba(102,80,255,0.14),transparent_70%),radial-gradient(ellipse_75%_100%_at_50%_100%,rgba(70,120,230,0.24),transparent_70%)]";
+  "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_0%_0%,rgba(124,92,255,0.22),transparent_70%),radial-gradient(ellipse_70%_90%_at_100%_100%,rgba(56,189,248,0.18),transparent_70%)]";
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <li className="rounded-lg border border-[#5b8cff]/40 bg-[#5b8cff]/10 px-3 py-1 text-xs font-semibold tracking-wide text-white">
-      {children}
+    <li>
+      <Link
+        href="/courses"
+        className="block cursor-pointer rounded-lg border border-[#7aa2ff]/50 bg-gradient-to-r from-[#5b8cff]/20 to-[#8b5cf6]/20 px-3.5 py-1.5 text-xs font-bold tracking-wider text-white shadow-[0_0_16px_-4px_rgba(91,140,255,0.6)] transition duration-200 hover:-translate-y-0.5 hover:border-[#a5c0ff] hover:from-[#5b8cff]/35 hover:to-[#8b5cf6]/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+      >
+        {children}
+      </Link>
     </li>
   );
 }
@@ -85,7 +89,9 @@ export default function Courses({ course }: { course?: string } = {}) {
                 <div className="relative grid h-full grid-cols-1 gap-6 p-4 lg:grid-cols-[1.1fr_1fr]">
                   <div
                     className={`relative aspect-[16/10] overflow-hidden rounded-xl bg-black lg:aspect-auto lg:min-h-[22rem] ${
-                      isSap ? "ring-1 ring-[#5b8cff]/30" : ""
+                      isSap
+                        ? "ring-1 ring-[#5b8cff]/40 shadow-[0_0_40px_-10px_rgba(91,140,255,0.5)]"
+                        : ""
                     }`}
                   >
                     <Image
@@ -102,15 +108,21 @@ export default function Courses({ course }: { course?: string } = {}) {
 
                   <div className="flex flex-col justify-center lg:py-4 lg:pr-4">
                     {isSap ? (
-                      <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-[#8b7cf0]/50 bg-[#7c6ce0]/20 px-3 py-1 text-xs font-semibold text-[#d9d3ff] shadow-[0_0_20px_-6px_rgba(124,108,224,0.7)]">
+                      <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#8b7cf0]/50 bg-[#7c6ce0]/20 px-3 py-1 text-xs font-semibold text-[#d9d3ff] shadow-[0_0_20px_-6px_rgba(124,108,224,0.7)]">
+                        <span className="relative flex size-2">
+                          <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#a78bfa] opacity-75" />
+                          <span className="relative inline-flex size-2 rounded-full bg-[#a78bfa]" />
+                        </span>
                         <Sparkles className="size-3.5" />
                         Flagship Programme
                       </span>
                     ) : null}
 
                     <h3
-                      className={`mt-3 leading-snug font-semibold text-white ${
-                        isSap ? "text-3xl" : "text-2xl"
+                      className={`mt-3 leading-snug font-semibold ${
+                        isSap
+                          ? "bg-gradient-to-r from-white via-[#cfd8ff] to-[#a78bfa] bg-clip-text text-3xl text-transparent sm:text-4xl"
+                          : "text-2xl text-white"
                       }`}
                     >
                       {flagship.title}
@@ -125,14 +137,19 @@ export default function Courses({ course }: { course?: string } = {}) {
                     </p>
 
                     {isSap ? (
-                      <ul
-                        className="mt-5 flex flex-wrap gap-2"
-                        aria-label="SAP tracks"
-                      >
-                        {SAP_TRACKS.map((t) => (
-                          <Pill key={t}>{t}</Pill>
-                        ))}
-                      </ul>
+                      <>
+                        <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8fb0ff]">
+                          Choose your track
+                        </p>
+                        <ul
+                          className="mt-2 flex flex-wrap gap-2"
+                          aria-label="SAP tracks"
+                        >
+                          {SAP_TRACKS.map((t) => (
+                            <Pill key={t}>{t}</Pill>
+                          ))}
+                        </ul>
+                      </>
                     ) : null}
 
                     <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs text-white/70">
@@ -156,7 +173,11 @@ export default function Courses({ course }: { course?: string } = {}) {
                         src="courses"
                         variant="gradient"
                         size="md"
-                        className="mt-6 w-full sm:w-auto sm:self-start"
+                        className={`mt-6 w-full sm:w-auto sm:self-start ${
+                          isSap
+                            ? "shadow-[0_0_30px_-6px_rgba(91,140,255,0.8)]"
+                            : ""
+                        }`}
                       />
                     ) : null}
                   </div>

@@ -56,7 +56,7 @@ function ContactContent() {
     }));
   }, [presetCourse]);
 
-  // Determine course details for customized labels and redirection
+  // Course details for customized labels
   const activeCourseId = presetCourse || formData.course;
   const courseDetails = activeCourseId ? getCourse(activeCourseId) : undefined;
   const courseName =
@@ -64,42 +64,35 @@ function ContactContent() {
     INTEREST_OPTIONS.find((o) => o.id === activeCourseId)?.label ??
     "the course";
 
-  const getRedirectUrl = () => {
-    if (activeCourseId) {
-      return `/courses/${activeCourseId}`;
-    }
-    return "/courses";
-  };
-
   const handleBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
       router.back();
     } else {
-      router.push(getRedirectUrl());
+      router.push("/");
     }
   };
 
   const handleRedirect = () => {
-    router.push(getRedirectUrl());
+    router.push("/");
   };
 
-  // 3-second countdown timer before redirecting
+  // 3-second countdown after successful submit
   useEffect(() => {
     if (!showThankYou) return;
 
     const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          handleRedirect();
-          return 0;
-        }
-        return prev - 1;
-      });
+      setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
     return () => clearInterval(timer);
   }, [showThankYou]);
+
+  // Redirect to home when countdown hits 0
+  useEffect(() => {
+    if (showThankYou && countdown === 0) {
+      router.push("/");
+    }
+  }, [showThankYou, countdown, router]);
 
   const updateField = (field: keyof typeof formData, value: string) => {
     if (errorMessage) setErrorMessage("");
@@ -185,7 +178,7 @@ function ContactContent() {
             className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/70 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]"
           >
             <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
-            <span>{courseDetails ? `Back to ${courseDetails.title}` : "Back to courses"}</span>
+            <span>Back</span>
           </button>
         </div>
 
@@ -416,7 +409,7 @@ function ContactContent() {
                 </p>
 
                 <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#00c8ff]/25 bg-[#00c8ff]/10 px-3 py-1 text-xs text-[#38bdf8]">
-                  <span>Redirecting to course in</span>
+                  <span>Redirecting to home in</span>
                   <span className="flex size-5 items-center justify-center rounded-full bg-[#00c8ff]/25 font-bold text-white">
                     {countdown}
                   </span>
@@ -427,7 +420,7 @@ function ContactContent() {
                   onClick={handleRedirect}
                   className="mt-6 h-11 w-full rounded-xl border-0 bg-gradient-to-r from-[#168fff] via-[#6155ff] to-[#d42be8] text-sm font-semibold text-white shadow-[0_8px_24px_rgba(45,93,255,0.2)] transition-all hover:brightness-110"
                 >
-                  Return to Course Now
+                  Go to Home Now
                   <ArrowRight className="size-4" />
                 </Button>
               </div>

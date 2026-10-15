@@ -24,7 +24,6 @@ export interface CourseContent {
   category: CourseCategory;
   title: string;
   subtitle: string;
-  duration: string;
   structure: string;
   audience: string;
   highlights: string[];
@@ -54,7 +53,6 @@ export const COURSES: CourseContent[] = [
     title: "Power Platform",
     subtitle:
       "Low-code business apps, automation and dashboards: Power Apps, Power Automate, Dataverse, Power BI and Copilot Studio.",
-    duration: "~12 weeks",
     structure:
       "Fundamentals → Apps → Automation → Data & BI → Governance/ALM → Capstone",
     audience:
@@ -153,7 +151,6 @@ export const COURSES: CourseContent[] = [
     title: "SAP MM",
     subtitle:
       "Materials Management: a Procure-to-Pay (P2P) focused functional SAP program.",
-    duration: "~15 weeks",
     structure: "Functional + embedded ABAP/BASIS awareness + capstone",
     audience:
       "Learners targeting SAP MM, procurement and materials-management functional consulting pathways.",
@@ -268,7 +265,6 @@ export const COURSES: CourseContent[] = [
     title: "SAP SD",
     subtitle:
       "Sales & Distribution: an Order-to-Cash (O2C) focused functional SAP program.",
-    duration: "~13 weeks",
     structure: "Functional + embedded ABAP/BASIS awareness + capstone",
     audience:
       "Learners targeting SAP SD and sales / order-management functional consulting pathways.",
@@ -385,7 +381,6 @@ export const COURSES: CourseContent[] = [
     title: "SAP EWM",
     subtitle:
       "Extended Warehouse Management: a modern warehouse-management program with Basic + Advanced coverage.",
-    duration: "~14 weeks",
     structure: "Basic + Advanced + embedded debugging + capstone",
     audience:
       "Learners interested in SAP warehouse operations and EWM consulting.",
@@ -491,7 +486,6 @@ export const COURSES: CourseContent[] = [
     title: "SAP ABAP",
     subtitle:
       "Technical / Developer track: a deep technical SAP development program.",
-    duration: "~13.5 weeks",
     structure: "Technical / Developer + capstone",
     audience: "Learners pursuing an SAP technical developer pathway.",
     highlights: [
@@ -577,7 +571,6 @@ export const COURSES: CourseContent[] = [
     title: "SAP BASIS",
     subtitle:
       "Technical / Administration track: an SAP system administration and operations program.",
-    duration: "~12.5 weeks",
     structure: "Technical / Administration + capstone",
     audience:
       "Learners pursuing SAP administration, monitoring and technical operations pathways.",
@@ -666,7 +659,6 @@ export const COURSES: CourseContent[] = [
     title: "Data Engineering",
     subtitle:
       "An industry-aligned journey from foundations to production-style pipelines.",
-    duration: "~19 weeks",
     structure: "Python/SQL → Spark → Cloud → Orchestration → Capstone",
     audience:
       "Learners seeking a structured path into data engineering with Python, SQL, big data, cloud and orchestration.",
@@ -769,8 +761,8 @@ export const COURSES: CourseContent[] = [
     slug: "devops",
     category: "devops",
     title: "DevOps with AI",
-    subtitle: "3-Month Course | 2 Hours per Day | Monday to Friday",
-    duration: "~12 weeks",
+    subtitle:
+      "Linux, cloud, CI/CD, containers and infrastructure as code, with AI tools used in every module.",
     structure:
       "Fundamentals → Linux/Bash → AWS/CI/CD → Docker/K8s → Terraform/Ansible → Monitoring",
     audience:
@@ -888,7 +880,6 @@ export const COURSES: CourseContent[] = [
     category: "power-platform",
     title: "Power Platform",
     subtitle: "Placeholder subtitle",
-    duration: "Placeholder duration",
     structure: "Placeholder structure",
     audience: "Placeholder: who this course is for.",
     highlights: Array.from(
@@ -986,7 +977,6 @@ export const COURSE_TRACKS = [
   //     "Learn the data engineering skills enterprises actually hire for—real systems, live processes, and project work that goes beyond a certificate.",
   //   image: "/courses-4.png",
   //   level: "Beginner to Intermediate",
-  //   duration: "12 Weeks",
   //   lessons: "36 Lessons",
   //   access: "Lifetime Access",
   // },
