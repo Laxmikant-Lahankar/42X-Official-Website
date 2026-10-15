@@ -24,6 +24,7 @@ export interface CourseContent {
   category: CourseCategory;
   title: string;
   subtitle: string;
+  duration?: string;
   structure: string;
   audience: string;
   highlights: string[];
