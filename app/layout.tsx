@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     "Professional training in SAP, Data Engineering, and Power Platform with 1-on-1 mentorship, real enterprise projects, and career acceleration.",
   metadataBase: new URL("https://42xacademy.com"),
   icons: {
-    icon: "/logo2.png",
-    shortcut: "/logo2.png",
-    apple: "/logo2.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   openGraph: {
     title: "42X Academy",

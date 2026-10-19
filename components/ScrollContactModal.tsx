@@ -67,7 +67,9 @@ export default function ScrollContactModal() {
       const rect = coursesEl.getBoundingClientRect();
       // Only trigger once the user has actually scrolled down to the courses section
       // (top of #courses has reached the upper viewport)
-      if (rect.top <= 150 && rect.bottom >= 200) {
+        const isMobile = window.innerWidth < 768;
+        const triggerTop = isMobile ? -300 : 150; // more negative = they must scroll deeper
+        if (rect.top <= triggerTop && rect.bottom >= 200) {
         hasTriggeredRef.current = true;
         setTimeout(() => {
           if (!dismissedRef.current && !hasValidUserData()) {
