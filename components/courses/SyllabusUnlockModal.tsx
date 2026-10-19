@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { getUserData, saveUserData } from "@/lib/userSession";
 
 interface Props {
   courseSlug: string;
@@ -8,8 +9,6 @@ interface Props {
   onUnlocked: () => void;
   onClose: () => void;
 }
-
-
 
 // Theme tokens only (styling) — no logic/content changes
 const HEADING = "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
@@ -32,9 +31,19 @@ export function SyllabusUnlockModal({
   const overlayRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
 
-  // Focus first input on mount
+  // Focus first input on mount & pre-fill if available
   useEffect(() => {
     firstInputRef.current?.focus();
+    const existing = getUserData();
+    if (existing) {
+      setFormData((prev) => ({
+        ...prev,
+        name: existing.name || prev.name,
+        email: existing.email || prev.email,
+        phone: existing.phone || prev.phone,
+        experienceLevel: existing.experienceLevel || prev.experienceLevel,
+      }));
+    }
   }, []);
 
   // Close on Escape
@@ -105,11 +114,26 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     if (!res.ok) throw new Error("Submit failed");
 
+    saveUserData({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      course: courseSlug,
+      experienceLevel: formData.experienceLevel,
+    });
+
     triggerDownload();
     onUnlocked();
   } catch {
     if (process.env.NODE_ENV === "development") {
       // local testing only: API fail ho to bhi download + unlock chalao
+      saveUserData({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        course: courseSlug,
+        experienceLevel: formData.experienceLevel,
+      });
       triggerDownload();
       onUnlocked();
     } else {

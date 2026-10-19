@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import type { CourseModule } from "@/data/courses";
 import { SyllabusUnlockModal } from "./SyllabusUnlockModal";
+import { hasValidUserData } from "@/lib/userSession";
 
 const PREVIEW_COUNT = 2;
 
@@ -35,18 +36,31 @@ export function Syllabus({
     () => new Set(modules[0]?.topics.length ? [0] : []),
   );
 
-  // Unlock state — persisted in sessionStorage so it survives soft navigations.
+  // Unlock state — persisted in sessionStorage and checks valid user session.
   const [unlocked, setUnlocked] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     try {
-      if (sessionStorage.getItem(storageKey(courseSlug)) === "1") {
+      if (
+        sessionStorage.getItem(storageKey(courseSlug)) === "1" ||
+        hasValidUserData()
+      ) {
         setUnlocked(true);
       }
     } catch {
       // sessionStorage may be blocked (private browsing edge cases)
     }
+  }, [courseSlug]);
+
+  const triggerDownload = useCallback(() => {
+    const fileName = courseSlug.replace(/-/g, "_");
+    const a = document.createElement("a");
+    a.href = `/syllabus/${fileName}.pdf`;
+    a.download = `${fileName}_syllabus.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   }, [courseSlug]);
 
   const handleUnlocked = useCallback(() => {
@@ -58,6 +72,16 @@ export function Syllabus({
     setUnlocked(true);
     setShowModal(false);
   }, [courseSlug]);
+
+  const handleUnlockClick = () => {
+    // If user already submitted their data anywhere on the site, don't prompt again!
+    if (hasValidUserData()) {
+      triggerDownload();
+      handleUnlocked();
+    } else {
+      setShowModal(true);
+    }
+  };
 
   const toggle = (i: number) =>
     setOpen((prev) => {
@@ -233,7 +257,7 @@ export function Syllabus({
               </div>
               <button
                 type="button"
-                onClick={() => setShowModal(true)}
+                onClick={handleUnlockClick}
                 className={`${HEADING} inline-flex h-10 items-center justify-center rounded-xl ${CTA_GRADIENT} px-6 text-sm font-semibold text-white shadow-[0_8px_28px_-10px_rgba(0,180,255,.8)] transition hover:brightness-110`}
               >
                 Unlock full syllabus →

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CheckCircle2, Sparkles, X } from "lucide-react";
 import { INTEREST_OPTIONS } from "@/lib/interest";
+import { getUserData, hasValidUserData, saveUserData } from "@/lib/userSession";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -39,14 +40,27 @@ export default function ScrollContactModal() {
 
   useEffect(() => {
     setMounted(true);
+    // Pre-fill from existing session data if available
+    const existing = getUserData();
+    if (existing) {
+      setFormData((prev) => ({
+        ...prev,
+        name: existing.name || prev.name,
+        email: existing.email || prev.email,
+        phone: existing.phone || prev.phone,
+        course: existing.course || prev.course,
+        experienceLevel: existing.experienceLevel || prev.experienceLevel,
+      }));
+    }
   }, []);
 
   // Trigger modal popup only when the courses section comes into view
   useEffect(() => {
-    if (dismissed || hasTriggeredRef.current) return;
+    // If user already filled their data in this session, do not prompt again
+    if (dismissed || hasTriggeredRef.current || hasValidUserData()) return;
 
     const checkCoursesVisibility = () => {
-      if (hasTriggeredRef.current || dismissedRef.current) return;
+      if (hasTriggeredRef.current || dismissedRef.current || hasValidUserData()) return;
       const coursesEl = document.getElementById("courses");
       if (!coursesEl) return;
 
@@ -56,7 +70,7 @@ export default function ScrollContactModal() {
       if (rect.top <= 150 && rect.bottom >= 200) {
         hasTriggeredRef.current = true;
         setTimeout(() => {
-          if (!dismissedRef.current) {
+          if (!dismissedRef.current && !hasValidUserData()) {
             setOpen(true);
           }
         }, 400);
@@ -142,6 +156,7 @@ export default function ScrollContactModal() {
         throw new Error("Submit failed");
       }
 
+      saveUserData(formData);
       setSubmitted(true);
     } catch (err) {
       console.error(err);

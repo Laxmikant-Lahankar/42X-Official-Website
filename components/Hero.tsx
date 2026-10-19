@@ -80,7 +80,7 @@ export default function Hero({
   }, []);
 
   return (
-    <>
+    <div>
       <Customsection>
         {/* Fixed height on mobile (h-[40rem]) removes the extra black space.
             Raise it (e.g. h-[42rem]) if it feels cramped, lower it to tighten. */}
@@ -104,7 +104,7 @@ export default function Hero({
             <source src="/hero-video2.mp4" type="video/mp4" />
           </video>
 
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0" />
 
           {/* Text area: spans only the black part (hero top -> earth horizon).
               Change bottom-[42%] to move the text up (bigger) or down (smaller). */}
@@ -197,6 +197,6 @@ export default function Hero({
         </main>
       </Customsection>
       <StickyCtas />
-    </>
+    </div>
   );
 }

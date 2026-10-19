@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CTAS } from "@/lib/cta";
+import { saveUserData } from "@/lib/userSession";
 
 const inputClass =
   "h-11 w-full rounded-lg border border-white/15 bg-white/5 px-3 text-white outline-none focus:border-[#2E57DF]";
@@ -43,6 +44,11 @@ export default function ApplyForm() {
         body: JSON.stringify({ ...formData, src }),
       });
       if (!res.ok) throw new Error("Submit failed");
+      saveUserData({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+      });
       setDone(true);
     } catch {
       setError("Something went wrong. Please try again.");

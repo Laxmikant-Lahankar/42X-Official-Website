@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getCourse } from "@/data/courses";
+import { getUserData, saveUserData } from "@/lib/userSession";
 
 const EXPERIENCE_LEVELS = [
   { value: "beginner", label: "Beginner" },
@@ -45,6 +46,16 @@ function ContactContent() {
 
   useEffect(() => {
     setMounted(true);
+    const existing = getUserData();
+    if (existing) {
+      setFormData((prev) => ({
+        ...prev,
+        name: existing.name || prev.name,
+        email: existing.email || prev.email,
+        phone: existing.phone || prev.phone,
+        experienceLevel: existing.experienceLevel || prev.experienceLevel,
+      }));
+    }
   }, []);
 
   useEffect(() => {
@@ -143,6 +154,7 @@ function ContactContent() {
         throw new Error("Submit failed");
       }
 
+      saveUserData(formData);
       setShowThankYou(true);
     } catch (err) {
       console.error(err);
