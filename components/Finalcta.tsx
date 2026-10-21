@@ -31,7 +31,7 @@ export default function Finalcta() {
           <div className="mt-8 flex flex-col items-center gap-2">
             <div className="flex flex-wrap items-center justify-center gap-2">
               <CTAButton
-                cta={CTAS.primary}
+                cta={CTAS.explore}
                 src="final"
                 variant="gradient"
                 size="md"

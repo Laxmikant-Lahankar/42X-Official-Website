@@ -72,9 +72,6 @@ export const Footer = () => {
       id="site-footer"
       className="relative z-10 w-full bg-black text-white overflow-hidden select-none"
     >
-      {/* Subtle top edge hairline separator */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
-
       {/* Main Footer Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 relative z-10">
         {/* Top Grid: Brand & Newsletter + Navigation Columns */}
