@@ -11,10 +11,10 @@ import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 
 const MOMENTS = [
-  { src: "/courses1.png", label: "SAP systems" },
-  { src: "/courses2.png", label: "Data work" },
-  { src: "/whyus-2.png", label: "1:1 mentorship" },
-  { src: "/whyus-1.png", label: "The cohort" },
+  { src: "/about/technical-depth.png", label: "Technical Depth" },
+  { src: "/about/one-on-one.png", label: "1:1 Mentorship" },
+  { src: "/about/career-development.png", label: "Career Development" },
+  { src: "/about/community.png", label: "Community" },
 ];
 
 const STATS = [
