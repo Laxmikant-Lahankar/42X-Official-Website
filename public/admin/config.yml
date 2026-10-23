@@ -1,0 +1,84 @@
+# local_backend: true
+
+backend:
+  name: github
+  repo: Laxmikant-Lahankar/42X-Official-Website
+  branch: feature/blog-cms
+  base_url: http://localhost:3000
+  auth_endpoint: api/auth
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: Blog Posts
+    folder: content/blog
+    create: true
+    extension: md
+    slug: "{{fields.slug}}"
+    fields:
+      - { label: "Writer Name", name: author, widget: string, required: false }
+
+      - label: "Slug (URL)"
+        name: slug
+        widget: string
+        hint: "Lowercase words separated by hyphens, e.g. sap-classes-in-india. Cannot be changed after publishing."
+        pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Use lowercase letters, numbers and hyphens only. No slashes or spaces."]
+
+      - label: "SEO Title (title tag)"
+        name: seoTitle
+        widget: string
+        hint: "Shown in Google results. Keep it under 60 characters."
+        pattern: ['^.{1,60}$', "Must be 60 characters or fewer"]
+
+      - label: "Meta Description"
+        name: description
+        widget: text
+        hint: "Shown under the title in Google. Keep it under 160 characters."
+        pattern: ['^[\s\S]{1,160}$', "Must be 160 characters or fewer"]
+
+      - { label: "Primary Keyword", name: primaryKeyword, widget: string }
+
+      - label: "Secondary Keywords"
+        name: secondaryKeywords
+        widget: list
+        required: false
+        field: { label: Keyword, name: keyword, widget: string }
+
+      - { label: "Publish Date", name: date, widget: datetime }
+
+      - { label: "Cover Image", name: image, widget: image, required: false }
+      - { label: "Image Alt Text", name: imageAlt, widget: string, required: false, hint: "Describe the image. Include the keyword naturally." }
+
+      - { label: "Title (H1)", name: title, widget: string, hint: "The main heading shown on the page." }
+
+      - { label: "Intro", name: intro, widget: text, hint: "The opening paragraph, shown above the main content." }
+
+      - label: "Body"
+        name: body
+        widget: markdown
+        hint: "Use Heading 2 for each main section and Heading 3 for sub-sections. Do not use Heading 1 here."
+
+      - label: "FAQs"
+        name: faqs
+        widget: list
+        required: false
+        fields:
+          - { label: Question, name: question, widget: string }
+          - { label: Answer, name: answer, widget: text }
+
+      - label: "Call to Action"
+        name: cta
+        widget: object
+        required: false
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Text, name: text, widget: text }
+          - label: Buttons
+            name: buttons
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
