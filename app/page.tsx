@@ -6,6 +6,7 @@ import WhyUs from "@/components/WhyUs";
 import Faculty from "@/components/Faculty";
 import Faq from "@/components/Faq";
 import ScrollContactModal from "@/components/ScrollContactModal";
+import BlogSection from "@/components/BlogSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           Its only filled control should be PRIMARY:
           CTAButton cta={CTAS.primary} src="founding-offer" variant="primary" size="md"
           Do not invent seat counts, prices, or bonuses. */}
+      <BlogSection />
       <Faq />
     </div>
   );

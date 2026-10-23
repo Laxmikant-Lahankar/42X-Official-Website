@@ -19,6 +19,20 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [{ source: "/admin", destination: "/admin/index.html" }];
   },
+  async redirects() {
+    return [
+      {
+        source: "/blogs",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blogs/:slug",
+        destination: "/blog/:slug",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
