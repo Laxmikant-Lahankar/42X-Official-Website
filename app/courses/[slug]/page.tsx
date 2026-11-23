@@ -9,6 +9,11 @@ import { COURSES, getCourse } from "@/data/courses";
 import { CTAButton } from "@/components/CTAButton";
 import { CTAS } from "@/lib/cta";
 import { JsonLd } from "@/components/JsonLd";
+import { CourseLanding } from "@/components/courses/landing/CourseLanding";
+import {
+  SAP_EWM_LANDING,
+  type CourseLanding as LandingCopy,
+} from "@/data/course-landing/sap-ewm";
 import {
   MODES_LONG,
   MODES_SHORT,
@@ -38,6 +43,10 @@ const CARD =
 
 type Props = { params: Promise<{ slug: string }> };
 
+const LANDINGS: Record<string, LandingCopy> = {
+  "sap-ewm": SAP_EWM_LANDING,
+};
+
 export function generateStaticParams() {
   return COURSES.map((c) => ({ slug: c.slug }));
 }
@@ -58,6 +67,17 @@ export default async function CourseDetailPage({ params }: Props) {
   const { slug } = await params;
   const course = getCourse(slug);
   if (!course) notFound();
+
+  // Courses with a dedicated sales page (data/course-landing/*).
+  const landing = LANDINGS[course.slug];
+  if (landing) {
+    return (
+      <>
+        <JsonLd data={courseSchema(course)} />
+        <CourseLanding course={course} copy={landing} />
+      </>
+    );
+  }
 
   return (
     <div>
