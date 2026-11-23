@@ -7,6 +7,8 @@ import Navbar from "@/components/Navbar";
 import Finalcta from "@/components/Finalcta";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import { JsonLd } from "@/components/JsonLd";
+import { MODES_LONG, MODES_SHORT, SITE, organizationSchema } from "@/lib/seo";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -19,35 +21,38 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const DEFAULT_TITLE = `SAP, Power BI & DevOps Training – ${MODES_SHORT} | 42X Academy`;
+const DEFAULT_DESCRIPTION = `Industry-ready training in SAP (MM, SD, EWM, ABAP, BASIS), Power BI, Power Platform and DevOps with 1-on-1 mentorship and real projects. ${MODES_LONG}`;
+
+// Pages override title/description/canonical/openGraph via pageMeta() in lib/seo.ts.
+// No canonical here on purpose: a layout canonical would be inherited by every page.
 export const metadata: Metadata = {
   title: {
-    default: "42X Academy — Master SAP, Data Engineering & Power Platform",
+    default: DEFAULT_TITLE,
     template: "%s | 42X Academy",
   },
-  description:
-    "Professional training in SAP, Data Engineering, and Power Platform with 1-on-1 mentorship, real enterprise projects, and career acceleration.",
-  metadataBase: new URL("https://42xacademy.com"),
+  description: DEFAULT_DESCRIPTION,
+  metadataBase: new URL(SITE.url),
+  applicationName: SITE.name,
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
   openGraph: {
-    title: "42X Academy",
-    description:
-      "Professional training in SAP, Data Engineering, and Power Platform with 1-on-1 mentorship.",
-    url: "https://42xacademy.com",
-    siteName: "42X Academy",
-    images: ["/logo2.png"],
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: SITE.url,
+    siteName: SITE.name,
+    images: [SITE.ogImage],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "42X Academy",
-    description:
-      "Professional training in SAP, Data Engineering, and Power Platform.",
-    images: ["/logo2.png"],
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [SITE.ogImage],
   },
 };
 
@@ -85,6 +90,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           />
         </noscript>
 
+        <JsonLd data={organizationSchema()} />
         <Navbar />
         <FloatingNavbar />
         {children}

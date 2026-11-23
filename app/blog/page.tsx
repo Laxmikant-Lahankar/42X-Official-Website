@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Calendar, Clock } from "lucide-react";
 import { getAllPosts } from "@/lib/posts";
 import { Customsection } from "@/app/CustomSection";
 import { BlogImage } from "@/components/blog/BlogImage";
 
-export const metadata: Metadata = {
-  title: "Blog — 42X Academy",
+export const metadata: Metadata = pageMeta({
+  title: "Blog – SAP, Power BI & DevOps Career Guides",
   description:
-    "Articles, insights, and industry guides on SAP, Data Engineering, and Power Platform from 42X Academy.",
-};
+    "Guides, course comparisons and career advice on SAP, Power BI, Power Platform, Data Engineering and DevOps from the 42X Academy mentors.",
+  path: "/blog",
+});
 
 function formatDate(iso: string) {
   if (!iso) return "";

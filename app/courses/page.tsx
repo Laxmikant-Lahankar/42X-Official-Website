@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { MODES_LONG, MODES_SHORT, pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { Customsection } from "@/app/CustomSection";
 import { SAP_TRACKS } from "@/components/sap/tracks";
 // import { COURSES, getCourse } from "@/data/courses";
 
-export const metadata: Metadata = {
-  title: "Courses — 42X Academy",
-  description:
-    "SAP, Data Engineering, and Power Platform at 42X Academy, including the SAP tracks for MM, SD, EWM, ABAP, and BASIS.",
-};
+export const metadata: Metadata = pageMeta({
+  title: `SAP, Power BI & DevOps Courses – ${MODES_SHORT}`,
+  description: `Compare 42X Academy courses: SAP MM, SD, EWM, ABAP and BASIS, Power BI, Power Platform, Data Engineering and DevOps with AI. ${MODES_LONG}`,
+  path: "/courses",
+});
 
 import { COURSE_TRACKS } from "@/data/courses";
 

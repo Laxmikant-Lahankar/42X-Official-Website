@@ -8,6 +8,14 @@ import { Syllabus } from "@/components/courses/Syllabus";
 import { COURSES, getCourse } from "@/data/courses";
 import { CTAButton } from "@/components/CTAButton";
 import { CTAS } from "@/lib/cta";
+import { JsonLd } from "@/components/JsonLd";
+import {
+  MODES_LONG,
+  MODES_SHORT,
+  UNLISTED_COURSES,
+  courseSchema,
+  pageMeta,
+} from "@/lib/seo";
 
 // Theme tokens only (styling) — no logic/content changes
 const HEADING =
@@ -38,10 +46,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const course = getCourse(slug);
   if (!course) return {};
-  return {
-    title: `${course.title} — 42X Academy`,
-    description: course.subtitle,
-  };
+  return pageMeta({
+    title: `${course.title} Training – ${MODES_SHORT}`,
+    description: `${course.subtitle} ${MODES_LONG}`,
+    path: `/courses/${course.slug}`,
+    noindex: UNLISTED_COURSES.has(course.slug),
+  });
 }
 
 export default async function CourseDetailPage({ params }: Props) {
@@ -51,6 +61,9 @@ export default async function CourseDetailPage({ params }: Props) {
 
   return (
     <div>
+      {!UNLISTED_COURSES.has(course.slug) && (
+        <JsonLd data={courseSchema(course)} />
+      )}
       {/* Hero */}
       <Customsection>
         <div className="px-6 py-16 md:px-12 md:py-20" style={SECTION_BG}>

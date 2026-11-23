@@ -1,13 +1,16 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Customsection } from "@/app/CustomSection";
 import { CTAS } from "@/lib/cta";
 import ApplyForm from "./apply-form";
 
-export const metadata: Metadata = {
-  title: CTAS.primary.label,
-  description: "Join the 42X Academy founding cohort.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Apply – Join the Founding Cohort",
+  description:
+    "Apply to join the 42X Academy founding cohort for SAP, Power BI, Power Platform or DevOps training, online or in Pune.",
+  path: "/apply",
+});
 
 export default function ApplyPage() {
   return (
