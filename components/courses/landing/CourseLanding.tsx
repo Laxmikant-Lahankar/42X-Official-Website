@@ -4,7 +4,7 @@ import { Customsection } from "@/app/CustomSection";
 import { Syllabus } from "@/components/courses/Syllabus";
 import { JsonLd } from "@/components/JsonLd";
 import type { CourseContent } from "@/data/courses";
-import type { CourseLanding as LandingCopy } from "@/data/course-landing/sap-ewm";
+import type { CourseLanding as LandingCopy } from "@/data/course-landing/types";
 import { faqSchema } from "@/lib/seo";
 import {
   CountUp,
@@ -15,7 +15,7 @@ import {
   Roadmap,
   TrackedLink,
 } from "./motion";
-import { WarehouseScene } from "./WarehouseScene";
+import { RoleScene } from "./RoleScene";
 
 // Brand typography (42X brand guide): Montserrat for headings/CTAs, Inter for body.
 // --font-montserrat is also what the shared Syllabus component already asks for.
@@ -101,7 +101,7 @@ export function CourseLanding({
                 </p>
               </div>
               <h1 className="animate-fade-up mt-5 font-[family-name:var(--font-montserrat)] text-[40px] font-bold leading-[1.1] tracking-tight text-white [animation-delay:80ms] sm:text-5xl lg:text-6xl">
-                {copy.headline}
+                {course.title} Training
                 <span className={`mt-2 block ${GRADIENT_TEXT}`}>
                   {copy.headlineAccent}
                 </span>
@@ -129,9 +129,13 @@ export function CourseLanding({
 
             <div className="animate-fade-up relative mt-12 [animation-delay:300ms] md:mt-16">
               <p className={`${KICKER} mb-4 text-center`}>
-                IT roles that run on SAP EWM
+                IT roles that run on {course.title}
               </p>
-              <WarehouseScene roles={copy.roles} />
+              <RoleScene
+                scene={copy.scene}
+                roles={copy.roles}
+                label={`Animated ${course.title} illustration. IT roles that work on it`}
+              />
             </div>
 
             {/* Fact strip */}
@@ -167,7 +171,8 @@ export function CourseLanding({
           <FadeIn>
             <p className={KICKER}>Curriculum</p>
             <h2 className={`mt-3 ${H2}`}>
-              11 modules. <span className={GRADIENT_TEXT}>Week by week.</span>
+              {course.modules.length} modules.{" "}
+              <span className={GRADIENT_TEXT}>Week by week.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.1} className={`${CARD} mt-10 p-5 sm:p-8`}>
@@ -188,15 +193,18 @@ export function CourseLanding({
             <FadeIn>
               <p className={KICKER}>Capstone</p>
               <h2 className={`mt-3 ${H2}`}>
-                Your warehouse.{" "}
-                <span className={GRADIENT_TEXT}>Your go‑live.</span>
+                {copy.capstoneTitle[0]}{" "}
+                <span className={GRADIENT_TEXT}>{copy.capstoneTitle[1]}</span>
               </h2>
               <p className="mt-5 max-w-md text-[17px] leading-relaxed text-white/70">
                 {copy.capstoneLine}
               </p>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <IncidentTicker />
+              <IncidentTicker
+                label={copy.incident.label}
+                steps={copy.incident.steps}
+              />
             </FadeIn>
           </div>
         </Section>
@@ -256,7 +264,7 @@ export function CourseLanding({
               <p className={KICKER}>FAQ</p>
               <h2 className={`mt-3 ${H2}`}>
                 Questions about{" "}
-                <span className={GRADIENT_TEXT}>SAP EWM training</span>
+                <span className={GRADIENT_TEXT}>{course.title} training</span>
               </h2>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <TrackedLink

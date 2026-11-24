@@ -1,36 +1,13 @@
-// Sales-page copy for /courses/sap-ewm — kept deliberately minimal.
-// Curriculum facts (modules, durations, capstone) come from data/courses.ts
-// and public/syllabus/sap_ewm.pdf; this file only adds the selling layer.
-//
-// RULES (repo + brand guide): no invented prices, seat counts, batch dates,
-// placement numbers or testimonials. Every claim here must be true today.
-
-import type { SceneRole } from "@/components/courses/landing/WarehouseScene";
-
-export type LandingFaq = { question: string; answer: string };
-
-export type CourseLanding = {
-  eyebrow: string;
-  headline: string;
-  headlineAccent: string;
-  lede: string;
-  totalWeeks: string;
-  /** IT roles shown around the animated warehouse (max 6), each tied to the
-   *  part of the warehouse it works on. */
-  roles: SceneRole[];
-  capstoneLine: string;
-  faqs: LandingFaq[];
-};
+import { EYEBROW, standardFaqs, type CourseLanding } from "./types";
 
 export const SAP_EWM_LANDING: CourseLanding = {
-  eyebrow: "Online worldwide · Classroom in Pune",
-  headline: "SAP EWM Training",
+  seoDescription:
+    "SAP EWM training online or in Pune: inbound, outbound, RF, waves, yard and ERP integration, with a warehouse capstone and 1-on-1 mentorship. ~14 weeks.",
+  eyebrow: EYEBROW,
   headlineAccent: "Run the warehouse. Own the system.",
   lede: "Configure, run and debug SAP Extended Warehouse Management, from goods receipt to goods issue.",
-  // Syllabus PDF states "~14 weeks" (11 modules ≈ 12 weeks + capstone).
   totalWeeks: "~14",
-
-  // Order matters: slots go left column top→bottom, then right column.
+  scene: "warehouse",
   roles: [
     { title: "SAP EWM Consultant", station: "racks" },
     { title: "Warehouse Functional Consultant", station: "dock" },
@@ -39,30 +16,23 @@ export const SAP_EWM_LANDING: CourseLanding = {
     { title: "EWM Support Analyst", station: "monitor" },
     { title: "RF & Mobility Analyst", station: "scanner" },
   ],
-
+  capstoneTitle: ["Your warehouse.", "Your go‑live."],
   capstoneLine:
     "We break your warehouse on purpose. You find the fault, fix it and demo the result.",
-
-  faqs: [
-    {
-      question: "Do I need SAP experience to join the SAP EWM course?",
-      answer:
-        "No. We start from EWM fundamentals and the warehouse structure. Graduates, logistics professionals and SAP consultants all follow the same path, with 1-on-1 mentorship.",
-    },
-    {
-      question: "How long is the course and how much time does it take?",
-      answer:
-        "About 14 weeks: 11 modules plus a capstone project. Plan for 8–12 hours a week, so you can study alongside a job.",
-    },
-    {
-      question: "Can I join online from outside India, or in class in Pune?",
-      answer:
-        "Both. Live online classes are open to students anywhere; classroom batches run at our centre on J.M. Road, Pune. Same syllabus, mentors and capstone either way.",
-    },
-    {
-      question: "What are the fees and when does the next batch start?",
-      answer:
-        "Fees depend on mode and batch. Book a free session or WhatsApp +91 84848 34242 and we'll share current fees and dates.",
-    },
-  ],
+  incident: {
+    label: "Capstone · Injected exception",
+    steps: [
+      { tone: "alert", text: "Exception · Warehouse task stuck in queue" },
+      { tone: "work", text: "Investigating · Debugger on WT creation" },
+      { tone: "work", text: "Root cause · Storage type search sequence" },
+      { tone: "ok", text: "Resolved · Flow restored, stakeholders updated" },
+    ],
+  },
+  faqs: standardFaqs({
+    name: "SAP EWM",
+    weeks: "~14",
+    modules: 11,
+    prerequisite:
+      "No. We start from EWM fundamentals and the warehouse structure. Graduates, logistics professionals and SAP consultants all follow the same path, with 1-on-1 mentorship.",
+  }),
 };

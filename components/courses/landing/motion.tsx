@@ -17,7 +17,7 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { trackEvent } from "@/lib/analytics";
-import type { LandingFaq } from "@/data/course-landing/sap-ewm";
+import type { IncidentStep, LandingFaq } from "@/data/course-landing/types";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -157,23 +157,24 @@ export function Roadmap({
   );
 }
 
-const INCIDENT = [
-  { tone: "alert", text: "Exception · Warehouse task stuck in queue" },
-  { tone: "work", text: "Investigating · Debugger on WT creation" },
-  { tone: "work", text: "Root cause · Storage type search sequence" },
-  { tone: "ok", text: "Resolved · Flow restored, stakeholders updated" },
-] as const;
-
-/** Capstone teaser: an injected exception gets diagnosed and resolved. */
-export function IncidentTicker() {
+/** Capstone teaser: an injected issue gets diagnosed and resolved. */
+export function IncidentTicker({
+  label,
+  steps,
+}: {
+  label: string;
+  steps: IncidentStep[];
+}) {
+  const INCIDENT = steps;
   const reduce = useReducedMotion();
-  const [i, setI] = useState(reduce ? INCIDENT.length - 1 : 0);
+  const [tick, setI] = useState(0);
+  const i = reduce ? INCIDENT.length - 1 : tick;
 
   useEffect(() => {
     if (reduce) return;
     const id = setInterval(() => setI((n) => (n + 1) % INCIDENT.length), 2200);
     return () => clearInterval(id);
-  }, [reduce]);
+  }, [reduce, INCIDENT.length]);
 
   const step = INCIDENT[i];
   const color =
@@ -186,7 +187,7 @@ export function IncidentTicker() {
   return (
     <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
       <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#94A3B8]">
-        Capstone · Injected exception
+        {label}
       </p>
       <div className="mt-3 h-12" aria-live="off">
         <AnimatePresence mode="wait">

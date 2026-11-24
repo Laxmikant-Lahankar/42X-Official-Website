@@ -10,10 +10,7 @@ import { CTAButton } from "@/components/CTAButton";
 import { CTAS } from "@/lib/cta";
 import { JsonLd } from "@/components/JsonLd";
 import { CourseLanding } from "@/components/courses/landing/CourseLanding";
-import {
-  SAP_EWM_LANDING,
-  type CourseLanding as LandingCopy,
-} from "@/data/course-landing/sap-ewm";
+import { LANDINGS } from "@/data/course-landing";
 import {
   MODES_LONG,
   MODES_SHORT,
@@ -43,10 +40,6 @@ const CARD =
 
 type Props = { params: Promise<{ slug: string }> };
 
-const LANDINGS: Record<string, LandingCopy> = {
-  "sap-ewm": SAP_EWM_LANDING,
-};
-
 export function generateStaticParams() {
   return COURSES.map((c) => ({ slug: c.slug }));
 }
@@ -57,7 +50,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!course) return {};
   return pageMeta({
     title: `${course.title} Training – ${MODES_SHORT}`,
-    description: `${course.subtitle} ${MODES_LONG}`,
+    description:
+      LANDINGS[course.slug]?.seoDescription ??
+      `${course.subtitle} ${MODES_LONG}`,
     path: `/courses/${course.slug}`,
     noindex: UNLISTED_COURSES.has(course.slug),
   });
