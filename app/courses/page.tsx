@@ -1,10 +1,45 @@
 import type { Metadata } from "next";
-import { MODES_LONG, MODES_SHORT, pageMeta } from "@/lib/seo";
-import Image from "next/image";
+import {
+  MODES_LONG,
+  MODES_SHORT,
+  UNLISTED_COURSES,
+  courseSchema,
+  pageMeta,
+} from "@/lib/seo";
 import Link from "next/link";
 import { Customsection } from "@/app/CustomSection";
 import { SAP_TRACKS } from "@/components/sap/tracks";
-// import { COURSES, getCourse } from "@/data/courses";
+import { JsonLd } from "@/components/JsonLd";
+import { SceneThumb } from "@/components/courses/SceneThumb";
+import type { SceneId } from "@/components/courses/landing/scenes/types";
+import { COURSES } from "@/data/courses";
+
+// Each card shows a live, animated version of its course scene.
+const SAP_SCENES: Record<string, SceneId> = {
+  mm: "p2p",
+  sd: "o2c",
+  ewm: "warehouse",
+  abap: "abap",
+  basis: "basis",
+};
+
+// ItemList of every listed course: eligible for Google's course list results.
+const COURSE_LIST_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: COURSES.filter((c) => !UNLISTED_COURSES.has(c.slug)).map(
+    (c, i) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { ["@context"]: _ctx, ...course } = courseSchema(c);
+      return {
+        "@type": "ListItem",
+        position: i + 1,
+        url: course.url,
+        item: course,
+      };
+    },
+  ),
+};
 
 export const metadata: Metadata = pageMeta({
   title: `SAP, Power BI & DevOps Courses – ${MODES_SHORT}`,
@@ -18,7 +53,7 @@ import { COURSE_TRACKS } from "@/data/courses";
 const HEADING =
   "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
 const CTA_GRADIENT =
-  "bg-gradient-to-r from-[#008DFF] via-[#6650FF] to-[#D92FE5]";
+  "bg-gradient-to-r from-[#00B4FF] to-[#7B3DFF]"; // brand Blue → Purple
 
 // Muted neutral text (replaces the blue-tinted greys)
 const TEXT = "text-white/60";
@@ -42,46 +77,51 @@ const CARD =
 const GLOW =
   "pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-[radial-gradient(ellipse_75%_100%_at_50%_100%,rgba(70,120,230,0.13),transparent_70%)]";
 
-function getTrackParts(slug: string, idOverride?: string) {
+function getTrackParts(slug: string, scene: SceneId, idOverride?: string) {
   const track = COURSE_TRACKS.find((t) => t.slug === slug);
   if (!track) return [];
   return [
     {
       id: idOverride || track.slug,
       title: track.title,
-      image: track.image,
-      meta: `${track.level}  · ${track.lessons.toLowerCase()}`,
+      scene,
+      meta: track.badge,
+      chips: [track.level, track.lessons],
       detail: track.description,
     },
   ];
 }
 
-const DATA_PARTS = getTrackParts("power-bi", "data-engineering");
-const PLATFORM_PARTS = getTrackParts("power-platform");
-const DEVOPS_PARTS = getTrackParts("devops");
+const DATA_PARTS = getTrackParts("power-bi", "powerbi", "data-engineering");
+const PLATFORM_PARTS = getTrackParts("power-platform", "lowcode");
+const DEVOPS_PARTS = getTrackParts("devops", "cicd");
 
 export default function CoursesPage() {
   return (
     <div>
+      <JsonLd data={COURSE_LIST_SCHEMA} />
       <Customsection>
         <div
           className={`${PANEL} px-6 py-12 md:px-12 md:py-16`}
           style={PANEL_BG}
         >
           <span aria-hidden className={PANEL_LINE} />
-          <p className={`mb-2 text-xs font-medium ${MUTED} sm:text-sm`}>
-            Courses
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#00E5FF]">
+            See what you&apos;ll build
           </p>
           <h1
             className={`${HEADING} max-w-3xl text-3xl font-bold tracking-tight text-white md:text-5xl`}
           >
-            See what you&apos;ll build
+            SAP, Power BI &amp; DevOps{" "}
+            <span className="bg-gradient-to-r from-[#00B4FF] to-[#7B3DFF] bg-clip-text text-transparent">
+              courses
+            </span>
           </h1>
           <p
             className={`mt-4 max-w-2xl text-sm leading-relaxed ${TEXT} md:text-base`}
           >
-            Three programs. Pick a track and we&apos;ll carry it into the
-            contact form.
+            Four career tracks, each ending in a real capstone. Learn live
+            online from anywhere, or in class at our Pune centre.
           </p>
         </div>
       </Customsection>
@@ -104,13 +144,32 @@ export default function CoursesPage() {
               <PartCard
                 key={track.id}
                 href={`/courses/sap-${track.id}`}
-                // image="/sap-course.png"
-                image={`/sap_${track.id}.png`}
+                scene={SAP_SCENES[track.id] ?? "basis"}
                 title={track.code}
                 meta={track.name}
+                chips={[track.duration, "Online & Pune"]}
                 detail={track.structure}
               />
             ))}
+            {/* Fills the 6th slot: helps undecided visitors instead of leaving a gap */}
+            <Link
+              href="/contact?intent=demo&src=courses-sap-help"
+              className="group relative flex min-h-64 flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-[#00B4FF]/35 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(0,180,255,.10),transparent_70%)] p-8 text-center transition duration-200 hover:-translate-y-1 hover:border-[#00B4FF]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 sm:col-span-2 lg:col-span-1"
+            >
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00E5FF]">
+                Not sure which track?
+              </span>
+              <span
+                className={`${HEADING} max-w-xs text-xl font-bold leading-snug text-white`}
+              >
+                Functional, technical or admin: we&apos;ll help you pick.
+              </span>
+              <span
+                className={`${HEADING} inline-flex h-10 items-center justify-center gap-1.5 rounded-xl ${CTA_GRADIENT} px-6 text-[13px] font-semibold text-white shadow-[0_8px_28px_-10px_rgba(0,180,255,.8)] transition group-hover:brightness-110`}
+              >
+                Book a free session <span aria-hidden="true">→</span>
+              </span>
+            </Link>
           </div>
         </div>
       </Customsection>
@@ -199,9 +258,10 @@ function CourseColumn({
           <PartCard
             key={part.id}
             href={`/courses/${part.id}`}
-            image={part.image}
+            scene={part.scene}
             title={part.title}
             meta={part.meta}
+            chips={part.chips}
             detail={part.detail}
           />
         ))}
@@ -248,47 +308,43 @@ function TrackHeader({
 
 function PartCard({
   href,
-  image,
+  scene,
   title,
   meta,
+  chips,
   detail,
 }: {
   href: string;
-  image: string;
+  scene: SceneId;
   title: string;
   meta: string;
+  chips: string[];
   detail: string;
 }) {
   return (
     <Link href={href} className={CARD}>
       <span aria-hidden="true" className={GLOW} />
 
-      {/* Same frame on every card */}
-     <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-xl bg-black ring-1 ring-white/10">
-        {/* Dimmed, blurred copy fills the empty space, so no black bars */}
-        <Image
-          src={image}
-          alt=""
-          aria-hidden
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="scale-125 object-cover opacity-30 blur-2xl"
-        />
-        {/* Sharp poster, fully visible, never cropped */}
-        <Image
-          src={image}
-          alt={title}
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-contain"
-        />
+      {/* Live, animated course scene: same art as the course page hero */}
+      <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-xl bg-[radial-gradient(ellipse_80%_70%_at_50%_0%,rgba(0,180,255,.14),transparent_70%),radial-gradient(ellipse_70%_70%_at_50%_100%,rgba(123,61,255,.16),transparent_70%)] bg-[#05070f] p-2 ring-1 ring-white/10 transition duration-300 group-hover:ring-[#00B4FF]/40">
+        <SceneThumb scene={scene} label={`${title} course illustration`} />
       </div>
 
       <div className="relative flex flex-1 flex-col px-1 pt-4 pb-1">
         <h3 className={`${HEADING} line-clamp-1 text-lg font-bold text-white`}>
           {title}
         </h3>
-        <p className={`mt-2 text-sm ${MUTED}`}>{meta}</p>
+        <p className={`mt-1 text-sm ${MUTED}`}>{meta}</p>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {chips.map((c) => (
+            <li
+              key={c}
+              className="rounded-full border border-[#00B4FF]/30 bg-[#00B4FF]/10 px-2.5 py-1 text-[11.5px] font-medium text-[#BFEAFF]"
+            >
+              {c}
+            </li>
+          ))}
+        </ul>
         <p
           className={`mt-3 line-clamp-3 min-h-[3.9rem] text-sm leading-relaxed ${TEXT}`}
         >
@@ -297,9 +353,9 @@ function PartCard({
 
         {/* Not a link itself: the whole card is the link, so a click anywhere does what the button does */}
         <span
-          className={`${HEADING} mt-5 inline-flex h-10 w-full items-center justify-center rounded-xl ${CTA_GRADIENT} px-5 text-[13px] font-semibold text-white shadow-[0_8px_28px_-10px_rgba(0,180,255,.8)] transition group-hover:brightness-110`}
+          className={`${HEADING} mt-5 inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-xl ${CTA_GRADIENT} px-5 text-[13px] font-semibold text-white shadow-[0_8px_28px_-10px_rgba(0,180,255,.8)] transition group-hover:brightness-110`}
         >
-          Read more about the course
+          View course <span aria-hidden="true">→</span>
         </span>
       </div>
     </Link>

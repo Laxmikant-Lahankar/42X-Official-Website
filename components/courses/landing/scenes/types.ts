@@ -11,7 +11,15 @@ export type SceneDef = {
   Art: (props: { reduce: boolean }) => ReactNode;
 };
 
-export type SceneId = "warehouse" | "p2p" | "o2c" | "abap" | "basis";
+export type SceneId =
+  | "warehouse"
+  | "p2p"
+  | "o2c"
+  | "abap"
+  | "basis"
+  | "powerbi"
+  | "lowcode"
+  | "cicd";
 
 export type SceneRole = { title: string; station: string };
 
