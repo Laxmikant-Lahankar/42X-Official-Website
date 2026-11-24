@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { getUserData, saveUserData } from "@/lib/userSession";
+import { getUserData, saveUserData } from "@/lib/userSession";
+import { trackEvent } from "@/lib/analytics";
 
 interface Props {
   courseSlug: string;
@@ -122,6 +123,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       experienceLevel: formData.experienceLevel,
     });
 
+    trackEvent("generate_lead", { form: "syllabus_unlock", course: courseSlug });
     triggerDownload();
     onUnlocked();
   } catch {

@@ -15,7 +15,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getCourse } from "@/data/courses";
-import { getUserData, saveUserData } from "@/lib/userSession";
+import { getUserData, saveUserData } from "@/lib/userSession";
+import { trackEvent } from "@/lib/analytics";
 
 const EXPERIENCE_LEVELS = [
   { value: "beginner", label: "Beginner" },
@@ -155,6 +156,10 @@ function ContactContent() {
       }
 
       saveUserData(formData);
+      trackEvent("generate_lead", {
+        form: isDemo ? "free_session" : "contact",
+        course: formData.course,
+      });
       setShowThankYou(true);
     } catch (err) {
       console.error(err);

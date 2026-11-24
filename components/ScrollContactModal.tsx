@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CheckCircle2, Sparkles, X } from "lucide-react";
 import { INTEREST_OPTIONS } from "@/lib/interest";
-import { getUserData, hasValidUserData, saveUserData } from "@/lib/userSession";
+import { getUserData, hasValidUserData, saveUserData } from "@/lib/userSession";
+import { trackEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -161,6 +162,7 @@ export default function ScrollContactModal() {
       }
 
       saveUserData(formData);
+      trackEvent("generate_lead", { form: "popup", course: formData.course });
       setSubmitted(true);
     } catch (err) {
       console.error(err);

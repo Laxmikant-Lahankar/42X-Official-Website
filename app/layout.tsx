@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/JsonLd";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { GTM_ID } from "@/lib/analytics";
 import { SITE, organizationSchema } from "@/lib/seo";
 
 const poppins = Poppins({
@@ -64,7 +65,31 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${poppins.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
+      <head>
+        {/* Google tag (GTM container) — exactly one per page, at the top of <head>.
+            dataLayer is initialised before gtm.js loads. */}
+        <Script id="gtm-init" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
+        <Script
+          id="gtm"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+        />
+      </head>
       <body className="flex min-h-full flex-col font-sans">
+        {/* GTM fallback for visitors with JavaScript disabled */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="lazyOnload">
           {`

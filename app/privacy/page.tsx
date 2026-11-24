@@ -68,6 +68,16 @@ export default function PrivacyPage() {
           which pages are useful.
         </li>
         <li>
+          <strong>Google Analytics</strong> (through Google Tag Manager) shows
+          us how visitors find and use the site, such as which pages are
+          visited and which buttons are clicked. It uses cookies. You can opt
+          out with Google&apos;s{" "}
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">
+            Analytics opt-out add-on
+          </a>{" "}
+          or by blocking cookies in your browser.
+        </li>
+        <li>
           <strong>Meta Pixel</strong> (Facebook / Instagram) helps us measure our
           ads and show them to people who may be interested. Meta may use cookies
           for this. You can manage ad preferences in your Meta account settings

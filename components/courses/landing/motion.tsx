@@ -60,7 +60,7 @@ export function TrackedLink({
     <Link
       {...props}
       onClick={(e) => {
-        trackEvent("cta_click", { id: event, page: "course-sap-ewm" });
+        trackEvent("cta_click", { id: event, page: window.location.pathname });
         props.onClick?.(e);
       }}
     />
