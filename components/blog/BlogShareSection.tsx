@@ -31,14 +31,18 @@ function LinkedInIcon({ className = "size-3.5" }: { className?: string }) {
 
 export function BlogShareSection({
   title,
+  url: canonicalUrl,
   className = "",
 }: {
   title: string;
+  /** Absolute canonical URL, so share links are correct in server-rendered HTML. */
+  url?: string;
   className?: string;
 }) {
   const [copied, setCopied] = useState(false);
 
   const getShareUrl = () => {
+    if (canonicalUrl) return canonicalUrl;
     if (typeof window !== "undefined") {
       return window.location.href;
     }

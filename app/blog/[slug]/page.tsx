@@ -256,7 +256,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Share section */}
             <div className="mt-14">
-              <BlogShareSection title={post.title} />
+              <BlogShareSection title={post.title} url={`https://42xacademy.com/blog/${post.slug}`} />
             </div>
           </div>
         </div>

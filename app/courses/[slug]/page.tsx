@@ -12,6 +12,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { CourseLanding } from "@/components/courses/landing/CourseLanding";
 import { LANDINGS } from "@/data/course-landing";
 import {
+  COURSE_SEO_DESCRIPTIONS,
   MODES_LONG,
   MODES_SHORT,
   UNLISTED_COURSES,
@@ -52,6 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${course.title} Training – ${MODES_SHORT}`,
     description:
       LANDINGS[course.slug]?.seoDescription ??
+      COURSE_SEO_DESCRIPTIONS[course.slug] ??
       `${course.subtitle} ${MODES_LONG}`,
     path: `/courses/${course.slug}`,
     noindex: UNLISTED_COURSES.has(course.slug),
@@ -91,7 +93,7 @@ export default async function CourseDetailPage({ params }: Props) {
           <h1
             className={`${HEADING} mt-4 max-w-3xl text-3xl font-bold tracking-tight text-white md:text-4xl`}
           >
-            {course.title}
+            {course.title} Training
           </h1>
           <p
             className={`mt-4 max-w-2xl text-sm leading-relaxed ${TEXT} md:text-base`}

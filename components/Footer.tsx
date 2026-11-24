@@ -8,16 +8,13 @@ import {
   Check,
   BriefcaseBusiness,
   Camera,
-  Play,
-  BadgeX,
   GitBranch,
 } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Reveal from "./Reveal";
 
 export const Footer = () => {
-  const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -36,7 +33,7 @@ export const Footer = () => {
   };
 
   const navLinks = [
-    { name: "Home", href: "#" },
+    { name: "Home", href: "/" },
     { name: "Courses", href: "/courses" },
     { name: "Blogs", href: "/blog" },
     { name: "About", href: "/about" },
@@ -57,16 +54,12 @@ export const Footer = () => {
       external: true,
       icon: Camera,
     },
-    { name: "YouTube", href: pathname, external: false, icon: Play },
-    { name: "Twitter / X", href: pathname, external: false, icon: BadgeX },
+    // TODO: add YouTube / X here once the real profiles exist.
   ];
 
-  const legalLinks = [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Use", href: "#" },
-    { name: "Cookie Settings", href: "#" },
-    { name: "Security & Trust", href: "#" },
-  ];
+  // Legal column renders only when real pages exist (placeholder "#" links
+  // hurt trust and crawl quality). Add e.g. { name: "Privacy Policy", href: "/privacy" }.
+  const legalLinks: { name: string; href: string }[] = [];
 
   return (
     <footer
@@ -82,8 +75,8 @@ export const Footer = () => {
             <div>
               {/* Brand Wordmark - Bold Black & White Architecture */}
               <div className="flex items-center gap-3">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="group inline-flex items-center gap-2.5 text-2xl sm:text-3xl font-black tracking-tight text-white hover:text-neutral-200 transition-colors"
                 >
                   <Image
@@ -97,7 +90,7 @@ export const Footer = () => {
                   <span className="font-semibold tracking-normal text-white">
                     Academy
                   </span>
-                </a>
+                </Link>
 
                 {/* System Status Pill */}
                 <div className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-neutral-800 bg-neutral-950 text-[11px] font-mono text-neutral-400">
@@ -240,6 +233,7 @@ export const Footer = () => {
             </div>
 
             {/* Column 3: Legal & Standards */}
+            {legalLinks.length > 0 && (
             <div className="col-span-2 sm:col-span-1">
               <div className="text-xs font-mono tracking-wider uppercase text-neutral-400 mb-4 pb-1 border-b border-neutral-900 inline-block">
                 Legal
@@ -260,6 +254,7 @@ export const Footer = () => {
                 ))}
               </ul>
             </div>
+            )}
           </div>
         </Reveal>
 

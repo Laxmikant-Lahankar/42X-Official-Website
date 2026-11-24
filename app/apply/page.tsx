@@ -10,6 +10,8 @@ export const metadata: Metadata = pageMeta({
   description:
     "Apply to join the 42X Academy founding cohort for SAP, Power BI, Power Platform or DevOps training, online or in Pune.",
   path: "/apply",
+  // Form page; /contact is the indexable entry point.
+  noindex: true,
 });
 
 export default function ApplyPage() {

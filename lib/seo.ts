@@ -28,6 +28,16 @@ export const SITE = {
 /** Course pages that exist in data but are not ready to be indexed. */
 export const UNLISTED_COURSES = new Set(["power-platform-placeholder"]);
 
+/** Meta descriptions (≤ ~155 chars) for course pages without a landing page. */
+export const COURSE_SEO_DESCRIPTIONS: Record<string, string> = {
+  "power-platform":
+    "Power Platform course online or in Pune: Power Apps, Power Automate, Dataverse, Power BI and Copilot Studio, with a hands-on capstone project.",
+  "data-engineering":
+    "Data Engineering course online or in Pune: Python, SQL, ETL/ELT, Spark, Airflow, Azure Data Factory, dbt and Kafka, with a production-style capstone.",
+  devops:
+    "DevOps with AI course online or in Pune: Linux, cloud, CI/CD, containers, Kubernetes and infrastructure as code, with AI tools in every module.",
+};
+
 /** Phrase used in titles/descriptions to cover both audiences. */
 export const MODES_SHORT = "Online & in Pune";
 export const MODES_LONG =

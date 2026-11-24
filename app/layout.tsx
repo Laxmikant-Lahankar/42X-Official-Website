@@ -8,7 +8,7 @@ import Finalcta from "@/components/Finalcta";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/JsonLd";
-import { MODES_LONG, MODES_SHORT, SITE, organizationSchema } from "@/lib/seo";
+import { MODES_SHORT, SITE, organizationSchema } from "@/lib/seo";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 const DEFAULT_TITLE = `SAP, Power BI & DevOps Training – ${MODES_SHORT} | 42X Academy`;
-const DEFAULT_DESCRIPTION = `Industry-ready training in SAP (MM, SD, EWM, ABAP, BASIS), Power BI, Power Platform and DevOps with 1-on-1 mentorship and real projects. ${MODES_LONG}`;
+const DEFAULT_DESCRIPTION = `SAP (MM, SD, EWM, ABAP, BASIS), Power BI, Power Platform and DevOps training with 1-on-1 mentorship and real projects. Live online or in Pune.`;
 
 // Pages override title/description/canonical/openGraph via pageMeta() in lib/seo.ts.
 // No canonical here on purpose: a layout canonical would be inherited by every page.
