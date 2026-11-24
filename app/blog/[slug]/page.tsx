@@ -12,6 +12,8 @@ import { getAllPosts, getPost } from "@/lib/posts";
 import { Customsection } from "@/app/CustomSection";
 import { BlogImage } from "@/components/blog/BlogImage";
 import { BlogShareSection } from "@/components/blog/BlogShareSection";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -80,6 +82,13 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ])}
+      />
       {/* Post Header Hero Section */}
       <Customsection>
         <div

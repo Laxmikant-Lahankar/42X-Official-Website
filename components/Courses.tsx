@@ -1,5 +1,4 @@
 //@ts-nocheck
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -15,6 +14,16 @@ import SectionHeader from "./SectionHeader";
 import Reveal from "./Reveal";
 
 import { COURSE_TRACKS } from "@/data/courses";
+import { SceneThumb } from "@/components/courses/SceneThumb";
+import type { SceneId } from "@/components/courses/landing/scenes/types";
+
+// Animated scene per homepage track (same art as /courses and course pages).
+const TRACK_SCENES: Record<string, SceneId> = {
+  sap: "warehouse",
+  "power-bi": "powerbi",
+  "power-platform": "lowcode",
+  devops: "cicd",
+};
 
 // Track badges shown on the SAP flagship card.
 // (Move these into COURSE_TRACKS as a `tracks` field if you'd rather keep them in data.)
@@ -94,13 +103,12 @@ export default function Courses({ course }: { course?: string } = {}) {
                         : ""
                     }`}
                   >
-                    <Image
-                      src={flagship.image}
-                      alt={flagship.title}
-                      fill
-                      sizes="(min-width: 1024px) 55vw, 100vw"
-                      className="object-contain"
-                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_50%_0%,rgba(0,180,255,.14),transparent_70%),radial-gradient(ellipse_70%_70%_at_50%_100%,rgba(123,61,255,.16),transparent_70%)] p-4">
+                      <SceneThumb
+                        scene={TRACK_SCENES[flagship.slug] ?? "warehouse"}
+                        label={`${flagship.title} illustration`}
+                      />
+                    </div>
                     <span className="absolute top-3 left-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
                       {flagship.badge}
                     </span>
@@ -200,13 +208,12 @@ export default function Courses({ course }: { course?: string } = {}) {
 
                     <div className="relative flex h-full flex-col p-4">
                       <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-black">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                          className="object-contain"
-                        />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_50%_0%,rgba(0,180,255,.14),transparent_70%),radial-gradient(ellipse_70%_70%_at_50%_100%,rgba(123,61,255,.16),transparent_70%)] p-2">
+                          <SceneThumb
+                            scene={TRACK_SCENES[item.slug] ?? "warehouse"}
+                            label={`${item.title} illustration`}
+                          />
+                        </div>
                         <span className="absolute top-3 left-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
                           {item.badge}
                         </span>

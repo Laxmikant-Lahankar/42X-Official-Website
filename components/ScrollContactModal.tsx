@@ -67,8 +67,10 @@ export default function ScrollContactModal() {
       const rect = coursesEl.getBoundingClientRect();
       // Only trigger once the user has actually scrolled down to the courses section
       // (top of #courses has reached the upper viewport)
-        const isMobile = window.innerWidth < 768;
-        const triggerTop = isMobile ? -300 : 150; // more negative = they must scroll deeper
+        // No pop-up on phones: Google treats it as an intrusive interstitial,
+        // and mobile already has the sticky CTA bar + WhatsApp button.
+        if (window.innerWidth < 768) return;
+        const triggerTop = 150;
         if (rect.top <= triggerTop && rect.bottom >= 200) {
         hasTriggeredRef.current = true;
         setTimeout(() => {
@@ -238,21 +240,23 @@ export default function ScrollContactModal() {
             <div className="pr-8">
               <div className="inline-flex items-center gap-1.5 rounded-full border border-[#00c8ff]/30 bg-[#00c8ff]/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-[#38bdf8]">
                 <Sparkles className="size-3 text-[#38bdf8]" />
-                Liking it so far ?
+                Liking it so far?
               </div>
 
               <h2
                 id="contact-modal-title"
                 className="mt-2 text-xl font-bold leading-snug tracking-tight text-white sm:text-2xl"
               >
-                You need to hurry up cause seats are filling faster than ever!
+                Get fees and the next batch dates
               </h2>
 
               <p className="mt-1 text-xs text-[#94a3b8] sm:text-sm">
-                Add your details to get yourself registered for{" "}
+                Leave your details and our team will share course fees, batch
+                timings and a{" "}
                 <span className="font-semibold text-[#38bdf8]">
-                  completely FREE!!!
+                  free counselling session
                 </span>
+                . No obligation.
               </p>
             </div>
 
@@ -385,16 +389,16 @@ export default function ScrollContactModal() {
               <Button
                 type="submit"
                 disabled={submitting}
-                className="mt-2 h-11 w-full rounded-xl border-0 bg-gradient-to-r from-[#168fff] via-[#6155ff] to-[#d42be8] text-sm font-semibold text-white shadow-[0_8px_24px_rgba(45,93,255,0.2)] transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-2 h-11 w-full rounded-xl border-0 bg-gradient-to-r from-[#00B4FF] to-[#7B3DFF] text-sm font-semibold text-white shadow-[0_8px_24px_rgba(45,93,255,0.2)] transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {submitting ? (
                   <span className="flex items-center justify-center gap-2">
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                    Registering...
+                    Sending...
                   </span>
                 ) : (
                   <span className="flex items-center justify-center gap-2">
-                    Register for FREE
+                    Get course details
                     <span aria-hidden="true" className="text-lg">
                       →
                     </span>

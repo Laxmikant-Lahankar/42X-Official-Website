@@ -16,6 +16,9 @@ import {
   TrackedLink,
 } from "./motion";
 import { RoleScene } from "./RoleScene";
+import { SceneThumb } from "@/components/courses/SceneThumb";
+import type { SceneId } from "./scenes/types";
+import Link from "next/link";
 
 // Brand typography (42X brand guide): Montserrat for headings/CTAs, Inter for body.
 // --font-montserrat is also what the shared Syllabus component already asks for.
@@ -60,9 +63,11 @@ function Section({
 export function CourseLanding({
   course,
   copy,
+  related = [],
 }: {
   course: CourseContent;
   copy: LandingCopy;
+  related?: { slug: string; title: string; scene: SceneId; weeks: string }[];
 }) {
   const slug = course.slug;
   const href = {
@@ -256,6 +261,50 @@ export function CourseLanding({
             ))}
           </div>
         </Section>
+
+        {/* ───────── RELATED TRACKS (internal links) ───────── */}
+        {related.length > 0 && (
+          <Section>
+            <FadeIn>
+              <h2 className={`${H2} text-center`}>
+                Explore other{" "}
+                <span className={GRADIENT_TEXT}>SAP tracks</span>
+              </h2>
+            </FadeIn>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {related.map((r, i) => (
+                <li key={r.slug} className="h-full">
+                  <FadeIn delay={0.06 * i} className="h-full">
+                    <Link
+                      href={`/courses/${r.slug}`}
+                      className={`${CARD} group flex h-full flex-col p-3 transition duration-300 hover:-translate-y-1 hover:border-[#00B4FF]/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00E5FF] motion-reduce:hover:translate-y-0`}
+                    >
+                      <div className="aspect-[16/10] overflow-hidden rounded-2xl bg-[#05070f] p-1.5 ring-1 ring-white/10">
+                        <SceneThumb scene={r.scene} label={`${r.title} course illustration`} />
+                      </div>
+                      <span className="mt-3 flex items-center justify-between px-1 pb-1">
+                        <span className="font-[family-name:var(--font-montserrat)] font-semibold text-white">
+                          {r.title} Training
+                        </span>
+                        <span className="text-xs text-[#94A3B8]">{r.weeks} wks</span>
+                      </span>
+                    </Link>
+                  </FadeIn>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-center text-[15px] text-white/70">
+              Not sure which one fits you? Read our guide to{" "}
+              <Link
+                href="/blog/sap-classes-in-pune"
+                className="font-medium text-white underline decoration-[#00B4FF]/60 underline-offset-4 hover:decoration-[#00E5FF]"
+              >
+                choosing an SAP track
+              </Link>
+              .
+            </p>
+          </Section>
+        )}
 
         {/* ───────── FAQ ───────── */}
         <Section>

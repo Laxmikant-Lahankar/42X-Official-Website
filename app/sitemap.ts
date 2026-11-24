@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE.url}/contact`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE.url}/about`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE.url}/blog`, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${SITE.url}/privacy`, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${SITE.url}/terms`, changeFrequency: "yearly", priority: 0.2 },
   ];
 
   const coursePages: MetadataRoute.Sitemap = COURSES.filter(

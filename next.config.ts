@@ -21,6 +21,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // The /apply form does not persist submissions yet; send visitors to the
+      // contact form, which saves leads to SharePoint. Temporary (302).
+      {
+        source: "/apply",
+        destination: "/contact?src=apply",
+        permanent: false,
+      },
       {
         source: "/blogs",
         destination: "/blog",

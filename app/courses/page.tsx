@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  MODES_SHORT,
   UNLISTED_COURSES,
   courseSchema,
   pageMeta,
@@ -41,7 +40,7 @@ const COURSE_LIST_SCHEMA = {
 };
 
 export const metadata: Metadata = pageMeta({
-  title: `SAP, Power BI & DevOps Courses – ${MODES_SHORT}`,
+  title: "SAP, Power BI & DevOps Courses – Online & Pune",
   description: `Compare SAP MM, SD, EWM, ABAP, BASIS, Power BI, Power Platform and DevOps courses. Live online worldwide or in class at our Pune centre.`,
   path: "/courses",
 });

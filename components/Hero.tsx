@@ -34,7 +34,7 @@ const MOBILE_QUERY = "(max-width: 767px)";
 const HERO_HEIGHT = "h-[40rem] md:h-[55rem]";
 
 export default function Hero({
-  title = "Master In-Demand Skills. Unlock Your Potential.",
+  title = "Master SAP, Power BI & DevOps. Unlock Your Potential.",
 }: {
   title?: string;
 } = {}) {

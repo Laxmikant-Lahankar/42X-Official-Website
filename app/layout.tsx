@@ -8,7 +8,8 @@ import Finalcta from "@/components/Finalcta";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/JsonLd";
-import { MODES_SHORT, SITE, organizationSchema } from "@/lib/seo";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { SITE, organizationSchema } from "@/lib/seo";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -21,7 +22,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const DEFAULT_TITLE = `SAP, Power BI & DevOps Training – ${MODES_SHORT} | 42X Academy`;
+const DEFAULT_TITLE = "SAP, Power BI & DevOps Training | Online & Pune | 42X Academy";
 const DEFAULT_DESCRIPTION = `SAP (MM, SD, EWM, ABAP, BASIS), Power BI, Power Platform and DevOps training with 1-on-1 mentorship and real projects. Live online or in Pune.`;
 
 // Pages override title/description/canonical/openGraph via pageMeta() in lib/seo.ts.
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Finalcta />
         <Footer />
+        <WhatsAppFab />
         <Analytics />
       </body>
     </html>

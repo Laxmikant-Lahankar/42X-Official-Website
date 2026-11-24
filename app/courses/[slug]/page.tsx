@@ -16,6 +16,7 @@ import {
   MODES_LONG,
   MODES_SHORT,
   UNLISTED_COURSES,
+  breadcrumbSchema,
   courseSchema,
   pageMeta,
 } from "@/lib/seo";
@@ -65,19 +66,40 @@ export default async function CourseDetailPage({ params }: Props) {
   const course = getCourse(slug);
   if (!course) notFound();
 
+  const breadcrumbs = (
+    <JsonLd
+      data={breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Courses", path: "/courses" },
+        { name: course.title, path: `/courses/${course.slug}` },
+      ])}
+    />
+  );
+
   // Courses with a dedicated sales page (data/course-landing/*).
   const landing = LANDINGS[course.slug];
   if (landing) {
+    // Other courses with a landing page, for the "Explore other tracks" row.
+    const related = Object.entries(LANDINGS)
+      .filter(([s]) => s !== course.slug)
+      .map(([s, l]) => ({
+        slug: s,
+        title: getCourse(s)?.title ?? s,
+        scene: l.scene,
+        weeks: l.totalWeeks,
+      }));
     return (
       <>
         <JsonLd data={courseSchema(course)} />
-        <CourseLanding course={course} copy={landing} />
+        {breadcrumbs}
+        <CourseLanding course={course} copy={landing} related={related} />
       </>
     );
   }
 
   return (
     <div>
+      {breadcrumbs}
       {!UNLISTED_COURSES.has(course.slug) && (
         <JsonLd data={courseSchema(course)} />
       )}

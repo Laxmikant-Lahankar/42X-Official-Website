@@ -949,14 +949,16 @@ export const COURSE_TRACKS = [
     access: "Lifetime Access",
   },
   {
+    // Slug kept as "power-bi" (used by CTA + faculty mappings); the card links to
+    // /courses/data-engineering, so its copy describes that course.
     slug: "power-bi",
-    title: "Power BI for Data Professionals",
-    badge: "Power BI",
+    title: "Data Engineering",
+    badge: "Data Engineering",
     description:
-      "Work with data models, pipelines, SQL and reporting workflows to make information useful.",
+      "Build production-style data pipelines with Python, SQL, Spark, Airflow, dbt and Kafka.",
     image: "/power-bi.png",
-    level: "Beginner",
-    lessons: "24 Lessons",
+    level: "Beginner to Intermediate",
+    lessons: "36 Lessons",
     access: "Lifetime Access",
   },
   {

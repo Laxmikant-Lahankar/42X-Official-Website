@@ -185,3 +185,17 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
     })),
   };
 }
+
+/** BreadcrumbList for Google's breadcrumb display, e.g. Home › Courses › SAP MM. */
+export function breadcrumbSchema(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: `${SITE.url}${it.path}`,
+    })),
+  };
+}

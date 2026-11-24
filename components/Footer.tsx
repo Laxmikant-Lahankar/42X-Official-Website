@@ -1,11 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
 import {
   ArrowUpRight,
   ArrowUp,
-  Send,
-  Check,
   BriefcaseBusiness,
   Camera,
   GitBranch,
@@ -15,19 +13,6 @@ import Link from "next/link";
 import Reveal from "./Reveal";
 
 export const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setSubscribed(true);
-    setTimeout(() => {
-      setSubscribed(false);
-      setEmail("");
-    }, 4000);
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -59,7 +44,10 @@ export const Footer = () => {
 
   // Legal column renders only when real pages exist (placeholder "#" links
   // hurt trust and crawl quality). Add e.g. { name: "Privacy Policy", href: "/privacy" }.
-  const legalLinks: { name: string; href: string }[] = [];
+  const legalLinks: { name: string; href: string }[] = [
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Use", href: "/terms" },
+  ];
 
   return (
     <footer
@@ -98,7 +86,7 @@ export const Footer = () => {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-neutral-200"></span>
                   </span>
-                  <span>Cohort '26 Enrolling</span>
+                  <span>Cohort &apos;26 Enrolling</span>
                 </div>
               </div>
 
@@ -137,41 +125,30 @@ export const Footer = () => {
                 </p>
               </div>
 
-              {/* Newsletter / Terminal Dispatch */}
+              {/* Lead actions (replaced a newsletter form that saved nothing).
+                  Both go to channels that actually reach the team. */}
               <div className="mt-8">
                 <div className="text-xs font-mono tracking-wider uppercase text-neutral-400 mb-2.5">
-                  Stay in the loop
+                  Talk to us
                 </div>
-                <form onSubmit={handleSubscribe} className="relative max-w-md">
-                  <div className="flex items-center bg-neutral-950 border border-neutral-800 rounded-xl p-1.5 focus-within:border-neutral-500 transition-all">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your work email..."
-                      className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none font-sans"
-                      required
-                    />
-                    <button
-                      type="submit"
-                      className="flex-shrink-0 flex items-center gap-1.5 px-4 py-2 bg-white text-white bg-gradient-to-b from-[#5B8CFF] to-[#2E57DF] text-xs font-semibold rounded-lg transition-all duration-200"
-                    >
-                      {subscribed ? (
-                        <>
-                          <Check className="w-3.5 h-3.5" />
-                          <span>Joined</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Subscribe</span>
-                          <Send className="w-3 h-3" />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
-                <div className="mt-2 text-[11px] text-neutral-600 font-mono">
-                  Weekly engineering digest. Zero marketing fluff.
+                <div className="flex max-w-md flex-col gap-2 sm:flex-row">
+                  <Link
+                    href="/contact?intent=demo&src=footer"
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#00B4FF] to-[#7B3DFF] px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
+                  >
+                    Book a free session <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href="https://wa.me/918484834242?src=footer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-neutral-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-[#25D366] hover:text-[#25D366]"
+                  >
+                    WhatsApp us
+                  </a>
+                </div>
+                <div className="mt-2 text-[11px] text-neutral-500">
+                  Fees, batch dates and track advice. Online or in Pune.
                 </div>
               </div>
             </div>
@@ -261,7 +238,7 @@ export const Footer = () => {
         {/* Middle Metadata & Quick Bar */}
         <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-neutral-900 text-xs font-mono text-neutral-500">
           <div className="flex items-center gap-6">
-            <span>© 2026 42X Academy, Inc.</span>
+            <span>© 2026 42X Academy</span>
             <span className="hidden md:inline-block text-neutral-700">•</span>
             <span className="hidden md:inline-block">
               Designed for builders & engineers
