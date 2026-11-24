@@ -147,7 +147,7 @@ export const Footer = () => {
                     WhatsApp us
                   </a>
                 </div>
-                <div className="mt-2 text-[11px] text-neutral-500">
+                <div className="mt-2 text-[11px] text-neutral-400">
                   Fees, batch dates and track advice. Online or in Pune.
                 </div>
               </div>
@@ -236,7 +236,7 @@ export const Footer = () => {
         </Reveal>
 
         {/* Middle Metadata & Quick Bar */}
-        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-neutral-900 text-xs font-mono text-neutral-500">
+        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-neutral-900 text-xs font-mono text-neutral-400">
           <div className="flex items-center gap-6">
             <span>© 2026 42X Academy</span>
             <span className="hidden md:inline-block text-neutral-700">•</span>

@@ -36,7 +36,7 @@ const FACULTY: FacultyMember[] = [
     role: "Founder & Soft Skills Mentor",
     company: "Based in Antwerp, Belgium",
     bio: "Rebuilt a career from the ground up in a new country, so she knows technical skill alone doesn't get you hired. At 42X she makes sure every mentor session builds the confidence and communication to match the technical depth you're gaining, so you walk into the room ready to own it.",
-    image: "/founder.png",
+    image: "/founder.webp",
     courses: ["soft-skills"],
   },
   {
@@ -45,7 +45,7 @@ const FACULTY: FacultyMember[] = [
     role: "Data & BI Lead Coach",
     company: "Data & BI Lead Coach",
     bio: "Brings deep, hands-on expertise in Power BI, SQL, Excel, and Python, earned by solving real analytics problems for global clients. He has built dashboards that drive decisions, designed data models that scale, and turned messy business data into insights leadership actually acts on.",
-    image: "/prathemesh-pawar.jpg",
+    image: "/prathemesh-pawar.webp",
     courses: ["power-bi", "sql", "excel", "python"],
   },
   {
@@ -54,7 +54,7 @@ const FACULTY: FacultyMember[] = [
     role: "DevOps Engineer | Certified Professional",
     company: "Certified Professional",
     bio: "Certified DevOps Engineer with 5+ years of hands-on experience. Helps aspiring professionals build practical, industry-ready skills across Linux, Git, Docker, Kubernetes, Jenkins, CI/CD, AWS, infrastructure as code, and automation.",
-    image: "/murkute-dnyaneshwar.jpg",
+    image: "/murkute-dnyaneshwar.webp",
     courses: ["devops"],
   },
 ];
@@ -125,14 +125,14 @@ export default function Faculty({ course }: { course?: string } = {}) {
                   <h3 className="text-2xl font-light text-white">
                     {activeFaculty.name}
                   </h3>
-                  <p className="text-xs text-white/40 uppercase tracking-[0.12em] mt-2">
+                  <p className="text-xs text-white/60 uppercase tracking-[0.12em] mt-2">
                     {activeFaculty.role}
                   </p>
                 </div>
 
                 {/* Background - Condensed */}
                 <div className="text-sm text-white/60 leading-relaxed max-w-2xl mx-auto">
-                  <p className="text-xs uppercase tracking-[0.1em] text-white/40 mb-2">
+                  <p className="text-xs uppercase tracking-[0.1em] text-white/60 mb-2">
                     Background
                   </p>
                   <p>{activeFaculty.bio}</p>
@@ -140,7 +140,7 @@ export default function Faculty({ course }: { course?: string } = {}) {
 
                 {/* What They Teach */}
                 <div>
-                  <p className="text-xs uppercase tracking-[0.1em] text-white/40 mb-3">
+                  <p className="text-xs uppercase tracking-[0.1em] text-white/60 mb-3">
                     What They Teach
                   </p>
                   <div className="flex justify-center gap-2 flex-wrap">
@@ -182,7 +182,7 @@ export default function Faculty({ course }: { course?: string } = {}) {
           )}
 
           {/* Pagination Dots */}
-          <div className="mt-8 flex items-center justify-center gap-2">
+          <div className="mt-8 flex items-center justify-center">
             {slides.map((_, index) => (
               <button
                 key={index}
@@ -190,7 +190,7 @@ export default function Faculty({ course }: { course?: string } = {}) {
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={index === selectedIndex}
                 onClick={() => handleCarouselChange(index)}
-                className={`size-2 rounded-full transition-opacity ${
+                className={`box-content size-2 rounded-full bg-clip-content p-2 transition-opacity ${
                   index === selectedIndex
                     ? "bg-white opacity-100"
                     : "bg-white opacity-30 hover:opacity-50"

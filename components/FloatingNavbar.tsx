@@ -36,6 +36,8 @@ export default function FloatingNavbar() {
           : "pointer-events-none -translate-y-3 opacity-0",
       )}
       aria-hidden={!visible}
+      // inert: hidden navbar links must not be keyboard-focusable
+      inert={!visible}
     >
       <div
         className={cn(

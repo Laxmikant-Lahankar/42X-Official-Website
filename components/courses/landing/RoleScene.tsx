@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { SceneId, SceneRole } from "./scenes/types";
 import { SCENES } from "./scenes";
 import { SceneDefs } from "./scenes/SceneDefs";
+import { useScenePause } from "./scenes/useScenePause";
 
 /**
  * Hero scene: an animated course illustration with the IT roles that work on
@@ -41,18 +42,19 @@ export function RoleScene({
 }) {
   const reduce = useReducedMotion() ?? false;
   const def = SCENES[scene];
+  const { ref: svgRef, visible } = useScenePause();
   const [active, setActive] = useState(0);
   const [pinned, setPinned] = useState<number | null>(null);
   const current = pinned ?? active;
 
   useEffect(() => {
-    if (reduce || pinned !== null) return;
+    if (reduce || pinned !== null || !visible) return;
     const id = setInterval(
       () => setActive((i) => (i + 1) % Math.min(roles.length, SLOTS.length)),
       2400,
     );
     return () => clearInterval(id);
-  }, [reduce, pinned, roles.length]);
+  }, [reduce, pinned, roles.length, visible]);
 
   const anchor = (station: string): [number, number] => {
     const a = def.anchors[station] ?? [300, 230];
@@ -109,6 +111,7 @@ export function RoleScene({
       <div className="relative mx-auto aspect-[600/460] w-full lg:aspect-[1000/460]">
         <svg
           viewBox={`0 0 ${VB_W} ${VB_H}`}
+          ref={svgRef}
           preserveAspectRatio="xMidYMid slice"
           className="absolute inset-0 h-full w-full"
           aria-hidden="true"
@@ -169,7 +172,7 @@ export function RoleScene({
                 left: `${(r.slot.x / VB_W) * 100}%`,
                 top: `${(r.slot.y / VB_H) * 100}%`,
               }}
-              animate={reduce ? undefined : { y: [0, -5, 0] }}
+              animate={reduce || !visible ? undefined : { y: [0, -5, 0] }}
               transition={{
                 duration: 4 + r.i * 0.4,
                 repeat: Infinity,

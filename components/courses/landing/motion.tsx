@@ -94,7 +94,8 @@ export function CountUp({
   }, [inView, reduce, to]);
 
   return (
-    <span ref={ref} aria-label={`${prefix}${to}${suffix}`}>
+    <span ref={ref}>
+      <span className="sr-only">{`${prefix}${to}${suffix}`}</span>
       <span aria-hidden="true">
         {prefix}
         {value}
