@@ -367,7 +367,7 @@ export function CoverflowCarousel({
       )}
 
       {showPagination && (
-        <div className="mt-6 flex items-center justify-center gap-2">
+        <div className="mt-6 flex items-center justify-center">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -376,7 +376,7 @@ export function CoverflowCarousel({
               aria-current={index === selected}
               onClick={() => goTo(index)}
               className={cn(
-                "size-2 rounded-full bg-foreground transition-opacity",
+                "box-content size-2 rounded-full bg-foreground bg-clip-content p-2 transition-opacity",
                 index === selected ? "opacity-100" : "opacity-30",
               )}
             />

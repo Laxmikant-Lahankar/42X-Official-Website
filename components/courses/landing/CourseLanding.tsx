@@ -98,20 +98,21 @@ export function CourseLanding({
                   "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(0,180,255,.16), transparent 70%), radial-gradient(ellipse 45% 50% at 50% 100%, rgba(123,61,255,.16), transparent 70%)",
               }}
             />
-            {/* Hero copy uses CSS fade-ups (no JS needed) so the H1 paints immediately. */}
+            {/* Hero text renders immediately (no opacity-0 entrance) for a fast LCP;
+                only the buttons and scene animate in. */}
             <div className="relative mx-auto max-w-3xl text-center">
-              <div className="animate-fade-up">
+              <div>
                 <p className="mx-auto w-fit rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-[#C8B8FF]">
                   {copy.eyebrow}
                 </p>
               </div>
-              <h1 className="animate-fade-up mt-5 font-[family-name:var(--font-montserrat)] text-[40px] font-bold leading-[1.1] tracking-tight text-white [animation-delay:80ms] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 font-[family-name:var(--font-montserrat)] text-[40px] font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
                 {course.title} Training
                 <span className={`mt-2 block ${GRADIENT_TEXT}`}>
                   {copy.headlineAccent}
                 </span>
               </h1>
-              <p className="animate-fade-up mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-white/70 [animation-delay:160ms]">
+              <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-white/70">
                 {copy.lede}
               </p>
               <div className="animate-fade-up mt-8 flex flex-col justify-center gap-3 [animation-delay:240ms] sm:flex-row">

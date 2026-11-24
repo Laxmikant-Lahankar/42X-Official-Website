@@ -22,6 +22,7 @@ const CSS = `
   .s-spin { transform-box: fill-box; transform-origin: 50% 100%; animation: s-spin 4s linear infinite; }
   .s-rot { transform-box: fill-box; transform-origin: center; animation: s-spin var(--dur, 8s) linear infinite; }
 }
+.s-paused, .s-paused * { animation-play-state: paused !important; }
 @keyframes s-move { from { transform: translateX(0) } to { transform: translateX(var(--dx, 300px)) } }
 @keyframes s-down { 0% { transform: translateY(0); opacity: 0 } 10% { opacity: 1 } 90% { opacity: 1 } 100% { transform: translateY(var(--dy, 200px)); opacity: 0 } }
 @keyframes s-trip { 0% { transform: translateX(var(--from, -90px)); opacity: 0 } 15% { opacity: 1 } 60%, 100% { transform: translateX(0) } 85% { opacity: 1 } 100% { opacity: 0 } }

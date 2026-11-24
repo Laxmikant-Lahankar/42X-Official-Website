@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CTAButton } from "@/components/CTAButton";
 import { CTAS } from "@/lib/cta";
 import Reveal from "./Reveal";
@@ -5,11 +6,17 @@ import Reveal from "./Reveal";
 export default function Finalcta() {
   return (
     <div id="final-cta" className="mt-16 flex w-full items-center justify-center">
-      <div
-        className="flex h-[500px] w-full max-w-[1250px] items-center justify-center rounded-sm border border-white/10 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/final.jpg')" }}
-      >
-        <div className="flex h-full w-full flex-col items-center justify-center bg-black/45 px-6 text-center">
+      <div className="relative flex h-[500px] w-full max-w-[1250px] items-center justify-center overflow-hidden rounded-sm border border-white/10">
+        {/* Optimised + lazy-loaded (was a 1.9 MB CSS background loaded on every page) */}
+        <Image
+          src="/final.jpg"
+          alt=""
+          fill
+          sizes="(min-width: 1250px) 1250px, 100vw"
+          quality={70}
+          className="-z-0 object-cover object-center"
+        />
+        <div className="relative flex h-full w-full flex-col items-center justify-center bg-black/45 px-6 text-center">
           <Reveal className="flex flex-col items-center">
           <div className="mb-4 inline-flex items-center gap-2 text-xs font-medium text-white/70 sm:text-sm">
             <span className="relative flex h-1.5 w-1.5">

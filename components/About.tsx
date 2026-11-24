@@ -51,19 +51,19 @@ const TEAM = [
     name: "Dr. Shivani",
     role: "Founder & Soft Skills Mentor",
     meta: "Based in Antwerp, Belgium",
-    image: "/founder.png",
+    image: "/founder.webp",
   },
   {
     name: "Prathemesh Pawar",
     role: "Data & BI Lead Coach",
     meta: "Power BI, SQL, Excel, Python",
-    image: "/prathemesh-pawar.jpg",
+    image: "/prathemesh-pawar.webp",
   },
   {
     name: "Murkute Dnyaneshwar",
     role: "DevOps Engineer | Certified Professional",
     meta: "5+ years in DevOps",
-    image: "/murkute-dnyaneshwar.jpg",
+    image: "/murkute-dnyaneshwar.webp",
   },
 ];
 
@@ -150,7 +150,7 @@ export default function About() {
           <Reveal delayMs={80} className="relative mx-auto w-full max-w-md">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-white/10">
               <Image
-                src="/founder.png"
+                src="/founder.webp"
                 alt="Dr. Shivani, founder at 42X Academy"
                 fill
                 sizes="(min-width: 768px) 40vw, 90vw"

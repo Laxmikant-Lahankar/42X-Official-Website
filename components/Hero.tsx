@@ -143,6 +143,17 @@ export default function Hero({
             them, then fades into the black page on the left and right.
             Widen/narrow the fade by changing the 18% values. */}
         <div className="absolute bottom-0 left-1/2 h-full aspect-video -translate-x-1/2 translate-y-[10%] md:translate-y-[8%] [mask-image:linear-gradient(to_right,transparent,black_18%,black_82%,transparent)]">
+          {/* Server-rendered poster: paints immediately (fast LCP) while the
+              video loads and fades in on top of it. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={VIDEO_POSTER}
+            alt=""
+            aria-hidden
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-bottom"
+          />
           <video
             ref={videoRef}
             muted
@@ -153,7 +164,7 @@ export default function Hero({
             aria-hidden
             poster={VIDEO_POSTER}
             className={cn(
-              "h-full w-full object-cover object-bottom",
+              "relative h-full w-full object-cover object-bottom",
               showVideo ? "animate-hero-bg" : "opacity-0",
             )}
           />
