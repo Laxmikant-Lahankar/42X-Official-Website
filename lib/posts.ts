@@ -4,6 +4,17 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
+import type { SceneId } from "@/components/courses/landing/scenes/types";
+
+/** Animated course scene used as the cover when a post has no image. */
+const BLOG_SCENES: Record<string, SceneId> = {
+  "sap-mm-vs-sap-sd": "o2c",
+  "sap-wm-vs-ewm": "warehouse",
+  "what-is-sap-basis": "basis",
+  "how-to-become-sap-abap-developer": "abap",
+  "which-sap-module-to-choose": "p2p",
+  "learn-sap-online": "lowcode",
+};
 
 const dir = path.join(process.cwd(), "content/blog");
 
@@ -34,6 +45,7 @@ function toMeta(slug: string, data: { [key: string]: unknown }, content: string)
     date: data.date ? new Date(data.date as string | Date).toISOString() : "",
     image: str(data.image) || null,
     imageAlt: str(data.imageAlt) || title,
+    scene: BLOG_SCENES[slug] ?? null,
     intro,
     faqs: (Array.isArray(data.faqs) ? data.faqs : []) as Faq[],
     cta: (data.cta ?? null) as Cta | null,

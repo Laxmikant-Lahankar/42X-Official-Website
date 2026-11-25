@@ -1,4 +1,6 @@
 import { Sparkles, BookOpen } from "lucide-react";
+import { SceneThumb } from "@/components/courses/SceneThumb";
+import type { SceneId } from "@/components/courses/landing/scenes/types";
 
 export function BlogImage({
   src,
@@ -6,12 +8,15 @@ export function BlogImage({
   priority = false,
   className = "",
   aspectClassName = "aspect-video",
+  scene = null,
 }: {
   src?: string | null;
   alt: string;
   priority?: boolean;
   className?: string;
   aspectClassName?: string;
+  /** Animated course scene shown when there is no cover image. */
+  scene?: SceneId | null;
 }) {
   const hasValidImage = Boolean(src && src.trim().length > 0);
 
@@ -27,6 +32,10 @@ export function BlogImage({
           className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading={priority ? "eager" : "lazy"}
         />
+      ) : scene ? (
+        <div className="relative size-full bg-[radial-gradient(ellipse_80%_70%_at_50%_0%,rgba(0,180,255,.14),transparent_70%),radial-gradient(ellipse_70%_70%_at_50%_100%,rgba(123,61,255,.16),transparent_70%)] bg-[#05070f] p-3">
+          <SceneThumb scene={scene} label={alt} />
+        </div>
       ) : (
         /* Fallback Placeholder Visual */
         <div className="relative flex size-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#121624] via-[#0d0f17] to-[#07080b]">

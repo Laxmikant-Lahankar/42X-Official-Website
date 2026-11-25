@@ -180,6 +180,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="relative mt-10 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] shadow-2xl shadow-black/80">
               <BlogImage
                 src={post.image}
+                scene={post.scene}
                 alt={post.imageAlt}
                 priority
                 aspectClassName="aspect-video md:aspect-[21/9]"
@@ -325,6 +326,7 @@ export default async function BlogPostPage({ params }: Props) {
 
                     <BlogImage
                       src={p.image}
+                      scene={p.scene}
                       alt={p.imageAlt}
                       aspectClassName="aspect-video"
                     />

@@ -54,6 +54,7 @@ export default function BlogSection() {
                 {/* Image on top */}
                 <BlogImage
                   src={post.image}
+                  scene={post.scene}
                   alt={post.title}
                   aspectClassName="aspect-video"
                 />

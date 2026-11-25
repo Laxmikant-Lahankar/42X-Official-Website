@@ -87,6 +87,7 @@ export default function BlogIndex() {
                     {/* Image on Top (with placeholder fallback) */}
                     <BlogImage
                       src={p.image}
+                      scene={p.scene}
                       alt={p.title}
                       aspectClassName="aspect-video"
                     />
