@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import gfm from "remark-gfm";
 
 const dir = path.join(process.cwd(), "content/blog");
 
@@ -58,6 +59,7 @@ export async function getPost(slug: string) {
   const file = path.join(dir, `${slug}.md`);
   if (!fs.existsSync(file)) return null;
   const { data, content } = matter(fs.readFileSync(file, "utf8"));
-  const processed = await remark().use(html).process(content);
+  // GFM: tables, autolinked URLs, strikethrough. remark-html sanitizes output.
+  const processed = await remark().use(gfm).use(html).process(content);
   return { ...toMeta(slug, data, content), html: processed.toString() };
 }

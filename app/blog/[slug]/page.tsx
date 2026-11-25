@@ -83,6 +83,23 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-black text-white">
       <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.description,
+          ...(post.image ? { image: `https://42xacademy.com${post.image}` } : {}),
+          datePublished: post.date || undefined,
+          dateModified: post.date || undefined,
+          author: post.author
+            ? { "@type": "Person", name: post.author }
+            : { "@type": "Organization", name: "42X Academy" },
+          publisher: { "@id": "https://42xacademy.com/#organization" },
+          mainEntityOfPage: `https://42xacademy.com/blog/${post.slug}`,
+          inLanguage: "en",
+        }}
+      />
+      <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
           { name: "Blog", path: "/blog" },
@@ -339,12 +356,7 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* FAQ structured data for Google */}
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
+      {faqSchema && <JsonLd data={faqSchema} />}
     </div>
   );
 }
