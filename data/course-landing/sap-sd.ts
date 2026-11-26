@@ -7,6 +7,7 @@ export const SAP_SD_LANDING: CourseLanding = {
   headlineAccent: "Master order-to-cash in SAP.",
   lede: "Take an order from quotation to cash in SAP S/4HANA: pricing, availability, credit, delivery and billing, with debugging skills built in.",
   totalWeeks: "~13",
+  reading: ["sap-mm-vs-sap-sd", "which-sap-module-to-choose", "learn-sap-online"],
   scene: "o2c",
   roles: [
     { title: "SAP SD Consultant", station: "so" },

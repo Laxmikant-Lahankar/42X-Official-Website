@@ -19,6 +19,7 @@ import { RoleScene } from "./RoleScene";
 import { SceneThumb } from "@/components/courses/SceneThumb";
 import type { SceneId } from "./scenes/types";
 import Link from "next/link";
+import { getAllPosts } from "@/lib/posts";
 
 // Brand typography (42X brand guide): Montserrat for headings/CTAs, Inter for body.
 // --font-montserrat is also what the shared Syllabus component already asks for.
@@ -70,6 +71,11 @@ export function CourseLanding({
   related?: { slug: string; title: string; scene: SceneId; weeks: string }[];
 }) {
   const slug = course.slug;
+  // Blog posts that support this course (order as listed in its landing data).
+  const posts = getAllPosts();
+  const guides = (copy.reading ?? [])
+    .map((s) => posts.find((p) => p.slug === s))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
   const href = {
     session: `/contact?intent=demo&course=${slug}`,
     fees: `/contact?course=${slug}`,
@@ -232,14 +238,14 @@ export function CourseLanding({
                 tag: "Live online",
                 title: "Anywhere in the world",
                 cta: "Online batch details",
-                src: "ewm-mode-online",
+                src: `${slug}-mode-online`,
                 primary: true,
               },
               {
                 tag: "Classroom",
                 title: "J.M. Road, Pune",
                 cta: "Pune batch details",
-                src: "ewm-mode-pune",
+                src: `${slug}-mode-pune`,
                 primary: false,
               },
             ].map((m, i) => (
@@ -253,6 +259,9 @@ export function CourseLanding({
                   <h3 className="mt-2 font-[family-name:var(--font-montserrat)] text-2xl font-semibold text-white">
                     {m.title}
                   </h3>
+                  <p className="mt-3 text-[15px] text-white/70">
+                    Weekday and weekend batches
+                  </p>
                   <TrackedLink
                     event={m.src}
                     href={withSrc(href.fees, m.src)}
@@ -265,6 +274,42 @@ export function CourseLanding({
             ))}
           </div>
         </Section>
+
+        {/* ───────── GUIDES FOR THIS COURSE (blog cluster links) ───────── */}
+        {guides.length > 0 && (
+          <Section>
+            <FadeIn>
+              <p className={KICKER}>Guides for this course</p>
+              <h2 className={`mt-3 ${H2}`}>
+                Read before you <span className={GRADIENT_TEXT}>decide.</span>
+              </h2>
+            </FadeIn>
+            <ul className="mt-10 grid gap-4 md:grid-cols-3">
+              {guides.map((g, i) => (
+                <li key={g.slug}>
+                  <FadeIn delay={0.06 * i} className="h-full">
+                    <Link
+                      href={`/blog/${g.slug}`}
+                      className={`${CARD} group flex h-full flex-col p-6 transition duration-300 hover:-translate-y-1 hover:border-[#00B4FF]/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00E5FF] motion-reduce:hover:translate-y-0`}
+                    >
+                      <span className="text-xs text-[#94A3B8]">
+                        42X Journal · {g.readTime}
+                      </span>
+                      <span className="mt-2 font-[family-name:var(--font-montserrat)] text-lg font-semibold leading-snug text-white group-hover:text-[#00E5FF]">
+                        {g.title}
+                      </span>
+                      {g.description && (
+                        <span className="mt-2 line-clamp-2 text-[15px] leading-relaxed text-white/65">
+                          {g.description}
+                        </span>
+                      )}
+                    </Link>
+                  </FadeIn>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        )}
 
         {/* ───────── RELATED TRACKS (internal links) ───────── */}
         {related.length > 0 && (

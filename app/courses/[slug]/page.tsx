@@ -95,7 +95,11 @@ export default async function CourseDetailPage({ params }: Props) {
       }));
     return (
       <>
-        <JsonLd data={courseSchema(course)} />
+        <JsonLd
+          data={courseSchema(course, {
+            weeks: parseFloat(landing.totalWeeks.replace("~", "")),
+          })}
+        />
         {breadcrumbs}
         <CourseLanding course={course} copy={landing} related={related} />
       </>

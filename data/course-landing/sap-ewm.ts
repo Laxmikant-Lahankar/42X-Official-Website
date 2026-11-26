@@ -7,6 +7,7 @@ export const SAP_EWM_LANDING: CourseLanding = {
   headlineAccent: "Run the warehouse. Own the system.",
   lede: "Configure, run and debug SAP Extended Warehouse Management, from goods receipt to goods issue.",
   totalWeeks: "~14",
+  reading: ["sap-wm-vs-ewm", "which-sap-module-to-choose", "learn-sap-online"],
   scene: "warehouse",
   roles: [
     { title: "SAP EWM Consultant", station: "racks" },

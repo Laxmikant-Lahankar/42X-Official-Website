@@ -7,6 +7,7 @@ export const SAP_MM_LANDING: CourseLanding = {
   headlineAccent: "Master procure-to-pay in SAP.",
   lede: "Run the full P2P cycle in SAP S/4HANA: purchasing, inventory, invoice verification and MRP, with debugging skills built in.",
   totalWeeks: "~15",
+  reading: ["sap-mm-vs-sap-sd", "which-sap-module-to-choose", "learn-sap-online"],
   scene: "p2p",
   roles: [
     { title: "SAP MM Consultant", station: "po" },

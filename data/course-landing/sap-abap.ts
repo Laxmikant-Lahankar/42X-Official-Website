@@ -7,6 +7,7 @@ export const SAP_ABAP_LANDING: CourseLanding = {
   headlineAccent: "Write the code that runs SAP.",
   lede: "Build reports, enhancements, OO ABAP, BAPIs and Fiori/OData services, then debug and tune them like a professional developer.",
   totalWeeks: "~13.5",
+  reading: ["how-to-become-sap-abap-developer", "which-sap-module-to-choose", "learn-sap-online"],
   scene: "abap",
   roles: [
     { title: "SAP ABAP Developer", station: "editor" },

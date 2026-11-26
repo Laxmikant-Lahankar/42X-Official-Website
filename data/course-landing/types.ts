@@ -21,6 +21,8 @@ export type CourseLanding = {
   /** Fact-strip override when a course has several projects instead of one capstone. */
   projects?: { count: string; label: string };
   scene: SceneId;
+  /** Blog post slugs shown as "Guides for this course" (internal links). */
+  reading?: string[];
   /** IT roles around the illustration (max 6; order = left col, right col). */
   roles: SceneRole[];
   capstoneTitle: [string, string];

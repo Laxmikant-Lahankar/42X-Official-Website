@@ -7,6 +7,7 @@ export const SAP_BASIS_LANDING: CourseLanding = {
   headlineAccent: "Keep SAP running. Always.",
   lede: "Administer SAP landscapes end to end: users and roles, transports, jobs, HANA, monitoring, patching and security.",
   totalWeeks: "~12.5",
+  reading: ["what-is-sap-basis", "which-sap-module-to-choose", "learn-sap-online"],
   scene: "basis",
   roles: [
     { title: "SAP Security & Authorizations Analyst", station: "security" },

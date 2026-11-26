@@ -130,13 +130,43 @@ export function organizationSchema() {
 }
 
 /** Course offered in both modes: online (worldwide) and onsite (Pune). */
-export function courseSchema(course: {
-  slug: string;
-  title: string;
-  subtitle: string;
-  audience?: string;
-  skills?: string[];
-}) {
+/**
+ * Course + its CourseInstances: weekday and weekend batches, each live online
+ * (worldwide) and in the Pune classroom. `weeks` (from the syllabus) adds the
+ * total duration and a weekly schedule.
+ */
+export function courseSchema(
+  course: {
+    slug: string;
+    title: string;
+    subtitle: string;
+    audience?: string;
+    skills?: string[];
+  },
+  opts: { weeks?: number } = {},
+) {
+  const weeks = opts.weeks && opts.weeks > 0 ? opts.weeks : undefined;
+  const pune = {
+    "@type": "Place",
+    name: `${SITE.name}, Pune`,
+    address: { "@type": "PostalAddress", ...SITE.address },
+  };
+  const schedule = weeks
+    ? {
+        courseSchedule: {
+          "@type": "Schedule",
+          repeatFrequency: "Weekly",
+          repeatCount: Math.round(weeks),
+        },
+      }
+    : {};
+  const instance = (mode: "Online" | "Onsite", batch: "Weekday" | "Weekend") => ({
+    "@type": "CourseInstance",
+    name: `${batch} batch (${mode === "Online" ? "live online" : "classroom, Pune"})`,
+    courseMode: mode,
+    ...(mode === "Onsite" ? { location: pune } : {}),
+    ...schedule,
+  });
   return {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -151,21 +181,17 @@ export function courseSchema(course: {
       sameAs: SITE.url,
     },
     inLanguage: "en",
+    educationalLevel: "Beginner",
+    ...(weeks ? { timeRequired: `P${Math.round(weeks * 7)}D` } : {}),
     ...(course.audience
       ? { audience: { "@type": "Audience", audienceType: course.audience } }
       : {}),
     ...(course.skills?.length ? { teaches: course.skills } : {}),
     hasCourseInstance: [
-      { "@type": "CourseInstance", courseMode: "Online" },
-      {
-        "@type": "CourseInstance",
-        courseMode: "Onsite",
-        location: {
-          "@type": "Place",
-          name: `${SITE.name}, Pune`,
-          address: { "@type": "PostalAddress", ...SITE.address },
-        },
-      },
+      instance("Online", "Weekday"),
+      instance("Online", "Weekend"),
+      instance("Onsite", "Weekday"),
+      instance("Onsite", "Weekend"),
     ],
   };
 }
