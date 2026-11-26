@@ -32,16 +32,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? { absolute: post.seoTitle }
     : `${post.title} — 42X Academy Blog`;
   const socialTitle = post.seoTitle || `${post.title} — 42X Academy`;
+  // Shown by LinkedIn and other platforms as the post's author and date.
+  const author = post.author || "42X Academy Team";
 
   return {
     title: pageTitle,
     description:
       post.description || "Read articles and insights from 42X Academy.",
     alternates: { canonical: `/blog/${post.slug}` },
+    authors: [{ name: author }],
     openGraph: {
       title: socialTitle,
       description: post.description,
       type: "article",
+      authors: [author],
+      ...(post.date ? { publishedTime: post.date } : {}),
+      siteName: "42X Academy",
+      url: `/blog/${post.slug}`,
       // Uploaded cover if present; otherwise app/blog/[slug]/opengraph-image.tsx
       ...(post.image ? { images: [{ url: post.image, alt: post.imageAlt }] } : {}),
     },
