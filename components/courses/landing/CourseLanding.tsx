@@ -152,7 +152,10 @@ export function CourseLanding({
                   value: <CountUp to={course.modules.length} />,
                   label: "Modules",
                 },
-                { value: <>1</>, label: "Capstone project" },
+                {
+                  value: <>{copy.projects?.count ?? "1"}</>,
+                  label: copy.projects?.label ?? "Capstone project",
+                },
                 { value: <>1-on-1</>, label: "Mentorship" },
               ].map((f, i) => (
                 <FadeIn
@@ -269,7 +272,9 @@ export function CourseLanding({
             <FadeIn>
               <h2 className={`${H2} text-center`}>
                 Explore other{" "}
-                <span className={GRADIENT_TEXT}>SAP tracks</span>
+                <span className={GRADIENT_TEXT}>
+                  {course.category === "sap" ? "SAP tracks" : "career tracks"}
+                </span>
               </h2>
             </FadeIn>
             <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -294,6 +299,7 @@ export function CourseLanding({
                 </li>
               ))}
             </ul>
+            {course.category === "sap" && (
             <p className="mt-8 text-center text-[15px] text-white/70">
               Not sure which one fits you? Read our guide to{" "}
               <Link
@@ -304,6 +310,7 @@ export function CourseLanding({
               </Link>
               .
             </p>
+            )}
           </Section>
         )}
 

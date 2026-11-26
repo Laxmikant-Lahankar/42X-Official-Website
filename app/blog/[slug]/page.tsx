@@ -42,9 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: socialTitle,
       description: post.description,
       type: "article",
-      images: post.image
-        ? [{ url: post.image, alt: post.imageAlt }]
-        : ["/logo2.png"],
+      // Uploaded cover if present; otherwise app/blog/[slug]/opengraph-image.tsx
+      ...(post.image ? { images: [{ url: post.image, alt: post.imageAlt }] } : {}),
     },
   };
 }

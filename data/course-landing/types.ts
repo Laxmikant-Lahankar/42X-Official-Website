@@ -18,6 +18,8 @@ export type CourseLanding = {
   lede: string;
   /** As stated in the syllabus PDF, e.g. "~15". */
   totalWeeks: string;
+  /** Fact-strip override when a course has several projects instead of one capstone. */
+  projects?: { count: string; label: string };
   scene: SceneId;
   /** IT roles around the illustration (max 6; order = left col, right col). */
   roles: SceneRole[];

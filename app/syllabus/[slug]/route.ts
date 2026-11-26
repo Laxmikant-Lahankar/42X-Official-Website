@@ -200,6 +200,10 @@ export async function GET(
 ) {
   const { slug } = await params;
   const course = getCourse(slug);
+  // Fallback: total of the module durations (e.g. "1.5 weeks" -> 1.5).
+  const duration =
+    course?.duration ??
+    `~${(course?.modules ?? []).reduce((t, m) => t + (parseFloat(m.duration) || 0), 0)} weeks`;
   if (!course) {
     return new Response("Course not found", { status: 404 });
   }
@@ -215,7 +219,7 @@ export async function GET(
   w.banner(
     course.title,
     course.subtitle,
-    `Duration: ${course.duration}   |   Structure: ${course.structure}`,
+    `Duration: ${duration}   |   Structure: ${course.structure}`,
   );
 
   w.heading("Who this is for");

@@ -7,6 +7,17 @@ import { hasValidUserData } from "@/lib/userSession";
 
 const PREVIEW_COUNT = 2;
 
+// Courses with a designed PDF in public/syllabus/.
+const STATIC_SYLLABI = new Set([
+  "sap_mm",
+  "sap_sd",
+  "sap_ewm",
+  "sap_abap",
+  "sap_basis",
+  "devops",
+  "data_engineering",
+]);
+
 // Theme tokens only (styling) — no logic/content changes
 const HEADING = "font-[family-name:var(--font-montserrat),Montserrat,sans-serif]";
 const CTA_GRADIENT = "bg-gradient-to-r from-[#008DFF] via-[#6650FF] to-[#D92FE5]";
@@ -56,7 +67,11 @@ export function Syllabus({
   const triggerDownload = useCallback(() => {
     const fileName = courseSlug.replace(/-/g, "_");
     const a = document.createElement("a");
-    a.href = `/syllabus/${fileName}.pdf`;
+    // Designed PDFs where they exist; otherwise the generated syllabus
+    // (app/syllabus/[slug]/route.ts builds it from data/courses.ts).
+    a.href = STATIC_SYLLABI.has(fileName)
+      ? `/syllabus/${fileName}.pdf`
+      : `/syllabus/${courseSlug}`;
     a.download = `${fileName}_syllabus.pdf`;
     document.body.appendChild(a);
     a.click();

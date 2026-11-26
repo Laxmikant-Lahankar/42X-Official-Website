@@ -80,8 +80,13 @@ export default async function CourseDetailPage({ params }: Props) {
   const landing = LANDINGS[course.slug];
   if (landing) {
     // Other courses with a landing page, for the "Explore other tracks" row.
+    // Same group only: SAP pages suggest SAP tracks, others suggest each other.
+    const isSap = course.category === "sap";
     const related = Object.entries(LANDINGS)
-      .filter(([s]) => s !== course.slug)
+      .filter(
+        ([s]) =>
+          s !== course.slug && (getCourse(s)?.category === "sap") === isSap,
+      )
       .map(([s, l]) => ({
         slug: s,
         title: getCourse(s)?.title ?? s,

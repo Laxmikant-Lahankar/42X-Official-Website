@@ -46,7 +46,6 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     url: SITE.url,
     siteName: SITE.name,
-    images: [SITE.ogImage],
     locale: "en_US",
     type: "website",
   },
@@ -54,7 +53,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [SITE.ogImage],
   },
 };
 

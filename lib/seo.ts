@@ -53,14 +53,12 @@ export function pageMeta({
   description,
   path,
   absoluteTitle = false,
-  image = SITE.ogImage,
   noindex = false,
 }: {
   title: string;
   description: string;
   path: string;
   absoluteTitle?: boolean;
-  image?: string;
   noindex?: boolean;
 }): Metadata {
   const fullTitle = absoluteTitle ? title : `${title} | ${SITE.name}`;
@@ -73,7 +71,6 @@ export function pageMeta({
       description,
       url: path,
       siteName: SITE.name,
-      images: [image],
       locale: "en_US",
       type: "website",
     },
@@ -81,7 +78,6 @@ export function pageMeta({
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [image],
     },
     ...(noindex ? { robots: { index: false, follow: true } } : {}),
   };
