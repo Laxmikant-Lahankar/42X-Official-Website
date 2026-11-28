@@ -15,6 +15,8 @@ const BLOG_SCENES: Record<string, SceneId> = {
   "which-sap-module-to-choose": "p2p",
   "learn-sap-online": "lowcode",
   "sap-classes-in-pune": "warehouse",
+  "sap-layoffs-2026-what-it-means-for-sap-careers": "o2c",
+  "sap-security-incident-november-2026": "basis",
 };
 
 const dir = path.join(process.cwd(), "content/blog");
